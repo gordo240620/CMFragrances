@@ -71,7 +71,6 @@ builder.Services.AddScoped<IDetallePedidoService, DetallePedidoService>();
 
 // ======================================
 // JWT
-// ======================================
 
 builder.Services.AddAuthentication(options =>
 {
@@ -106,9 +105,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// ======================================
 // Swagger
-// ======================================
 
 builder.Services.AddEndpointsApiExplorer();
 
