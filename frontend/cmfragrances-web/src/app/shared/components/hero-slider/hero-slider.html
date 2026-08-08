@@ -1,1 +1,211 @@
-<p>hero-slider works!</p>
+<div class="hero-slider">
+
+
+    <!-- ==========================================
+         SLIDE 1
+    =========================================== -->
+
+    <div
+        class="slide"
+        [class.active]="currentSlide === 0">
+
+        <div class="slide-content">
+
+            <span>CM FRAGRANCES</span>
+
+            <h1>
+                Jean Lowe Immortal
+            </h1>
+
+            <p>
+                Una fragancia elegante, intensa y sofisticada.
+            </p>
+
+            <button>
+                Ver perfume
+            </button>
+
+        </div>
+
+        <div class="slide-image">
+
+            <img
+                src="/jloweinmortel.png"
+                alt="Jean Lowe Immortal">
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         SLIDE 2
+    =========================================== -->
+
+    <div
+        class="slide"
+        [class.active]="currentSlide === 1">
+
+        <div class="slide-content">
+
+            <span>LATTAFA</span>
+
+            <h1>
+                Asad
+            </h1>
+
+            <p>
+                Una fragancia intensa y masculina para destacar.
+            </p>
+
+            <button>
+                Ver perfume
+            </button>
+
+        </div>
+
+        <div class="slide-image">
+
+            <img
+                src="/assad.png"
+                alt="Lattafa Asad">
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         SLIDE 3
+    =========================================== -->
+
+    <div
+        class="slide"
+        [class.active]="currentSlide === 2">
+
+        <div class="slide-content">
+
+            <span>AFNAN</span>
+
+            <h1>
+                9PM
+            </h1>
+
+            <p>
+                Dulce, seductora y perfecta para la noche.
+            </p>
+
+            <button>
+                Ver perfume
+            </button>
+
+        </div>
+
+        <div class="slide-image">
+
+            <img
+                src="/9pm.png"
+                alt="Afnan 9PM">
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         SLIDE 4
+    =========================================== -->
+
+    <div
+        class="slide"
+        [class.active]="currentSlide === 3">
+
+        <div class="slide-content">
+
+            <span>ARMAF</span>
+
+            <h1>
+                Club de Nuit
+            </h1>
+
+            <p>
+                Elegancia y presencia en una fragancia inolvidable.
+            </p>
+
+            <button>
+                Ver perfume
+            </button>
+
+        </div>
+
+        <div class="slide-image">
+
+            <img
+                src="/Clubdenuit.png"
+                alt="Armaf Club de Nuit">
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         FLECHA ANTERIOR
+    =========================================== -->
+
+    <button
+        class="slider-arrow prev"
+        (click)="previousSlide()">
+
+        ‹
+
+    </button>
+
+
+    <!-- ==========================================
+         FLECHA SIGUIENTE
+    =========================================== -->
+
+    <button
+        class="slider-arrow next"
+        (click)="nextSlide()">
+
+        ›
+
+    </button>
+
+
+    <!-- ==========================================
+         INDICADORES
+    =========================================== -->
+
+    <div class="slider-dots">
+
+        <span
+            class="dot"
+            [class.active]="currentSlide === 0"
+            (click)="goToSlide(0)">
+        </span>
+
+        <span
+            class="dot"
+            [class.active]="currentSlide === 1"
+            (click)="goToSlide(1)">
+        </span>
+
+        <span
+            class="dot"
+            [class.active]="currentSlide === 2"
+            (click)="goToSlide(2)">
+        </span>
+
+        <span
+            class="dot"
+            [class.active]="currentSlide === 3"
+            (click)="goToSlide(3)">
+        </span>
+
+    </div>
+
+
+</div>

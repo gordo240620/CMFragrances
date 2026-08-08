@@ -1,0 +1,506 @@
+/* ==========================================
+   HERO SLIDER
+========================================== */
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+========================================== */
+
+.hero-slider {
+    position: relative;
+
+    width: 100%;
+    height: 520px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    color: #111;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   TARJETA / DIFUMINADO
+========================================== */
+
+.hero-slider::before {
+    content: "";
+
+    position: absolute;
+
+    top: 35px;
+    left: 8%;
+
+    width: 84%;
+    height: 450px;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, .08),
+        0 6px 20px rgba(0, 0, 0, .04);
+
+    z-index: 0;
+}
+
+
+/* ==========================================
+   CONTENIDO SOBRE LA TARJETA
+========================================== */
+
+.hero-slider > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ==========================================
+   SLIDES
+========================================== */
+
+.slide {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 100px;
+
+    padding: 50px 80px;
+
+    box-sizing: border-box;
+}
+
+.slide.active {
+    display: flex;
+}
+
+
+/* ==========================================
+   CONTENIDO
+========================================== */
+
+.slide-content {
+    width: 480px;
+
+    max-width: 45%;
+
+    z-index: 2;
+}
+
+.slide-content span {
+    display: block;
+
+    color: #c69b20;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 18px;
+}
+
+.slide-content h1 {
+    margin: 0 0 20px;
+
+    color: #151515;
+
+    font-size: 54px;
+    font-weight: 700;
+
+    line-height: 1.08;
+
+    letter-spacing: -1px;
+}
+
+.slide-content p {
+    margin: 0;
+
+    max-width: 480px;
+
+    color: #555;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   BOTÓN
+========================================== */
+
+.slide-content button {
+    margin-top: 30px;
+
+    padding: 15px 36px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #d4af37;
+
+    color: #111;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    box-shadow:
+        0 8px 20px rgba(212, 175, 55, .25);
+}
+
+.slide-content button:hover {
+    background: #e2bd45;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(212, 175, 55, .35);
+}
+
+
+/* ==========================================
+   IMAGEN DEL PERFUME
+========================================== */
+
+.slide-image {
+    width: 430px;
+
+    height: 400px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2;
+}
+
+.slide-image img {
+    display: block;
+
+    max-width: 100%;
+    max-height: 390px;
+
+    object-fit: contain;
+
+    /*
+       El fondo de la imagen es blanco,
+       igual que el fondo del carrusel.
+    */
+}
+
+
+/* ==========================================
+   FLECHAS
+========================================== */
+
+.slider-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 20;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid #d4af37;
+
+    background: rgba(255, 255, 255, .9);
+
+    color: #b58d18;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.slider-arrow:hover {
+    background: #d4af37;
+
+    color: #111;
+
+    transform: translateY(-50%) scale(1.08);
+}
+
+.slider-arrow.prev {
+    left: 25px;
+}
+
+.slider-arrow.next {
+    right: 25px;
+}
+
+
+/* ==========================================
+   PUNTOS
+========================================== */
+
+.slider-dots {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 22px;
+
+    transform: translateX(-50%);
+
+    z-index: 30;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    width: max-content;
+
+    margin: 0;
+    padding: 0;
+}
+
+.slider-dots .dot {
+    display: block;
+
+    width: 9px;
+    height: 9px;
+
+    min-width: 9px;
+    min-height: 9px;
+
+    margin: 0;
+    padding: 0;
+
+    border-radius: 50%;
+
+    background: #999;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.slider-dots .dot.active {
+    width: 11px;
+    height: 11px;
+
+    background: #d4af37;
+
+    transform: scale(1.15);
+}
+
+
+/* ==========================================
+   TRANSICIÓN SUAVE
+========================================== */
+
+.slide.active .slide-content {
+    animation: fadeContenido 1.2s ease-in-out;
+}
+
+.slide.active .slide-image {
+    animation: fadePerfume 1.4s ease-in-out;
+}
+
+
+/* ==========================================
+   FADE DEL CONTENIDO
+========================================== */
+
+@keyframes fadeContenido {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+
+/* ==========================================
+   FADE DEL PERFUME
+========================================== */
+
+@keyframes fadePerfume {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .hero-slider::before {
+        left: 5%;
+
+        width: 90%;
+    }
+
+    .slide {
+        gap: 50px;
+
+        padding: 40px 70px;
+    }
+
+    .slide-content h1 {
+        font-size: 45px;
+    }
+
+    .slide-image {
+        width: 380px;
+    }
+
+}
+
+
+/* ==========================================
+   CELULAR
+========================================== */
+
+@media (max-width: 750px) {
+
+    .hero-slider {
+        height: 650px;
+    }
+
+    .hero-slider::before {
+
+        top: 20px;
+
+        left: 4%;
+
+        width: 92%;
+
+        height: 610px;
+
+        border-radius: 20px;
+    }
+
+    .slide {
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 20px;
+
+        text-align: center;
+
+        padding: 40px 30px 65px;
+    }
+
+    .slide-content {
+
+        width: 100%;
+
+        max-width: 100%;
+    }
+
+    .slide-content span {
+
+        margin-bottom: 12px;
+    }
+
+    .slide-content h1 {
+
+        font-size: 36px;
+
+        margin-bottom: 15px;
+    }
+
+    .slide-content p {
+
+        margin: auto;
+
+        font-size: 16px;
+    }
+
+    .slide-content button {
+
+        margin-top: 22px;
+    }
+
+    .slide-image {
+
+        width: 100%;
+
+        height: 260px;
+    }
+
+    .slide-image img {
+
+        max-height: 250px;
+    }
+
+    .slider-arrow {
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 25px;
+    }
+
+    .slider-arrow.prev {
+
+        left: 10px;
+    }
+
+    .slider-arrow.next {
+
+        right: 10px;
+    }
+
+}
