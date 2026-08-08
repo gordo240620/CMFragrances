@@ -1,4 +1,5 @@
 /* Estilos globales de CM Fragrances */
+@import "bootstrap-icons/font/bootstrap-icons.css";
 body{
     background:rgb(231, 234, 237);
 }

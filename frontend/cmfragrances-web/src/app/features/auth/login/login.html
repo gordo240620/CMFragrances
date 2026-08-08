@@ -1,45 +1,173 @@
-<div class="container mt-5">
+<div class="login-page">
 
-    <div class="row justify-content-center">
+  <div class="login-card">
 
-        <div class="col-md-5">
+    <!-- Panel izquierdo -->
+    <div class="login-left"></div>
 
-            <h2 class="mb-4 text-center">
-                Iniciar Sesión
-            </h2>
+    <!-- Panel derecho -->
+    <div class="login-right">
 
-            <div class="mb-3">
+      <form #loginForm="ngForm" (ngSubmit)="iniciarSesion(loginForm)">
 
-                <label>Correo</label>
+        <h2>Bienvenido</h2>
 
-                <input
-                    type="email"
-                    class="form-control"
-                    [(ngModel)]="loginData.correo">
+        <p class="subtitle">
+          Inicia sesión para continuar
+        </p>
 
-            </div>
+        <!-- CORREO -->
+        <div class="mb-4">
 
-            <div class="mb-3">
+          <label class="form-label">
+            Correo electrónico
+          </label>
 
-                <label>Contraseña</label>
+          <div class="input-group">
 
-                <input
-                    type="password"
-                    class="form-control"
-                    [(ngModel)]="loginData.password">
+            <span class="input-group-text">
+              <i class="bi bi-envelope-fill"></i>
+            </span>
 
-            </div>
+            <input
+              type="email"
+              class="form-control"
+              name="correo"
+              required
+              email
+              #correo="ngModel"
+              placeholder="Ingresa tu correo"
+              [(ngModel)]="loginData.correo"
+              (ngModelChange)="mensajeError=''">
 
-            <button
-                class="btn btn-dark w-100"
-                (click)="iniciarSesion()">
+          </div>
 
-                Iniciar Sesión
+          @if(correo.invalid && (correo.dirty || correo.touched || loginForm.submitted)){
 
-            </button>
+            <small class="text-danger">
+
+              @if(correo.errors?.['required']){
+                El correo es obligatorio.
+              }
+
+              @if(correo.errors?.['email']){
+                Ingresa un correo válido.
+              }
+
+            </small>
+
+          }
 
         </div>
 
+        <!-- CONTRASEÑA -->
+        <div class="mb-4">
+
+          <label class="form-label">
+            Contraseña
+          </label>
+
+          <div class="input-group">
+
+            <span class="input-group-text">
+              <i class="bi bi-lock-fill"></i>
+            </span>
+
+            <input
+              [type]="mostrarPassword ? 'text' : 'password'"
+              class="form-control"
+              name="password"
+              required
+              minlength="6"
+              #password="ngModel"
+              placeholder="Ingresa tu contraseña"
+              [(ngModel)]="loginData.password"
+              (ngModelChange)="mensajeError=''">
+
+            <button
+              type="button"
+              class="eye-btn"
+              (click)="mostrarPassword = !mostrarPassword">
+
+              <i
+                class="bi"
+                [class.bi-eye-fill]="!mostrarPassword"
+                [class.bi-eye-slash-fill]="mostrarPassword">
+              </i>
+
+            </button>
+
+          </div>
+
+          @if(password.invalid && (password.dirty || password.touched || loginForm.submitted)){
+
+            <small class="text-danger">
+
+              @if(password.errors?.['required']){
+                La contraseña es obligatoria.
+              }
+
+              @if(password.errors?.['minlength']){
+                La contraseña debe tener al menos 6 caracteres.
+              }
+
+            </small>
+
+          }
+
+        </div>
+
+        <!-- BOTÓN -->
+
+        <button
+          type="submit"
+          class="btn-login"
+          [disabled]="cargando">
+
+          @if(!cargando){
+
+            Iniciar sesión
+
+          } @else {
+
+            <span class="spinner-border spinner-border-sm me-2"></span>
+
+            Iniciando sesión...
+
+          }
+
+        </button>
+
+        <!-- MENSAJE ERROR API -->
+
+        @if(mensajeError){
+
+          <div class="alert-login">
+
+            <i class="bi bi-exclamation-triangle-fill"></i>
+
+            <span>{{ mensajeError }}</span>
+
+          </div>
+
+        }
+
+        <!-- REGISTRO -->
+
+        <div class="register-link">
+
+          ¿No tienes cuenta?
+
+          <a routerLink="/register">
+            Crear cuenta
+          </a>
+
+        </div>
+
+      </form>
+
     </div>
+
+  </div>
 
 </div>

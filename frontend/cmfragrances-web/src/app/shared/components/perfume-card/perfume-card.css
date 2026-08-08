@@ -1,0 +1,143 @@
+.card-perfume{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    cursor:pointer;
+
+}
+
+.card-perfume:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.18);
+
+}
+
+.image-container{
+
+    height:300px;
+
+    overflow:hidden;
+
+    background:#f8f8f8;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.image-container img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    transition:.35s;
+
+}
+
+.card-perfume:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+.brand{
+
+    color:#999;
+
+    font-size:14px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:10px;
+
+}
+
+.card-body h3{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#111;
+
+    margin-bottom:15px;
+
+}
+
+.rating{
+
+    color:#D4AF37;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.price{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:#111;
+
+    margin-bottom:25px;
+
+}
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#D4AF37;
+
+    color:#111;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#111;
+
+    color:#fff;
+
+}

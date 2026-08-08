@@ -1,7 +1,386 @@
-<div class="container mt-5 text-center">
+<div class="register-page">
 
-    <h1 class="text-success">
-        Página Registro
-    </h1>
+  <div class="register-card">
+
+    <h2>Crear cuenta</h2>
+
+    <p class="subtitle">
+      Completa tus datos para comenzar.
+    </p>
+
+    <form
+      #registerForm="ngForm"
+      (ngSubmit)="registrarUsuario()">
+
+      <!-- Nombre y Apellido -->
+
+      <div class="row-form">
+
+        <!-- NOMBRE -->
+
+        <div class="form-item">
+
+          <label class="form-label">Nombre</label>
+
+          <div class="input-group">
+
+            <span class="input-group-text">
+              <i class="bi bi-person-fill"></i>
+            </span>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ingresa tu nombre"
+              name="nombre"
+              required
+              minlength="2"
+              #nombre="ngModel"
+              [(ngModel)]="registerData.nombre"
+              (ngModelChange)="mensajeError=''">
+
+          </div>
+
+          @if(nombre.invalid && (nombre.touched || registerForm.submitted)){
+
+            <small class="text-danger">
+
+              @if(nombre.errors?.['required']){
+                El nombre es obligatorio.
+              }
+
+              @if(nombre.errors?.['minlength']){
+                El nombre debe tener al menos 2 caracteres.
+              }
+
+              @if(password.errors?.['pattern']){
+                Debe incluir una mayúscula, un número y un carácter especial.
+              }
+
+            </small>
+
+          }
+
+        </div>
+
+        <!-- APELLIDO -->
+
+        <div class="form-item">
+
+          <label class="form-label">Apellido</label>
+
+          <div class="input-group">
+
+            <span class="input-group-text">
+              <i class="bi bi-person-vcard-fill"></i>
+            </span>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ingresa tu apellido"
+              name="apellido"
+              required
+              minlength="2"
+              #apellido="ngModel"
+              [(ngModel)]="registerData.apellido"
+              (ngModelChange)="mensajeError=''">
+
+          </div>
+
+          @if(apellido.invalid && (apellido.touched || registerForm.submitted)){
+
+            <small class="text-danger">
+
+              @if(apellido.errors?.['required']){
+                El apellido es obligatorio.
+              }
+
+              @if(apellido.errors?.['minlength']){
+                El apellido debe tener al menos 2 caracteres.
+              }
+
+            </small>
+
+          }
+
+        </div>
+
+      </div>
+
+      <!-- CORREO -->
+
+      <div class="mb-4">
+
+        <label class="form-label">
+          Correo electrónico
+        </label>
+
+        <div class="input-group">
+
+          <span class="input-group-text">
+            <i class="bi bi-envelope-fill"></i>
+          </span>
+
+          <input
+            type="email"
+            class="form-control"
+            placeholder="correo@ejemplo.com"
+            name="correo"
+            required
+            email
+            #correo="ngModel"
+            [(ngModel)]="registerData.correo"
+            (ngModelChange)="mensajeError=''">
+
+        </div>
+
+        @if(correo.invalid && (correo.touched || registerForm.submitted)){
+
+          <small class="text-danger">
+
+            @if(correo.errors?.['required']){
+              El correo es obligatorio.
+            }
+
+            @if(correo.errors?.['email']){
+              Ingresa un correo válido.
+            }
+
+          </small>
+
+        }
+
+      </div>
+
+      <!-- TELÉFONO -->
+
+      <div class="mb-4">
+
+        <label class="form-label">
+          Teléfono (Opcional)
+        </label>
+
+        <div class="input-group">
+
+          <span class="input-group-text">
+            <i class="bi bi-telephone-fill"></i>
+          </span>
+
+          <input
+            type="text"
+            class="form-control"
+            placeholder="6441234567"
+            name="telefono"
+            pattern="[0-9]{10}"
+            #telefono="ngModel"
+            [(ngModel)]="registerData.telefono">
+
+        </div>
+
+        @if(telefono.invalid && telefono.touched){
+
+          <small class="text-danger">
+
+            Ingresa un teléfono válido de 10 dígitos.
+
+          </small>
+
+        }
+
+      </div>
+
+      <!-- CONTRASEÑAS -->
+
+      <div class="row-form">
+
+        <div class="form-item">
+
+          <label class="form-label">
+            Contraseña
+          </label>
+
+          <div class="input-group">
+
+            <span class="input-group-text">
+              <i class="bi bi-lock-fill"></i>
+            </span>
+
+            <input
+              [type]="mostrarPassword ? 'text' : 'password'"
+              class="form-control"
+              placeholder="Contraseña"
+              name="password"
+              required
+              pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&.#_-]).{6,}$"
+              #password="ngModel"
+              [(ngModel)]="registerData.password"
+              (ngModelChange)="mensajeError=''">
+
+            <button
+              type="button"
+              class="eye-btn"
+              (click)="mostrarPassword=!mostrarPassword">
+
+              <i
+                class="bi"
+                [class.bi-eye-fill]="!mostrarPassword"
+                [class.bi-eye-slash-fill]="mostrarPassword">
+              </i>
+
+            </button>
+
+          </div>
+
+          <small class="text-muted">
+             Debe incluir: 6 caracteres, una mayúscula, un número y un carácter especial.
+          </small>
+
+          @if(password.invalid && (password.touched || registerForm.submitted)){
+
+          <small class="text-danger">
+
+             @if(password.errors?.['required']){
+             La contraseña es obligatoria.
+             }
+
+             @else if(password.errors?.['pattern']){
+             Debe incluir una mayúscula, un número y un carácter especial.
+            }
+
+          </small>
+
+        }
+          
+
+        </div>
+
+        <div class="form-item">
+
+          <label class="form-label">
+            Confirmar contraseña
+          </label>
+
+          <div class="input-group">
+
+            <span class="input-group-text">
+              <i class="bi bi-shield-lock-fill"></i>
+            </span>
+
+            <input
+              [type]="mostrarConfirmar ? 'text' : 'password'"
+              class="form-control"
+              placeholder="Confirma tu contraseña"
+              name="confirmarPassword"
+              required
+              #confirmar="ngModel"
+              [(ngModel)]="confirmarPassword"
+              (ngModelChange)="mensajeError=''">
+
+            <button
+              type="button"
+              class="eye-btn"
+              (click)="mostrarConfirmar=!mostrarConfirmar">
+
+              <i
+                class="bi"
+                [class.bi-eye-fill]="!mostrarConfirmar"
+                [class.bi-eye-slash-fill]="mostrarConfirmar">
+              </i>
+
+            </button>
+
+          </div>
+
+          @if(confirmar.invalid && (confirmar.touched || registerForm.submitted)){
+
+            <small class="text-danger">
+
+              La confirmación es obligatoria.
+
+            </small>
+
+          }
+
+          @if(confirmarPassword && registerData.password && confirmarPassword !== registerData.password){
+
+            <small class="text-danger">
+
+              Las contraseñas no coinciden.
+
+            </small>
+
+          }
+
+        </div>
+
+      </div>
+
+      <!-- BOTÓN -->
+
+      <button
+        type="submit"
+        class="btn-register"
+        [disabled]="registerForm.invalid || confirmarPassword !== registerData.password || cargando">
+
+        @if(!cargando){
+
+          Crear cuenta
+
+        } @else {
+
+          <span class="spinner-border spinner-border-sm me-2"></span>
+
+          Creando cuenta...
+
+        }
+
+      </button>
+
+      <!-- MENSAJE DE ERROR -->
+
+      @if(mensajeError){
+
+        <div class="alert-login">
+
+          <i class="bi bi-exclamation-triangle-fill"></i>
+
+          <span>{{ mensajeError }}</span>
+
+        </div>
+
+      }
+
+      <!-- MENSAJE DE ÉXITO -->
+
+      @if(mensajeExito){
+
+        <div class="alert-login success">
+
+          <i class="bi bi-check-circle-fill"></i>
+
+          <span>{{ mensajeExito }}</span>
+
+        </div>
+
+      }
+
+      <!-- LOGIN -->
+
+      <div class="login-link">
+
+        ¿Ya tienes una cuenta?
+
+        <a routerLink="/login">
+
+          Inicia sesión
+
+        </a>
+
+      </div>
+
+    </form>
+
+  </div>
 
 </div>

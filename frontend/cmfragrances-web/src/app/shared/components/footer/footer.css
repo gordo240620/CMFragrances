@@ -1,0 +1,379 @@
+/* ==========================================
+   CTA
+========================================== */
+
+.cta{
+
+    background:linear-gradient(135deg,#151515,#0d0d0d);
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:90px 20px;
+
+    border-top:2px solid #D4AF37;
+
+}
+
+.cta h2{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    margin-bottom:20px;
+
+}
+
+.cta p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#d8d8d8;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+.cta button{
+
+    margin-top:35px;
+
+    background:#D4AF37;
+
+    color:#111;
+
+    border:none;
+
+    padding:18px 48px;
+
+    border-radius:50px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:0 12px 25px rgba(212,175,55,.25);
+
+}
+
+.cta button:hover{
+
+    background:#e7c14a;
+
+    transform:translateY(-4px);
+
+    box-shadow:0 18px 35px rgba(212,175,55,.35);
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer{
+
+    background:#0b0b0b;
+
+    color:#fff;
+
+    border-top:2px solid #D4AF37;
+
+}
+
+/* ==========================================
+   CONTENEDOR
+========================================== */
+
+.footer-container{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:80px 40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    justify-items:center;
+
+    align-items:start;
+
+    gap:90px;
+
+}
+
+/* ==========================================
+   MARCA
+========================================== */
+
+.footer-brand{
+
+    max-width:300px;
+
+}
+
+.footer-brand h2{
+
+    color:#D4AF37;
+
+    font-size:34px;
+
+    margin-bottom:18px;
+
+    letter-spacing:1px;
+
+}
+
+.footer-brand p{
+
+    color:#d0d0d0;
+
+    font-size:16px;
+
+    line-height:1.9;
+
+}
+
+.footer-brand::after{
+
+    content:"";
+
+    display:block;
+
+    width:80px;
+
+    height:3px;
+
+    background:#D4AF37;
+
+    border-radius:50px;
+
+    margin-top:25px;
+
+}
+
+/* ==========================================
+   TITULOS
+========================================== */
+
+.footer-social h3,
+
+.footer-contact h3{
+
+    color:#D4AF37;
+
+    font-size:22px;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================================
+   REDES
+========================================== */
+
+.footer-social{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.footer-social a{
+
+    color:#f5f5f5;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    transition:.30s;
+
+}
+
+.footer-social a:hover{
+
+    color:#D4AF37;
+
+    transform:translateX(6px);
+
+}
+
+/* ==========================================
+   CONTACTO
+========================================== */
+
+.footer-contact{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.footer-contact p{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#f5f5f5;
+
+    font-size:16px;
+
+    margin:0;
+
+}
+
+.footer-contact a{
+
+    color:#f5f5f5;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    transition:.30s;
+
+}
+
+.footer-contact a:hover{
+
+    color:#D4AF37;
+
+}
+
+/* ==========================================
+   ICONOS
+========================================== */
+
+.footer-social i,
+
+.footer-contact i{
+
+    color:#D4AF37;
+
+    font-size:22px;
+
+}
+
+/* ==========================================
+   COPYRIGHT
+========================================== */
+
+.copyright{
+
+    background:#080808;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding:25px;
+
+    text-align:center;
+
+    color:#9a9a9a;
+
+    font-size:15px;
+
+    letter-spacing:.5px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+    .footer-container{
+
+        grid-template-columns:1fr;
+
+        gap:50px;
+
+        text-align:center;
+
+    }
+
+    .footer-brand{
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .footer-brand::after{
+
+        margin:auto;
+
+        margin-top:25px;
+
+    }
+
+    .footer-social,
+
+    .footer-contact{
+
+        align-items:center;
+
+    }
+
+    .footer-contact p{
+
+        justify-content:center;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .cta h2{
+
+        font-size:32px;
+
+    }
+
+    .cta p{
+
+        font-size:16px;
+
+    }
+
+}

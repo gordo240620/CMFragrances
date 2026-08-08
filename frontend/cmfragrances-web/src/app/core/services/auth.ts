@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { LoginRequest } from '../../models/login-request.model';
+import { RegisterRequest } from '../../models/register-request.model';
 import { AuthResponse } from '../../models/auth-response.model';
 
 @Injectable({
@@ -19,6 +20,15 @@ export class Auth {
 
     return this.http.post<AuthResponse>(
       `${this.apiUrl}/Auth/login`,
+      data
+    );
+
+  }
+
+  register(data: RegisterRequest): Observable<AuthResponse> {
+
+    return this.http.post<AuthResponse>(
+      `${this.apiUrl}/Auth/register`,
       data
     );
 

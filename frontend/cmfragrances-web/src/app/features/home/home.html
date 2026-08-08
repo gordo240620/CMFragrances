@@ -1,11 +1,102 @@
-<div class="container mt-5">
+<app-hero></app-hero>
 
-    <h1 class="text-center text-primary">
-        Bienvenido a CM Fragrances
-    </h1>
+<section class="featured">
 
-    <p class="text-center">
-        Inicio del sistema.
-    </p>
+    <div class="container">
 
-</div>
+        <div class="section-title">
+
+            <span>NUESTROS FAVORITOS</span>
+
+            <h2>Perfumes Árabes</h2>
+
+            <p>
+                Descubre las fragancias más vendidas y recomendadas de CM Fragrances.
+            </p>
+
+        </div>
+
+        <div class="cards">
+
+            <app-perfume-card
+                marca="Maison Alhambra"
+                nombre="Jean Lowe Immortal"
+                [precio]="850"
+                imagen="/jloweinmortel.png"
+                [calificacion]="4.9">
+            </app-perfume-card>
+
+            <app-perfume-card
+                marca="Lattafa"
+                nombre="Asad"
+                [precio]="750"
+                imagen="/assad.png"
+                [calificacion]="4.8">
+            </app-perfume-card>
+
+            <app-perfume-card
+                marca="Afnan"
+                nombre="9PM"
+                [precio]="980"
+                imagen="/9pm.png"
+                [calificacion]="5">
+            </app-perfume-card>
+
+            <app-perfume-card
+                marca="Armaf"
+                nombre="Club de Nuit"
+                [precio]="1050"
+                imagen="/Clubdenuit.png"
+                [calificacion]="4.9">
+            </app-perfume-card>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="brands">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>MARCAS PREMIUM</span>
+
+            <h2>Trabajamos con las mejores marcas</h2>
+
+            <p>
+                Solo trabajamos con marcas reconocidas internacionalmente para ofrecer perfumes originales.
+            </p>
+
+        </div>
+
+        <div class="brands-grid">
+
+            <app-brand-card
+                nombre="Christian Dior"
+                logo="/logo-dior.png">
+            </app-brand-card>
+
+            <app-brand-card
+                nombre="CHANEL"
+                logo="/logo-chanel.png">
+            </app-brand-card>
+
+            <app-brand-card
+                nombre="Jean Paul Gaultier"
+                logo="/logo-jeanpoul.png">
+            </app-brand-card>
+
+            <app-brand-card
+                nombre="YSL Saint Laurent"
+                logo="/logo-ysl.png">
+            </app-brand-card>
+
+        </div>
+
+    </div>
+
+</section>
+
