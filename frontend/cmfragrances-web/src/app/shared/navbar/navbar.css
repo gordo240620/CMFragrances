@@ -2,7 +2,7 @@
    NAVBAR
 =========================== */
 
-.navbar{
+.navbar {
 
     position: sticky;
 
@@ -10,332 +10,405 @@
 
     z-index: 1000;
 
-    background: #fff;
+    width: 100%;
 
-    border-bottom: 2px solid #D4AF37;
+    height: 125px;
 
-    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    background: #ffffff;
 
+    box-sizing: border-box;
+
+    /* Línea dorada directamente en el borde */
+    border-bottom: 2px solid #ffffff;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.06);
+
+    margin: 0;
+
+    padding: 0;
 }
+
+/* ===========================
+   LÍNEA DORADA COMPLETA
+=========================== */
+
+.navbar-container {
+
+    width: 100%;
+
+    max-width: 1700px;
+
+    height: 123px;
+
+    margin: 0 auto;
+
+    padding: 0 90px;
+
+    display: grid;
+
+    grid-template-columns: 430px 1fr 240px;
+
+    align-items: center;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+}
+
+
+/* ===========================
+   FONDO DEL COMPONENTE
+=========================== */
+
+:host {
+
+    display: block;
+
+    width: 100%;
+
+    background: #ffffff;
+}
+
 
 /* ===========================
    CONTENEDOR
 =========================== */
 
-.navbar-container{
+.navbar-container {
 
-    width:100%;
+    width: 100%;
 
-    max-width:1700px;
+    max-width: 1700px;
 
-    margin:auto;
+    height: 125px;
 
-    padding:0 90px;
+    margin: 0 auto;
 
-    height:125px;
+    padding: 0 90px;
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:430px 1fr 240px;
+    grid-template-columns: 430px 1fr 240px;
 
-    align-items:center;
+    align-items: center;
 
+    background: #ffffff;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    z-index: 1;
 }
+
 
 /* ===========================
    LOGO
 =========================== */
 
-.logo{
+.logo {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    gap:20px;
+    gap: 20px;
 
-    text-decoration:none;
+    text-decoration: none;
 
-    justify-self:start;
-
+    justify-self: start;
 }
 
-.logo-image{
 
-    width:110px;
+.logo-image {
 
-    height:110px;
+    width: 110px;
 
-    object-fit:contain;
+    height: 110px;
 
-    transition:.35s;
+    object-fit: contain;
 
+    transition: .35s;
 }
 
-.logo:hover .logo-image{
 
-    transform:scale(1.08);
+.logo:hover .logo-image {
 
+    transform: scale(1.08);
 }
 
-.logo-text{
 
-    display:flex;
+.logo-text {
 
-    flex-direction:column;
+    display: flex;
 
-    justify-content:center;
+    flex-direction: column;
 
-    line-height:1;
+    justify-content: center;
 
+    line-height: 1;
 }
 
-.logo-text span{
 
-    color:#D4AF37;
+.logo-text span {
 
-    font-size:44px;
+    color: #D4AF37;
 
-    font-weight:800;
+    font-size: 44px;
 
-    letter-spacing:.5px;
+    font-weight: 800;
 
+    letter-spacing: .5px;
 }
 
-.logo-text small{
 
-    color:#222;
+.logo-text small {
 
-    font-size:23px;
+    color: #222;
 
-    font-weight:600;
+    font-size: 23px;
 
+    font-weight: 600;
 }
+
 
 /* ===========================
    MENÚ
 =========================== */
 
-.menu{
+.menu {
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
-    gap:60px;
+    gap: 60px;
 
-    list-style:none;
+    list-style: none;
 
-    margin:0;
+    margin: 0;
 
-    padding:0;
-
+    padding: 0;
 }
 
-.menu a{
 
-    text-decoration:none;
+.menu a {
 
-    color:#222;
+    text-decoration: none;
 
-    font-size:18px;
+    color: #222;
 
-    font-weight:600;
+    font-size: 18px;
 
-    position:relative;
+    font-weight: 600;
 
-    transition:.30s;
+    position: relative;
 
+    transition: .30s;
 }
 
-.menu a:hover{
 
-    color:#D4AF37;
+.menu a:hover {
 
+    color: #D4AF37;
 }
 
-.menu a::after{
 
-    content:"";
+.menu a::after {
 
-    position:absolute;
+    content: "";
 
-    left:50%;
+    position: absolute;
 
-    bottom:-10px;
+    left: 50%;
 
-    transform:translateX(-50%);
+    bottom: -10px;
 
-    width:0;
+    transform: translateX(-50%);
 
-    height:2px;
+    width: 0;
 
-    background:#D4AF37;
+    height: 2px;
 
-    transition:.30s;
+    background: #D4AF37;
 
+    transition: .30s;
 }
 
-.menu a:hover::after{
 
-    width:100%;
+.menu a:hover::after {
 
+    width: 100%;
 }
+
 
 /* ===========================
    ICONOS
 =========================== */
 
-.actions{
+.actions {
 
-    display:flex;
+    display: flex;
 
-    justify-content:flex-end;
+    justify-content: flex-end;
 
-    align-items:center;
+    align-items: center;
 
-    gap:30px;
-
+    gap: 30px;
 }
 
-.actions button{
 
-    border:none;
+.actions button {
 
-    background:none;
+    border: none;
 
-    color:#222;
+    background: transparent;
 
-    font-size:30px;
+    color: #222;
 
-    cursor:pointer;
+    font-size: 30px;
 
-    transition:.30s;
+    cursor: pointer;
 
+    transition: .30s;
 }
 
-.actions button:hover{
 
-    color:#D4AF37;
+.actions button:hover {
 
-    transform:translateY(-3px);
+    color: #D4AF37;
 
+    transform: translateY(-3px);
 }
+
 
 /* ===========================
    CARRITO
 =========================== */
 
-.cart{
+.cart {
 
-    position:relative;
-
+    position: relative;
 }
 
-.cart span{
 
-    position:absolute;
+.cart span {
 
-    top:-8px;
+    position: absolute;
 
-    right:-8px;
+    top: -8px;
 
-    width:22px;
+    right: -8px;
 
-    height:22px;
+    width: 22px;
 
-    border-radius:50%;
+    height: 22px;
 
-    background:#D4AF37;
+    border-radius: 50%;
 
-    color:#111;
+    background: #D4AF37;
 
-    display:flex;
+    color: #111;
 
-    justify-content:center;
+    display: flex;
 
-    align-items:center;
+    justify-content: center;
 
-    font-size:12px;
+    align-items: center;
 
-    font-weight:bold;
+    font-size: 12px;
 
-    box-shadow:0 4px 10px rgba(0,0,0,.20);
+    font-weight: bold;
 
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, .20);
 }
+
 
 /* ===========================
    RESPONSIVE
 =========================== */
 
-@media(max-width:992px){
+@media (max-width: 992px) {
 
-    .navbar-container{
+    .navbar {
 
-        display:flex;
+        height: auto;
 
-        flex-direction:column;
+        min-height: 125px;
 
-        justify-content:center;
-
-        height:auto;
-
-        padding:25px;
-
-        gap:25px;
-
+        background: #ffffff;
     }
 
-    .logo{
 
-        justify-content:center;
+    .navbar-container {
 
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        height: auto;
+
+        padding: 25px;
+
+        gap: 25px;
+
+        background: #ffffff;
     }
 
-    .menu{
 
-        flex-wrap:wrap;
+    .logo {
 
-        justify-content:center;
-
-        gap:25px;
-
+        justify-content: center;
     }
 
-    .menu a{
 
-        font-size:16px;
+    .menu {
 
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 25px;
     }
 
-    .actions{
 
-        justify-content:center;
+    .menu a {
 
-        gap:25px;
-
+        font-size: 16px;
     }
 
-    .logo-image{
 
-        width:90px;
+    .actions {
 
-        height:90px;
+        justify-content: center;
 
+        gap: 25px;
     }
 
-    .logo-text span{
 
-        font-size:34px;
+    .logo-image {
 
+        width: 90px;
+
+        height: 90px;
     }
 
-    .logo-text small{
 
-        font-size:18px;
+    .logo-text span {
 
+        font-size: 34px;
+    }
+
+
+    .logo-text small {
+
+        font-size: 18px;
     }
 
 }
