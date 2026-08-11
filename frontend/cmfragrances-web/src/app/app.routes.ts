@@ -8,38 +8,40 @@ import { MainLayout } from './layouts/main-layout/main-layout';
 
 export const routes: Routes = [
 
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
 
-  {
-    path: 'login',
-    component: Login
-  },
+    {
+        path: 'login',
+        component: Login
+    },
 
-  {
-    path: 'register',
-    component: Register
-  },
+    {
+        path: 'register',
+        component: Register
+    },
 
-  {
-    path: '',
-    component: MainLayout,
-    children: [
+    {
+        path: '',
+        component: MainLayout,
+        children: [
 
-      {
-        path: 'home',
-        component: Home
-      }
+            {
+                path: 'home',
+                component: Home
+            },
 
-    ]
-  },
 
-  {
-    path: '**',
-    redirectTo: 'login'
-  }
+
+        ]
+    },
+
+    {
+        path: '**',
+        redirectTo: 'login'
+    }
 
 ];

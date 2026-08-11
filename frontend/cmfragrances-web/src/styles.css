@@ -3,3 +3,7 @@
 body{
     background:rgb(231, 234, 237);
 }
+
+html {
+    scroll-behavior: smooth;
+}
