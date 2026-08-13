@@ -1,0 +1,375 @@
+/* ==========================================
+   CATÁLOGO
+========================================== */
+
+.catalogo {
+
+    min-height: 100vh;
+
+    background: #ffffff;
+
+}
+
+
+/* ==========================================
+   ENCABEZADO
+========================================== */
+
+.catalogo-subtitulo {
+
+    color: #D4AF37;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    font-size: 14px;
+
+}
+
+
+.catalogo-titulo {
+
+    margin-top: 12px;
+
+    font-size: 46px;
+
+    font-weight: 700;
+
+    color: #111;
+
+}
+
+
+.catalogo-descripcion {
+
+    color: #666;
+
+    font-size: 17px;
+
+    margin-top: 12px;
+
+}
+
+
+/* ==========================================
+   FILTROS
+========================================== */
+
+.filtros-box {
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, .08);
+
+}
+
+
+.form-label {
+
+    font-weight: 600;
+
+    color: #333;
+
+}
+
+
+.form-control,
+.form-select,
+.input-group-text {
+
+    min-height: 48px;
+
+    border-color: #e1e1e1;
+
+}
+
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: #D4AF37;
+
+    box-shadow:
+        0 0 0 .2rem
+        rgba(212, 175, 55, .15);
+
+}
+
+
+.input-group-text {
+
+    background: #ffffff;
+
+    color: #D4AF37;
+
+}
+
+
+.btn-limpiar {
+
+    min-height: 48px;
+
+    border-radius: 10px;
+
+    background: #111;
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+}
+
+
+.btn-limpiar:hover {
+
+    background: #D4AF37;
+
+    color: #111;
+
+}
+
+
+/* ==========================================
+   CARD PERFUME
+========================================== */
+
+.perfume-card {
+
+    height: 100%;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    border: 1px solid #eeeeee;
+
+    transition: .3s;
+
+}
+
+
+.perfume-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, .10);
+
+}
+
+
+/* ==========================================
+   IMAGEN
+========================================== */
+
+.perfume-image {
+
+    height: 300px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #fafafa;
+
+    padding: 25px;
+
+}
+
+
+.perfume-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+}
+
+
+/* ==========================================
+   BODY
+========================================== */
+
+.perfume-body {
+
+    padding: 22px;
+
+}
+
+
+.perfume-categoria {
+
+    color: #D4AF37;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+.perfume-body h3 {
+
+    margin-top: 8px;
+
+    margin-bottom: 5px;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    color: #111;
+
+}
+
+
+.perfume-marca {
+
+    color: #777;
+
+    margin-bottom: 22px;
+
+}
+
+
+/* ==========================================
+   FOOTER CARD
+========================================== */
+
+.perfume-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+}
+
+
+.perfume-precio {
+
+    color: #111;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+}
+
+
+.btn-detalle {
+
+    border: none;
+
+    border-radius: 25px;
+
+    padding: 10px 18px;
+
+    background: #D4AF37;
+
+    color: #111;
+
+    font-weight: 700;
+
+    transition: .3s;
+
+}
+
+
+.btn-detalle:hover {
+
+    background: #111;
+
+    color: #ffffff;
+
+}
+
+
+/* ==========================================
+   SIN RESULTADOS
+========================================== */
+
+.sin-resultados {
+
+    padding: 80px 20px;
+
+    text-align: center;
+
+    color: #777;
+
+}
+
+
+.sin-resultados i {
+
+    color: #D4AF37;
+
+    font-size: 50px;
+
+}
+
+
+.sin-resultados h3 {
+
+    margin-top: 20px;
+
+    color: #222;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px) {
+
+    .catalogo-titulo {
+
+        font-size: 34px;
+
+    }
+
+
+    .perfume-image {
+
+        height: 260px;
+
+    }
+
+
+    .perfume-footer {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .btn-detalle {
+
+        width: 100%;
+
+    }
+
+}
