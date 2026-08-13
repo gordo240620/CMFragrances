@@ -1,0 +1,564 @@
+<div class="admin-page">
+
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+    <aside class="admin-sidebar">
+
+        <!-- LOGO -->
+
+        <div class="admin-brand">
+
+            <img
+                src="/cm-logo.png"
+                alt="CM Fragrances">
+
+            <div>
+
+                <strong>CM</strong>
+
+                <span>Fragrances</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- USUARIO -->
+
+        <div class="admin-user">
+
+            <div class="admin-avatar">
+
+                <i class="bi bi-person-fill"></i>
+
+            </div>
+
+            <div>
+
+                <strong>Administrador</strong>
+
+                <span>Panel de control</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             MENÚ PRINCIPAL
+        =========================================== -->
+
+        <nav class="admin-menu">
+
+            <span class="menu-title">
+                MENÚ PRINCIPAL
+            </span>
+
+
+            <!-- DASHBOARD -->
+
+            <a
+                class="menu-item"
+                routerLink="/admin">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+
+                <span>
+                    Resumen general
+                </span>
+
+            </a>
+
+
+            <!-- PERFUMES -->
+
+            <a class="menu-item">
+
+                <i class="bi bi-droplet-fill"></i>
+
+                <span>
+                    Perfumes
+                </span>
+
+            </a>
+
+
+            <!-- PEDIDOS -->
+
+            <a
+                class="menu-item"
+                routerLink="/admin/pedidos">
+
+                <i class="bi bi-bag-check-fill"></i>
+
+                <span>
+                    Pedidos
+                </span>
+
+            </a>
+
+
+            <!-- USUARIOS -->
+
+            <a class="menu-item">
+
+                <i class="bi bi-people-fill"></i>
+
+                <span>
+                    Usuarios
+                </span>
+
+            </a>
+
+
+            <!-- ======================================
+                 CUENTA
+            ======================================= -->
+
+            <span class="menu-title secondary-title">
+                CUENTA
+            </span>
+
+
+            <!-- MI CUENTA -->
+
+            <a class="menu-item">
+
+                <i class="bi bi-person-circle"></i>
+
+                <span>
+                    Mi cuenta
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- ==========================================
+             CERRAR SESIÓN
+        =========================================== -->
+
+        <button
+            type="button"
+            class="logout-button">
+
+            <i class="bi bi-box-arrow-left"></i>
+
+            <span>
+                Cerrar sesión
+            </span>
+
+        </button>
+
+    </aside>
+
+
+    <!-- ==========================================
+         CONTENIDO PRINCIPAL
+    =========================================== -->
+
+    <main class="admin-content">
+
+
+        <!-- ==========================================
+             SI ESTAMOS EN PEDIDOS
+        =========================================== -->
+
+        @if (esPedidos()) {
+
+            <router-outlet></router-outlet>
+
+        }
+
+        @else {
+
+
+            <!-- ==========================================
+                 HEADER
+            =========================================== -->
+
+            <header class="admin-header">
+
+                <div>
+
+                    <span class="admin-eyebrow">
+                        CM FRAGRANCES
+                    </span>
+
+                    <h1>
+                        Resumen general
+                    </h1>
+
+                    <p>
+                        Administra tu tienda, productos, pedidos y clientes desde aquí.
+                    </p>
+
+                </div>
+
+
+                <!-- FECHA -->
+
+                <div class="header-date">
+
+                    <i class="bi bi-calendar3"></i>
+
+                    <div>
+
+                        <span>
+                            Hoy
+                        </span>
+
+                        <strong>
+                            Panel administrativo
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ==========================================
+                 ESTADÍSTICAS
+            =========================================== -->
+
+            <section class="stats-grid">
+
+
+                <!-- ======================================
+                     VENTAS
+                ======================================= -->
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+
+                        <i class="bi bi-currency-dollar"></i>
+
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span>
+                            Ventas
+                        </span>
+
+                        <strong>
+                            $0.00
+                        </strong>
+
+                        <small>
+                            Sin ventas registradas
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ======================================
+                     PEDIDOS
+                ======================================= -->
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+
+                        <i class="bi bi-bag-check"></i>
+
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span>
+                            Pedidos
+                        </span>
+
+                        <strong>
+                            0
+                        </strong>
+
+                        <small>
+                            Pedidos realizados
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ======================================
+                     USUARIOS
+                ======================================= -->
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+
+                        <i class="bi bi-people"></i>
+
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span>
+                            Usuarios
+                        </span>
+
+                        <strong>
+                            0
+                        </strong>
+
+                        <small>
+                            Clientes registrados
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ======================================
+                     PERFUMES
+                ======================================= -->
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+
+                        <i class="bi bi-box-seam"></i>
+
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span>
+                            Perfumes
+                        </span>
+
+                        <strong>
+                            0
+                        </strong>
+
+                        <small>
+                            Productos disponibles
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==========================================
+                 CONTENIDO INFERIOR
+            =========================================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- ======================================
+                     ACTIVIDAD RECIENTE
+                ======================================= -->
+
+                <div class="dashboard-card activity-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-eyebrow">
+                                ACTIVIDAD
+                            </span>
+
+                            <h2>
+                                Actividad reciente
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="view-button">
+
+                            Ver todo
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- SIN ACTIVIDAD -->
+
+                    <div class="empty-dashboard">
+
+                        <div class="empty-dashboard-icon">
+
+                            <i class="bi bi-bar-chart-line"></i>
+
+                        </div>
+
+                        <h3>
+                            Sin actividad todavía
+                        </h3>
+
+                        <p>
+                            Cuando se registren pedidos o usuarios,
+                            aparecerán aquí.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ======================================
+                     ACCIONES RÁPIDAS
+                ======================================= -->
+
+                <div class="dashboard-card quick-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-eyebrow">
+                                ACCIONES
+                            </span>
+
+                            <h2>
+                                Acceso rápido
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+
+                        <!-- AGREGAR PERFUME -->
+
+                        <button
+                            type="button"
+                            class="quick-action">
+
+                            <span class="quick-icon">
+
+                                <i class="bi bi-plus-lg"></i>
+
+                            </span>
+
+                            <span>
+
+                                <strong>
+                                    Agregar perfume
+                                </strong>
+
+                                <small>
+                                    Registrar nuevo producto
+                                </small>
+
+                            </span>
+
+                            <i class="bi bi-chevron-right"></i>
+
+                        </button>
+
+
+                        <!-- VER PEDIDOS -->
+
+                        <button
+                            type="button"
+                            class="quick-action"
+                            routerLink="/admin/pedidos">
+
+                            <span class="quick-icon">
+
+                                <i class="bi bi-bag-check"></i>
+
+                            </span>
+
+                            <span>
+
+                                <strong>
+                                    Ver pedidos
+                                </strong>
+
+                                <small>
+                                    Revisar pedidos recientes
+                                </small>
+
+                            </span>
+
+                            <i class="bi bi-chevron-right"></i>
+
+                        </button>
+
+
+                        <!-- VER USUARIOS -->
+
+                        <button
+                            type="button"
+                            class="quick-action">
+
+                            <span class="quick-icon">
+
+                                <i class="bi bi-person-plus"></i>
+
+                            </span>
+
+                            <span>
+
+                                <strong>
+                                    Ver usuarios
+                                </strong>
+
+                                <small>
+                                    Administrar clientes
+                                </small>
+
+                            </span>
+
+                            <i class="bi bi-chevron-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==========================================
+                 FOOTER
+            =========================================== -->
+
+            <footer class="admin-footer">
+
+                <span>
+                    © 2026 CM Fragrances
+                </span>
+
+                <span>
+                    Panel de administración
+                </span>
+
+            </footer>
+
+
+        }
+
+    </main>
+
+</div>

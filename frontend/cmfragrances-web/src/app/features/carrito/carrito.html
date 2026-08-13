@@ -1,0 +1,402 @@
+<!-- ==========================================
+     ENCABEZADO
+========================================== -->
+
+<section class="cart-header">
+
+    <span class="eyebrow">
+        CM FRAGRANCES
+    </span>
+
+    <h1>
+        Tu carrito
+    </h1>
+
+    <p>
+        Revisa tus fragancias seleccionadas y prepara tu próximo pedido.
+    </p>
+
+</section>
+
+
+
+<!-- ==========================================
+     CONTENIDO PRINCIPAL
+========================================== -->
+
+<div class="cart-layout">
+
+
+    <!-- ======================================
+         PRODUCTOS
+    ======================================= -->
+
+    <section class="cart-card">
+
+        <div class="cart-card-header">
+
+            <div>
+
+                <span class="section-label">
+                    TU SELECCIÓN
+                </span>
+
+                <h2>
+                    Productos
+                </h2>
+
+            </div>
+
+            <span class="product-count">
+
+                {{ cantidadTotal }}
+
+                {{ cantidadTotal === 1 ? 'producto' : 'productos' }}
+
+            </span>
+
+        </div>
+
+
+        <!-- ==================================
+             CARRITO VACÍO
+        =================================== -->
+
+        @if(productos.length === 0){
+
+            <div class="empty-cart">
+
+                <div class="empty-icon">
+
+                    <i class="bi bi-bag-heart"></i>
+
+                </div>
+
+                <span class="empty-label">
+                    TODAVÍA NO HAY PRODUCTOS
+                </span>
+
+                <h3>
+                    Tu carrito está vacío
+                </h3>
+
+                <p>
+                    Descubre nuestra selección de fragancias y encuentra
+                    el aroma perfecto para ti.
+                </p>
+
+                <button
+                    type="button"
+                    class="catalog-button">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Explorar perfumes
+
+                </button>
+
+            </div>
+
+        }
+
+
+        <!-- ==================================
+             PRODUCTOS
+        =================================== -->
+
+        @else {
+
+            <div class="cart-items">
+
+                @for(producto of productos; track producto.id){
+
+                    <div class="cart-item">
+
+
+                        <!-- IMAGEN -->
+
+                        <div class="cart-item-image">
+
+                            <img
+                                [src]="producto.imagen"
+                                [alt]="producto.nombre">
+
+                        </div>
+
+
+                        <!-- INFORMACIÓN -->
+
+                        <div class="cart-item-info">
+
+                            <h3>
+                                {{ producto.nombre }}
+                            </h3>
+
+                            <span class="cart-item-price">
+
+                                ${{ producto.precio | number:'1.2-2' }}
+
+                            </span>
+
+
+                            <!-- CANTIDAD -->
+
+                            <div class="quantity-control">
+
+                                <button
+                                    type="button"
+                                    (click)="disminuirCantidad(producto.id)"
+                                    aria-label="Disminuir cantidad">
+
+                                    <i class="bi bi-dash"></i>
+
+                                </button>
+
+                                <span>
+                                    {{ producto.cantidad }}
+                                </span>
+
+                                <button
+                                    type="button"
+                                    (click)="aumentarCantidad(producto.id)"
+                                    aria-label="Aumentar cantidad">
+
+                                    <i class="bi bi-plus"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- TOTAL PRODUCTO -->
+
+                        <div class="cart-item-total">
+
+                            <strong>
+
+                                ${{
+                                    (producto.precio * producto.cantidad)
+                                    | number:'1.2-2'
+                                }}
+
+                            </strong>
+
+                            <button
+                                type="button"
+                                class="remove-button"
+                                (click)="eliminarProducto(producto.id)"
+                                aria-label="Eliminar producto">
+
+                                <i class="bi bi-trash3"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                }
+
+
+                <!-- VACIAR CARRITO -->
+
+                <div class="cart-actions">
+
+                    <button
+                        type="button"
+                        class="clear-cart-button"
+                        (click)="vaciarCarrito()">
+
+                        <i class="bi bi-trash3"></i>
+
+                        Vaciar carrito
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        }
+
+    </section>
+
+
+
+    <!-- ======================================
+         RESUMEN
+    ======================================= -->
+
+    <aside class="summary-card">
+
+        <div class="summary-top">
+
+            <span>
+                RESUMEN DEL PEDIDO
+            </span>
+
+            <h2>
+                Tu pedido
+            </h2>
+
+        </div>
+
+
+        <div class="summary-body">
+
+            <div class="summary-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <strong>
+                    ${{ subtotal | number:'1.2-2' }}
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Envío
+                </span>
+
+                <strong class="shipping">
+                    Por calcular
+                </strong>
+
+            </div>
+
+
+            <div class="summary-line"></div>
+
+
+            <div class="total-row">
+
+                <span>
+                    Total
+                </span>
+
+                <strong>
+                    ${{ subtotal | number:'1.2-2' }}
+                </strong>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="checkout-button"
+                [disabled]="productos.length === 0">
+
+                Continuar con el pedido
+
+                <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+
+            <div class="secure-payment">
+
+                <i class="bi bi-shield-check"></i>
+
+                <span>
+                    Compra segura y protegida
+                </span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+
+<!-- ==========================================
+     BENEFICIOS
+========================================== -->
+
+<section class="shopping-benefits">
+
+
+    <!-- BENEFICIO 1 -->
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+
+            <i class="bi bi-box-seam"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Envíos cuidados
+            </strong>
+
+            <span>
+                Preparamos cada pedido con atención.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- BENEFICIO 2 -->
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+
+            <i class="bi bi-stars"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Selección premium
+            </strong>
+
+            <span>
+                Fragancias elegidas para nuestros clientes.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- BENEFICIO 3 -->
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+
+            <i class="bi bi-chat-heart"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Atención personalizada
+            </strong>
+
+            <span>
+                Estamos disponibles para ayudarte.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>

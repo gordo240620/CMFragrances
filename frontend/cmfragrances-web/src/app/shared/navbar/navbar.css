@@ -2,65 +2,6 @@
    NAVBAR
 =========================== */
 
-.navbar {
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 1000;
-
-    width: 100%;
-
-    height: 125px;
-
-    background: #ffffff;
-
-    box-sizing: border-box;
-
-    /* Línea dorada directamente en el borde */
-    border-bottom: 2px solid #ffffff;
-
-    box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.06);
-
-    margin: 0;
-
-    padding: 0;
-}
-
-/* ===========================
-   LÍNEA DORADA COMPLETA
-=========================== */
-
-.navbar-container {
-
-    width: 100%;
-
-    max-width: 1700px;
-
-    height: 123px;
-
-    margin: 0 auto;
-
-    padding: 0 90px;
-
-    display: grid;
-
-    grid-template-columns: 430px 1fr 240px;
-
-    align-items: center;
-
-    background: #ffffff;
-
-    box-sizing: border-box;
-}
-
-
-/* ===========================
-   FONDO DEL COMPONENTE
-=========================== */
-
 :host {
 
     display: block;
@@ -68,24 +9,36 @@
     width: 100%;
 
     background: #ffffff;
+
 }
 
 
 /* ===========================
-   CONTENEDOR
+   NAVBAR FIJO
 =========================== */
 
 .navbar-container {
 
-    width: 100%;
+    position: fixed;
 
-    max-width: 1700px;
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    width: 100%;
 
     height: 125px;
 
-    margin: 0 auto;
+    z-index: 1000;
 
-    padding: 0 90px;
+    background: #ffffff;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
 
     display: grid;
 
@@ -93,13 +46,27 @@
 
     align-items: center;
 
-    background: #ffffff;
+    padding: 0 90px;
 
-    box-sizing: border-box;
+    margin: 0;
 
-    position: relative;
+}
 
-    z-index: 1;
+
+/* ===========================
+   ESPACIO PARA EL NAVBAR
+=========================== */
+
+:host::after {
+
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 125px;
+
 }
 
 
@@ -118,6 +85,7 @@
     text-decoration: none;
 
     justify-self: start;
+
 }
 
 
@@ -129,13 +97,15 @@
 
     object-fit: contain;
 
-    transition: .35s;
+    transition: .35s ease;
+
 }
 
 
 .logo:hover .logo-image {
 
     transform: scale(1.08);
+
 }
 
 
@@ -148,6 +118,7 @@
     justify-content: center;
 
     line-height: 1;
+
 }
 
 
@@ -160,16 +131,18 @@
     font-weight: 800;
 
     letter-spacing: .5px;
+
 }
 
 
 .logo-text small {
 
-    color: #222;
+    color: #222222;
 
     font-size: 23px;
 
     font-weight: 600;
+
 }
 
 
@@ -192,6 +165,7 @@
     margin: 0;
 
     padding: 0;
+
 }
 
 
@@ -199,7 +173,7 @@
 
     text-decoration: none;
 
-    color: #222;
+    color: #222222;
 
     font-size: 18px;
 
@@ -207,13 +181,15 @@
 
     position: relative;
 
-    transition: .30s;
+    transition: .30s ease;
+
 }
 
 
 .menu a:hover {
 
     color: #D4AF37;
+
 }
 
 
@@ -235,13 +211,15 @@
 
     background: #D4AF37;
 
-    transition: .30s;
+    transition: .30s ease;
+
 }
 
 
 .menu a:hover::after {
 
     width: 100%;
+
 }
 
 
@@ -258,6 +236,7 @@
     align-items: center;
 
     gap: 30px;
+
 }
 
 
@@ -267,13 +246,14 @@
 
     background: transparent;
 
-    color: #222;
+    color: #222222;
 
     font-size: 30px;
 
     cursor: pointer;
 
-    transition: .30s;
+    transition: .30s ease;
+
 }
 
 
@@ -282,6 +262,7 @@
     color: #D4AF37;
 
     transform: translateY(-3px);
+
 }
 
 
@@ -292,6 +273,7 @@
 .cart {
 
     position: relative;
+
 }
 
 
@@ -311,7 +293,7 @@
 
     background: #D4AF37;
 
-    color: #111;
+    color: #111111;
 
     display: flex;
 
@@ -325,26 +307,23 @@
 
     box-shadow:
         0 4px 10px rgba(0, 0, 0, .20);
+
 }
 
 
 /* ===========================
-   RESPONSIVE
+   TABLET
 =========================== */
 
 @media (max-width: 992px) {
 
-    .navbar {
+    .navbar-container {
 
         height: auto;
 
         min-height: 125px;
 
-        background: #ffffff;
-    }
-
-
-    .navbar-container {
+        padding: 20px 25px;
 
         display: flex;
 
@@ -352,19 +331,22 @@
 
         justify-content: center;
 
-        height: auto;
+        gap: 20px;
 
-        padding: 25px;
+    }
 
-        gap: 25px;
 
-        background: #ffffff;
+    :host::after {
+
+        height: 250px;
+
     }
 
 
     .logo {
 
         justify-content: center;
+
     }
 
 
@@ -375,12 +357,14 @@
         justify-content: center;
 
         gap: 25px;
+
     }
 
 
     .menu a {
 
         font-size: 16px;
+
     }
 
 
@@ -389,26 +373,105 @@
         justify-content: center;
 
         gap: 25px;
+
     }
 
 
     .logo-image {
 
-        width: 90px;
+        width: 80px;
 
-        height: 90px;
+        height: 80px;
+
     }
 
 
     .logo-text span {
 
         font-size: 34px;
+
     }
 
 
     .logo-text small {
 
         font-size: 18px;
+
+    }
+
+}
+
+
+/* ===========================
+   CELULAR
+=========================== */
+
+@media (max-width: 600px) {
+
+    .navbar-container {
+
+        padding: 15px;
+
+        gap: 16px;
+
+    }
+
+
+    :host::after {
+
+        height: 230px;
+
+    }
+
+
+    .logo-image {
+
+        width: 65px;
+
+        height: 65px;
+
+    }
+
+
+    .logo-text span {
+
+        font-size: 28px;
+
+    }
+
+
+    .logo-text small {
+
+        font-size: 15px;
+
+    }
+
+
+    .menu {
+
+        gap: 18px;
+
+    }
+
+
+    .menu a {
+
+        font-size: 14px;
+
+    }
+
+
+    .actions {
+
+        gap: 20px;
+
+    }
+
+
+    .actions button {
+
+        font-size: 25px;
+
     }
 
 }
