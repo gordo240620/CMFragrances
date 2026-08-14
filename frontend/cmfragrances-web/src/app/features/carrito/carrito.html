@@ -288,14 +288,30 @@
             </div>
 
 
+            <!-- ==================================
+                 CONTINUAR CON EL PEDIDO
+            =================================== -->
+
             <button
                 type="button"
                 class="checkout-button"
-                [disabled]="productos.length === 0">
+                [disabled]="
+                    productos.length === 0 ||
+                    procesandoPedido
+                "
+                (click)="continuarPedido()">
 
-                Continuar con el pedido
+                @if(procesandoPedido) {
 
-                <i class="bi bi-arrow-right"></i>
+                    Creando pedido...
+
+                } @else {
+
+                    Continuar con el pedido
+
+                    <i class="bi bi-arrow-right"></i>
+
+                }
 
             </button>
 

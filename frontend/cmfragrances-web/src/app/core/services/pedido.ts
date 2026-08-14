@@ -82,6 +82,20 @@ export class PedidoService {
 
 
     // ==========================================
+    // CREAR DETALLE DE PEDIDO
+    // ==========================================
+
+    crearDetallePedido(data: any): Observable<any> {
+
+        return this.http.post<any>(
+            `${this.apiUrl}/DetallePedido`,
+            data
+        );
+
+    }
+
+
+    // ==========================================
     // ACTUALIZAR PEDIDO
     // ==========================================
 

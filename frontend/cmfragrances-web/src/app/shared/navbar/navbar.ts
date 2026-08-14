@@ -1,6 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
+import {
+  Carrito as CarritoService
+} from '../../core/services/carrito';
+
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -12,9 +17,36 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Navbar {
 
+  // ==========================================
+  // ROUTER
+  // ==========================================
+
   private router = inject(Router);
 
-  irAlCarrito() {
+
+  // ==========================================
+  // CARRITO
+  // ==========================================
+
+  private carritoService = inject(CarritoService);
+
+
+  // ==========================================
+  // CANTIDAD DEL CARRITO
+  // ==========================================
+
+  get cantidadCarrito(): number {
+
+    return this.carritoService.obtenerCantidad();
+
+  }
+
+
+  // ==========================================
+  // IR AL CARRITO
+  // ==========================================
+
+  irAlCarrito(): void {
 
     this.router.navigate(['/carrito']);
 
