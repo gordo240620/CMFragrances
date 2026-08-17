@@ -1,0 +1,1818 @@
+/* ==========================================
+   CONTENEDOR GENERAL
+========================================== */
+
+:host {
+
+    display: block;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    background: #f5f6f7;
+
+    color: #111;
+
+    padding: 35px 45px 60px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ==========================================
+   ENCABEZADO
+========================================== */
+
+.page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.eyebrow {
+
+    display: block;
+
+    color: #d4af37;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.page-header h1 {
+
+    margin: 0;
+
+    font-size: 34px;
+
+    font-weight: 800;
+
+}
+
+
+.page-header p {
+
+    margin: 8px 0 0;
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+.header-badge {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 18px;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+
+}
+
+
+.header-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #fff8df;
+
+    color: #d4af37;
+
+    font-size: 18px;
+
+}
+
+
+.header-badge span {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: #999;
+
+}
+
+
+.header-badge strong {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 12px;
+
+}
+
+
+/* ==========================================
+   ESTADÍSTICAS
+========================================== */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.stat-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+}
+
+
+.stat-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #e6c75b;
+
+    border-radius: 11px;
+
+    color: #d4af37;
+
+    background: #fffdf5;
+
+    font-size: 18px;
+
+}
+
+
+.stat-card span {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 11px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.stat-card strong {
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+}
+
+
+/* ==========================================
+   TARJETA DE PEDIDOS
+========================================== */
+
+.orders-card {
+
+    background: #fff;
+
+    border: 1px solid #e4e4e4;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+}
+
+
+.orders-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+.section-label {
+
+    display: block;
+
+    color: #d4af37;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.orders-header h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+}
+
+
+.refresh-button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 15px;
+
+    border: 1px solid #d4af37;
+
+    border-radius: 9px;
+
+    background: #fff;
+
+    color: #b28c16;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.refresh-button:hover {
+
+    background: #fff9e6;
+
+}
+
+
+.refresh-button:disabled {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+
+}
+
+
+/* ==========================================
+   FILTROS
+========================================== */
+
+.filters {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px 20px;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+.search-box {
+
+    width: 350px;
+
+    position: relative;
+
+}
+
+
+.search-box i {
+
+    position: absolute;
+
+    left: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #aaa;
+
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    height: 38px;
+
+    box-sizing: border-box;
+
+    padding: 0 12px 0 36px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 12px;
+
+}
+
+
+.search-box input:focus {
+
+    border-color: #d4af37;
+
+}
+
+
+.filters select {
+
+    height: 38px;
+
+    min-width: 150px;
+
+    padding: 0 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: #fff;
+
+    outline: none;
+
+    font-size: 12px;
+
+}
+
+
+.filters select:focus {
+
+    border-color: #d4af37;
+
+}
+
+
+.clear-filter-button {
+
+    height: 38px;
+
+    padding: 0 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f1f1f1;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+}
+
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.error-message {
+
+    margin: 15px 20px;
+
+    padding: 12px 15px;
+
+    border-radius: 8px;
+
+    background: #fff0f0;
+
+    color: #b42318;
+
+    font-size: 13px;
+
+}
+
+
+/* ==========================================
+   TABLA
+========================================== */
+
+.table-container {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+
+thead {
+
+    background: #fafafa;
+
+}
+
+
+th {
+
+    padding: 13px 15px;
+
+    text-align: left;
+
+    color: #888;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    font-weight: 800;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+td {
+
+    padding: 15px;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    font-size: 12px;
+
+    vertical-align: middle;
+
+}
+
+
+tbody tr:hover {
+
+    background: #fffdf7;
+
+}
+
+
+.order-number {
+
+    font-size: 13px;
+
+}
+
+
+.client {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.client-avatar {
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f8e9a9;
+
+    color: #7c6210;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+.date {
+
+    display: block;
+
+}
+
+
+td small {
+
+    display: block;
+
+    color: #999;
+
+    margin-top: 3px;
+
+    font-size: 10px;
+
+}
+
+
+.not-available {
+
+    color: #aaa;
+
+}
+
+
+.total {
+
+    font-size: 13px;
+
+}
+
+
+.status {
+
+    display: inline-flex;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+.status-pagado {
+
+    background: #eaf8ef;
+
+    color: #218739;
+
+}
+
+
+.status-pendiente {
+
+    background: #fff5d8;
+
+    color: #9a7200;
+
+}
+
+
+.status-enviado {
+
+    background: #e9f3ff;
+
+    color: #2874bd;
+
+}
+
+
+.status-cancelado {
+
+    background: #ffeaea;
+
+    color: #c62828;
+
+}
+
+
+.view-button {
+
+    width: 32px;
+
+    height: 32px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: #fff;
+
+    color: #555;
+
+    cursor: pointer;
+
+}
+
+
+.view-button:hover {
+
+    color: #d4af37;
+
+    border-color: #d4af37;
+
+    background: #fffaf0;
+
+}
+
+
+/* ==========================================
+   CARGANDO
+========================================== */
+
+.loading-state {
+
+    min-height: 280px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #777;
+
+    font-size: 13px;
+
+}
+
+
+.spinner {
+
+    width: 30px;
+
+    height: 30px;
+
+    border: 3px solid #eee;
+
+    border-top-color: #d4af37;
+
+    border-radius: 50%;
+
+    animation: spin .8s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+
+/* ==========================================
+   SIN PEDIDOS
+========================================== */
+
+.empty-state {
+
+    min-height: 300px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.empty-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #e5c75b;
+
+    border-radius: 50%;
+
+    color: #d4af37;
+
+    font-size: 22px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.empty-state h3 {
+
+    margin: 0 0 7px;
+
+    font-size: 16px;
+
+}
+
+
+.empty-state p {
+
+    margin: 0;
+
+    color: #999;
+
+    font-size: 11px;
+
+}
+
+
+/* ==========================================
+   BENEFICIOS
+========================================== */
+
+.admin-benefits {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 18px;
+
+}
+
+
+.benefit {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px 16px;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 11px;
+
+}
+
+
+.benefit-icon {
+
+    width: 35px;
+
+    height: 35px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #e6c75b;
+
+    border-radius: 50%;
+
+    color: #d4af37;
+
+}
+
+
+.benefit strong {
+
+    display: block;
+
+    font-size: 11px;
+
+}
+
+
+.benefit span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #999;
+
+    font-size: 9px;
+
+}
+
+
+/* ==========================================
+   MODAL DETALLE DEL PEDIDO
+========================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(0, 0, 0, .55);
+
+    backdrop-filter: blur(4px);
+
+    animation: modalFadeIn .2s ease;
+
+}
+
+
+.order-modal {
+
+    width: min(700px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #fff;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e5e5;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, .25);
+
+    animation: modalSlideIn .25s ease;
+
+}
+
+
+.modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 24px 26px;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+.modal-eyebrow {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #d4af37;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.modal-header h2 {
+
+    margin: 0;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+}
+
+
+.modal-close {
+
+    width: 36px;
+
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid #ddd;
+
+    border-radius: 9px;
+
+    background: #fff;
+
+    color: #777;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+
+}
+
+
+.modal-close:hover {
+
+    color: #111;
+
+    border-color: #d4af37;
+
+    background: #fffaf0;
+
+}
+
+
+/* ==========================================
+   INFORMACIÓN DEL PEDIDO
+========================================== */
+
+.order-info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    padding: 22px 26px;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+.order-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    border: 1px solid #eee;
+
+    border-radius: 11px;
+
+    background: #fafafa;
+
+}
+
+
+.order-info-icon {
+
+    width: 36px;
+
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: #fff8df;
+
+    color: #d4af37;
+
+}
+
+
+.order-info > div:last-child {
+
+    min-width: 0;
+
+}
+
+
+.order-info span:first-child {
+
+    display: block;
+
+    color: #999;
+
+    font-size: 9px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.order-info strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    word-break: break-word;
+
+}
+
+
+/* ==========================================
+   PRODUCTOS DEL MODAL
+========================================== */
+
+.modal-products {
+
+    padding: 22px 26px;
+
+}
+
+
+.modal-section-title span {
+
+    display: block;
+
+    color: #d4af37;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.modal-section-title h3 {
+
+    margin: 0 0 15px;
+
+    font-size: 17px;
+
+}
+
+
+.products-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.product-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 12px;
+
+    border: 1px solid #eee;
+
+    border-radius: 11px;
+
+    background: #fff;
+
+}
+
+
+.product-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #fff8df;
+
+    color: #d4af37;
+
+    font-size: 17px;
+
+}
+
+
+.product-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.product-info strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+
+}
+
+
+.product-info span {
+
+    color: #999;
+
+    font-size: 10px;
+
+}
+
+
+.product-price {
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+}
+
+
+.no-products {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 25px;
+
+    color: #999;
+
+    border: 1px dashed #ddd;
+
+    border-radius: 11px;
+
+    font-size: 11px;
+
+}
+
+
+/* ==========================================
+   TOTAL DEL MODAL
+========================================== */
+
+.modal-total {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin: 0 26px;
+
+    padding: 18px 0;
+
+    border-top: 1px solid #eee;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+.modal-total span {
+
+    color: #777;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.modal-total strong {
+
+    color: #111;
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+}
+
+
+/* ==========================================
+   FOOTER DEL MODAL
+========================================== */
+
+.modal-footer {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding: 18px 26px;
+
+}
+
+
+.modal-button {
+
+    min-width: 100px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #d4af37;
+
+    border-radius: 9px;
+
+    background: #fff;
+
+    color: #b28c16;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+
+}
+
+
+.modal-button:hover {
+
+    background: #fff8df;
+
+}
+
+
+/* ==========================================
+   ANIMACIONES
+========================================== */
+
+@keyframes modalFadeIn {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes modalSlideIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px) scale(.98);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+
+    }
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1000px) {
+
+    :host {
+
+        padding: 25px 20px 45px;
+
+    }
+
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .admin-benefits {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .page-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+
+    }
+
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .filters {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .search-box {
+
+        width: 100%;
+
+    }
+
+
+    /* MODAL */
+
+    .modal-overlay {
+
+        padding: 12px;
+
+        align-items: flex-end;
+
+    }
+
+
+    .order-modal {
+
+        width: 100%;
+
+        max-height: 92vh;
+
+        border-radius: 16px 16px 0 0;
+
+    }
+
+
+    .modal-header {
+
+        padding: 20px;
+
+    }
+
+
+    .order-info-grid {
+
+        grid-template-columns: 1fr;
+
+        padding: 18px 20px;
+
+    }
+
+
+    .modal-products {
+
+        padding: 20px;
+
+    }
+
+
+    .modal-total {
+
+        margin: 0 20px;
+
+    }
+
+
+    .modal-footer {
+
+        padding: 16px 20px;
+
+    }
+
+
+    .product-row {
+
+        align-items: flex-start;
+
+    }
+
+
+    .product-price {
+
+        margin-left: auto;
+
+    }
+
+    
+
+}
+
+
+/* ==========================================
+   EDITOR DE ESTADO DEL PEDIDO
+   ========================================== */
+
+.order-status-editor {
+    align-items: flex-start;
+    background: #fffdf7;
+    border-color: #eadfbd;
+}
+
+.status-editor-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.status-editor-content > span:first-child {
+    display: block;
+    color: #777;
+    font-size: 9px;
+    margin-bottom: 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================
+   SELECTOR DE ESTADO
+   ========================================== */
+
+.status-select {
+    width: 100%;
+    max-width: 260px;
+    height: 40px;
+    box-sizing: border-box;
+
+    padding: 0 38px 0 12px;
+
+    border: 1px solid #d8d8d8;
+    border-radius: 9px;
+
+    background-color: #fff;
+    color: #222;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    outline: none;
+    cursor: pointer;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.status-select:hover {
+    border-color: #d4af37;
+    background: #fffdf7;
+}
+
+.status-select:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, .14);
+}
+
+.status-select:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+
+/* ==========================================
+   BOTÓN GUARDAR ESTADO
+   ========================================== */
+
+.save-status-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+
+    gap: 8px;
+
+    min-width: 150px;
+    min-height: 38px;
+
+    padding: 9px 15px;
+
+    border: 1px solid #d4af37;
+    border-radius: 9px;
+
+    background: #fff;
+    color: #b28c16;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.save-status-button:hover:not(:disabled) {
+    background: #d4af37;
+    color: #fff;
+    border-color: #d4af37;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(212, 175, 55, .22);
+}
+
+.save-status-button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.save-status-button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+
+/* ==========================================
+   MENSAJE DE ACTUALIZACIÓN
+   ========================================== */
+
+.status-message {
+    display: inline-flex;
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.status-message-success {
+    color: #218739;
+    background: #eaf8ef;
+    border: 1px solid #cdebd6;
+}
+
+.status-message-error {
+    color: #c62828;
+    background: #ffeaea;
+    border: 1px solid #f4cccc;
+}
+
+
+/* ==========================================
+   ANIMACIÓN GUARDANDO
+   ========================================== */
+
+.save-status-button .bi-arrow-repeat {
+    animation: status-loading .8s linear infinite;
+}
+
+@keyframes status-loading {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - EDITOR DE ESTADO
+========================================== */
+
+@media (max-width: 700px) {
+
+    .order-status-editor {
+        align-items: flex-start;
+    }
+
+    .status-editor-content {
+        width: 100%;
+    }
+
+    .status-select {
+        max-width: 100%;
+    }
+
+    .save-status-button {
+        width: 100%;
+    }
+
+}
+
+
+/* ==========================================
+   ESTADOS DE PEDIDOS
+   FUERA DEL MEDIA QUERY
+========================================== */
+
+.status {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 70px !important;
+    padding: 5px 10px !important;
+    border-radius: 20px !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    border: 1px solid transparent !important;
+    white-space: nowrap !important;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.status.status-pendiente {
+    background: #fff5d8 !important;
+    color: #9a7200 !important;
+    border-color: #f0d98a !important;
+}
+
+.status.status-pagado {
+    background: #eaf8ef !important;
+    color: #218739 !important;
+    border-color: #cdebd6 !important;
+}
+
+.status.status-preparando {
+    background: #fff0d6 !important;
+    color: #c27600 !important;
+    border-color: #f0c875 !important;
+}
+
+.status.status-enviado {
+    background: #e9f3ff !important;
+    color: #2874bd !important;
+    border-color: #cfe3f8 !important;
+}
+
+.status.status-entregado {
+    background: #e8f8ed !important;
+    color: #218739 !important;
+    border-color: #c9e8d1 !important;
+}
+
+.status.status-cancelado {
+    background: #ffeaea !important;
+    color: #c62828 !important;
+    border-color: #f3c1c1 !important;
+}

@@ -1,0 +1,1051 @@
+<!-- ==========================================
+     ENCABEZADO
+========================================== -->
+
+<section class="page-header">
+
+    <div>
+
+        <span class="eyebrow">
+            CM FRAGRANCES
+        </span>
+
+        <h1>
+            Pedidos
+        </h1>
+
+        <p>
+            Gestiona y consulta los pedidos realizados en CM Fragrances.
+        </p>
+
+    </div>
+
+
+    <div class="header-badge">
+
+        <div class="header-icon">
+
+            <i class="bi bi-box-seam"></i>
+
+        </div>
+
+        <div>
+
+            <span>
+                Panel administrativo
+            </span>
+
+            <strong>
+                Gestión de pedidos
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     ESTADÍSTICAS
+========================================== -->
+
+<section class="stats-grid">
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i class="bi bi-clipboard-check"></i>
+
+        </div>
+
+        <div>
+
+            <span>
+                Total pedidos
+            </span>
+
+            <strong>
+                {{ totalPedidos }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i class="bi bi-clock"></i>
+
+        </div>
+
+        <div>
+
+            <span>
+                Pendientes
+            </span>
+
+            <strong>
+                {{ pedidosPendientes }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i class="bi bi-truck"></i>
+
+        </div>
+
+        <div>
+
+            <span>
+                Enviados
+            </span>
+
+            <strong>
+                {{ pedidosEnviados }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+
+            <i class="bi bi-currency-dollar"></i>
+
+        </div>
+
+        <div>
+
+            <span>
+                Ventas
+            </span>
+
+            <strong>
+                ${{ totalVentas | number:'1.2-2' }}
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     TABLA
+========================================== -->
+
+<section class="orders-card">
+
+
+    <div class="orders-header">
+
+        <div>
+
+            <span class="section-label">
+                PEDIDOS REGISTRADOS
+            </span>
+
+            <h2>
+                Todos los pedidos
+            </h2>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="refresh-button"
+            (click)="cargarPedidos()"
+            [disabled]="cargando">
+
+            <i class="bi bi-arrow-clockwise"></i>
+
+            Actualizar
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         FILTROS
+    ========================================== -->
+
+    <div class="filters">
+
+        <div class="search-box">
+
+            <i class="bi bi-search"></i>
+
+            <input
+                type="text"
+                name="busqueda"
+                [(ngModel)]="busqueda"
+                (input)="buscar()"
+                placeholder="Buscar pedido...">
+
+        </div>
+
+
+        <select
+            name="estado"
+            [(ngModel)]="estadoSeleccionado"
+            (change)="aplicarFiltros()">
+
+            <option value="Todos">
+                Todos los estados
+            </option>
+
+            <option value="Pendiente">
+                Pendiente
+            </option>
+
+            <option value="Pagado">
+                Pagado
+            </option>
+
+            <option value="Preparando">
+                Preparando
+            </option>
+
+            <option value="Enviado">
+                Enviado
+            </option>
+
+            <option value="Entregado">
+                Entregado
+            </option>
+
+            <option value="Cancelado">
+                Cancelado
+            </option>
+
+        </select>
+
+
+        @if(busqueda || estadoSeleccionado !== 'Todos') {
+
+            <button
+                type="button"
+                class="clear-filter-button"
+                (click)="limpiarFiltros()">
+
+                Limpiar
+
+            </button>
+
+        }
+
+    </div>
+
+
+
+    <!-- ==========================================
+         ERROR
+    ========================================== -->
+
+    @if(mensajeError) {
+
+        <div class="error-message">
+
+            <i class="bi bi-exclamation-circle"></i>
+
+            {{ mensajeError }}
+
+        </div>
+
+    }
+
+
+
+    <!-- ==========================================
+         TABLA
+    ========================================== -->
+
+    @if(cargando) {
+
+        <div class="loading-state">
+
+            <div class="spinner"></div>
+
+            <span>
+                Cargando pedidos...
+            </span>
+
+        </div>
+
+    }
+
+
+    @else if(pedidosFiltrados.length > 0) {
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            PEDIDO
+                        </th>
+
+                        <th>
+                            CLIENTE
+                        </th>
+
+                        <th>
+                            FECHA
+                        </th>
+
+                        <th>
+                            PRODUCTOS
+                        </th>
+
+                        <th>
+                            TOTAL
+                        </th>
+
+                        <th>
+                            ESTADO
+                        </th>
+
+                        <th>
+                            ACCIONES
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    @for(
+                        pedido of pedidosFiltrados;
+                        track pedido.id
+                    ) {
+
+                        <tr>
+
+
+                            <!-- ==================================
+                                 PEDIDO
+                            =================================== -->
+
+                            <td>
+
+                                <strong class="order-number">
+                                    #{{ pedido.id }}
+                                </strong>
+
+                            </td>
+
+
+
+                            <!-- ==================================
+                                 CLIENTE
+                            =================================== -->
+
+                            <td>
+
+                                <div class="client">
+
+                                    <div class="client-avatar">
+
+                                        {{
+                                            obtenerNombreUsuario(pedido)
+                                                .charAt(0)
+                                                .toUpperCase()
+                                        }}
+
+                                    </div>
+
+                                    <span>
+
+                                        {{
+                                            obtenerNombreUsuario(pedido)
+                                        }}
+
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+
+
+                            <!-- ==================================
+                                 FECHA
+                            =================================== -->
+
+                            <td>
+
+                                <span class="date">
+
+                                    {{
+                                        pedido.fechaPedido
+                                        | date:'dd/MM/yyyy'
+                                    }}
+
+                                </span>
+
+                                <small>
+
+                                    {{
+                                        pedido.fechaPedido
+                                        | date:'HH:mm'
+                                    }}
+
+                                </small>
+
+                            </td>
+
+
+
+                            <!-- ==================================
+                                 PRODUCTOS
+                            =================================== -->
+
+                            <td>
+
+                                <span class="products-count">
+
+                                    {{
+                                        textoProductos(pedido.id)
+                                    }}
+
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- ==================================
+                                 TOTAL REAL
+                            =================================== -->
+
+                            <td>
+
+                                <strong class="total">
+
+                                    ${{
+                                        calcularTotalPedido(pedido.id)
+                                        | number:'1.2-2'
+                                    }}
+
+                                </strong>
+
+                            </td>
+
+
+
+                            <!-- ==========================================
+                                 ESTADO
+                            =========================================== -->
+
+                            <td>
+
+                                <span
+                                    class="status"
+                                    [ngClass]="
+                                        'status-' +
+                                        (pedido.estado || '')
+                                            .toString()
+                                            .trim()
+                                            .toLowerCase()
+                                    "
+                                >
+
+                                    {{ pedido.estado }}
+
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- ==================================
+                                 ACCIONES
+                            =================================== -->
+
+                            <td>
+
+                                <button
+                                    type="button"
+                                    class="view-button"
+                                    (click)="verPedido(pedido.id)"
+                                    title="Ver pedido">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    }
+
+
+    <!-- ==========================================
+         SIN PEDIDOS
+    ========================================== -->
+
+    @else {
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+
+                <i class="bi bi-receipt"></i>
+
+            </div>
+
+            <h3>
+                No hay pedidos todavía
+            </h3>
+
+            <p>
+                Cuando los clientes realicen pedidos,
+                aparecerán aquí.
+            </p>
+
+        </div>
+
+    }
+
+</section>
+
+
+
+<!-- ==========================================
+     BENEFICIOS
+========================================== -->
+
+<section class="admin-benefits">
+
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+
+            <i class="bi bi-shield-check"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Gestión segura
+            </strong>
+
+            <span>
+                Solo los administradores pueden gestionar pedidos.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+
+            <i class="bi bi-box-seam"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Control de pedidos
+            </strong>
+
+            <span>
+                Consulta el estado y detalles de cada pedido.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+
+            <i class="bi bi-graph-up-arrow"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Seguimiento
+            </strong>
+
+            <span>
+                Mantén el control de las ventas de tu tienda.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     MODAL DETALLE DEL PEDIDO
+========================================== -->
+
+@if(
+    modalVisible &&
+    pedidoSeleccionado
+) {
+
+    <div
+        class="modal-overlay"
+        (click)="cerrarModal()">
+
+
+        <div
+            class="order-modal"
+            (click)="$event.stopPropagation()">
+
+
+            <!-- ==================================
+                 HEADER
+            =================================== -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-eyebrow">
+                        DETALLE DEL PEDIDO
+                    </span>
+
+                    <h2>
+                        Pedido #{{ pedidoSeleccionado.id }}
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    (click)="cerrarModal()"
+                    title="Cerrar">
+
+                    <i class="bi bi-x-lg"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 INFORMACIÓN
+            =================================== -->
+
+            <div class="order-info-grid">
+
+
+                <!-- CLIENTE -->
+
+                <div class="order-info">
+
+                    <div class="order-info-icon">
+
+                        <i class="bi bi-person-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Cliente
+                        </span>
+
+                        <strong>
+                            {{ obtenerNombreCliente() }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FECHA -->
+
+                <div class="order-info">
+
+                    <div class="order-info-icon">
+
+                        <i class="bi bi-calendar3"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Fecha
+                        </span>
+
+                        <strong>
+
+                            {{
+                                pedidoSeleccionado.fechaPedido
+                                | date:'dd/MM/yyyy HH:mm'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     ESTADO DEL PEDIDO
+                =================================== -->
+
+                <div class="order-info order-status-editor">
+
+                    <div class="order-info-icon">
+
+                        <i class="bi bi-box-seam"></i>
+
+                    </div>
+
+                    <div class="status-editor-content">
+
+                        <span>
+                            Estado del pedido
+                        </span>
+
+
+                        <!-- SELECTOR DE ESTADO -->
+
+                        <select
+                            class="status-select"
+                            [ngModel]="estadoEditando"
+                            (ngModelChange)="cambiarEstado($event)"
+                            [disabled]="guardandoEstado">
+
+                            <option value="Pendiente">
+                                Pendiente
+                            </option>
+
+                            <option value="Pagado">
+                                Pagado
+                            </option>
+
+                            <option value="Preparando">
+                                Preparando
+                            </option>
+
+                            <option value="Enviado">
+                                Enviado
+                            </option>
+
+                            <option value="Entregado">
+                                Entregado
+                            </option>
+
+                            <option value="Cancelado">
+                                Cancelado
+                            </option>
+
+                        </select>
+
+
+                        <!-- BOTÓN GUARDAR -->
+
+                        <button
+                            type="button"
+                            class="save-status-button"
+                            (click)="guardarEstado()"
+                            [disabled]="guardandoEstado">
+
+                            @if(guardandoEstado) {
+
+                                <i class="bi bi-arrow-repeat"></i>
+
+                                Guardando...
+
+                            }
+
+                            @else {
+
+                                <i class="bi bi-check-lg"></i>
+
+                                Guardar estado
+
+                            }
+
+                        </button>
+
+
+                        <!-- MENSAJE -->
+
+                        @if(mensajeEstado) {
+
+                            <span
+                                class="status-message"
+
+                                [class.status-message-success]="
+                                    mensajeEstado ===
+                                    'Estado actualizado correctamente.'
+                                "
+
+                                [class.status-message-error]="
+                                    mensajeEstado !==
+                                    'Estado actualizado correctamente.'
+                                ">
+
+                                {{ mensajeEstado }}
+
+                            </span>
+
+                        }
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     PRODUCTOS
+                =================================== -->
+
+                <div class="order-info">
+
+                    <div class="order-info-icon">
+
+                        <i class="bi bi-bag-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Productos
+                        </span>
+
+                        <strong>
+                            {{ cantidadTotalDetalle }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 PRODUCTOS
+            =================================== -->
+
+            <div class="modal-products">
+
+
+                <div class="modal-section-title">
+
+                    <div>
+
+                        <span>
+                            PRODUCTOS DEL PEDIDO
+                        </span>
+
+                        <h3>
+                            Artículos
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                @if(
+                    detallesSeleccionados.length > 0
+                ) {
+
+                    <div class="products-list">
+
+
+                        @for(
+                            detalle of detallesSeleccionados;
+                            track $index
+                        ) {
+
+                            <div class="product-row">
+
+
+                                <!-- ICONO -->
+
+                                <div class="product-icon">
+
+                                    <i class="bi bi-droplet-fill"></i>
+
+                                </div>
+
+
+
+                                <!-- INFORMACIÓN -->
+
+                                <div class="product-info">
+
+                                    <strong>
+
+                                        {{
+                                            detalle.perfume ||
+                                            detalle.Perfume ||
+                                            'Perfume'
+                                        }}
+
+                                    </strong>
+
+                                    <span>
+
+                                        Cantidad:
+                                        {{ detalle.cantidad }}
+
+                                    </span>
+
+                                </div>
+
+
+
+                                <!-- PRECIO -->
+
+                                <div class="product-price">
+
+                                    <span>
+
+                                        ${{ detalle.precio | number:'1.2-2' }}
+                                        c/u
+
+                                    </span>
+
+                                    <strong>
+
+                                        ${{
+                                            calcularSubtotalDetalle(detalle)
+                                            | number:'1.2-2'
+                                        }}
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        }
+
+                    </div>
+
+                }
+
+
+                @else {
+
+                    <div class="no-products">
+
+                        <i class="bi bi-box"></i>
+
+                        <span>
+
+                            No hay productos registrados
+                            para este pedido.
+
+                        </span>
+
+                    </div>
+
+                }
+
+            </div>
+
+
+
+            <!-- ==================================
+                 TOTAL REAL
+            =================================== -->
+
+            <div class="modal-total">
+
+                <span>
+                    TOTAL DEL PEDIDO
+                </span>
+
+                <strong>
+                    ${{ totalDetalle | number:'1.2-2' }}
+                </strong>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FOOTER
+            =================================== -->
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="modal-button"
+                    (click)="cerrarModal()">
+
+                    Cerrar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+}

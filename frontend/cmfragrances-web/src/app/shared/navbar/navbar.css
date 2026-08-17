@@ -2,48 +2,37 @@
    NAVBAR
 =========================== */
 
-.navbar {
+:host {
+    display: block;
+    width: 100%;
+    background: #ffffff;
+}
 
-    position: sticky;
+
+/* ===========================
+   NAVBAR FIJO
+=========================== */
+
+.navbar-container {
+
+    position: fixed;
 
     top: 0;
-
-    z-index: 1000;
+    left: 0;
+    right: 0;
 
     width: 100%;
 
     height: 125px;
 
+    z-index: 1000;
+
     background: #ffffff;
 
     box-sizing: border-box;
 
-    /* Línea dorada directamente en el borde */
-    border-bottom: 2px solid #ffffff;
-
     box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.06);
-
-    margin: 0;
-
-    padding: 0;
-}
-
-/* ===========================
-   LÍNEA DORADA COMPLETA
-=========================== */
-
-.navbar-container {
-
-    width: 100%;
-
-    max-width: 1700px;
-
-    height: 123px;
-
-    margin: 0 auto;
-
-    padding: 0 90px;
+        0 5px 18px rgba(0, 0, 0, 0.07);
 
     display: grid;
 
@@ -51,55 +40,26 @@
 
     align-items: center;
 
-    background: #ffffff;
+    padding: 0 90px;
 
-    box-sizing: border-box;
+    margin: 0;
 }
 
 
 /* ===========================
-   FONDO DEL COMPONENTE
+   ESPACIO PARA EL NAVBAR
 =========================== */
 
-:host {
+:host::after {
+
+    content: "";
 
     display: block;
 
     width: 100%;
 
-    background: #ffffff;
-}
-
-
-/* ===========================
-   CONTENEDOR
-=========================== */
-
-.navbar-container {
-
-    width: 100%;
-
-    max-width: 1700px;
-
     height: 125px;
 
-    margin: 0 auto;
-
-    padding: 0 90px;
-
-    display: grid;
-
-    grid-template-columns: 430px 1fr 240px;
-
-    align-items: center;
-
-    background: #ffffff;
-
-    box-sizing: border-box;
-
-    position: relative;
-
-    z-index: 1;
 }
 
 
@@ -118,6 +78,7 @@
     text-decoration: none;
 
     justify-self: start;
+
 }
 
 
@@ -129,13 +90,15 @@
 
     object-fit: contain;
 
-    transition: .35s;
+    transition: .35s ease;
+
 }
 
 
 .logo:hover .logo-image {
 
     transform: scale(1.08);
+
 }
 
 
@@ -148,6 +111,7 @@
     justify-content: center;
 
     line-height: 1;
+
 }
 
 
@@ -160,16 +124,18 @@
     font-weight: 800;
 
     letter-spacing: .5px;
+
 }
 
 
 .logo-text small {
 
-    color: #222;
+    color: #222222;
 
     font-size: 23px;
 
     font-weight: 600;
+
 }
 
 
@@ -192,6 +158,7 @@
     margin: 0;
 
     padding: 0;
+
 }
 
 
@@ -199,7 +166,7 @@
 
     text-decoration: none;
 
-    color: #222;
+    color: #222222;
 
     font-size: 18px;
 
@@ -207,13 +174,15 @@
 
     position: relative;
 
-    transition: .30s;
+    transition: .30s ease;
+
 }
 
 
 .menu a:hover {
 
     color: #D4AF37;
+
 }
 
 
@@ -235,18 +204,20 @@
 
     background: #D4AF37;
 
-    transition: .30s;
+    transition: .30s ease;
+
 }
 
 
 .menu a:hover::after {
 
     width: 100%;
+
 }
 
 
 /* ===========================
-   ICONOS
+   ICONOS PRINCIPALES
 =========================== */
 
 .actions {
@@ -258,30 +229,38 @@
     align-items: center;
 
     gap: 30px;
+
 }
 
 
-.actions button {
+/*
+   Solo afecta al botón del carrito.
+   No afecta los botones del menú de usuario.
+*/
+
+.actions > button {
 
     border: none;
 
     background: transparent;
 
-    color: #222;
+    color: #222222;
 
     font-size: 30px;
 
     cursor: pointer;
 
-    transition: .30s;
+    transition: .30s ease;
+
 }
 
 
-.actions button:hover {
+.actions > button:hover {
 
     color: #D4AF37;
 
     transform: translateY(-3px);
+
 }
 
 
@@ -292,6 +271,7 @@
 .cart {
 
     position: relative;
+
 }
 
 
@@ -311,7 +291,7 @@
 
     background: #D4AF37;
 
-    color: #111;
+    color: #111111;
 
     display: flex;
 
@@ -325,26 +305,315 @@
 
     box-shadow:
         0 4px 10px rgba(0, 0, 0, .20);
+
+}
+
+
+/* ==================================================
+   MENÚ DE USUARIO
+================================================== */
+
+.user-menu-container {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+/* ==================================================
+   BOTÓN DE USUARIO
+================================================== */
+
+.user-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 45px;
+
+    height: 45px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #222222;
+
+    font-size: 30px !important;
+
+    cursor: pointer;
+
+    transition: .30s ease;
+
+}
+
+
+.user-button:hover {
+
+    color: #D4AF37;
+
+    transform: translateY(-3px);
+
+}
+
+
+/* ==================================================
+   DROPDOWN USUARIO
+================================================== */
+
+.user-dropdown {
+
+    position: absolute;
+
+    top: calc(100% + 12px);
+
+    right: -8px;
+
+    width: 220px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 14px;
+
+    padding: 6px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, .14);
+
+    z-index: 2000;
+
+    animation: userMenuAppear .18s ease;
+
+}
+
+
+/* ==================================================
+   ANIMACIÓN
+================================================== */
+
+@keyframes userMenuAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-6px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* ==================================================
+   BOTONES DEL MENÚ
+================================================== */
+
+.user-option {
+
+    width: 100%;
+
+    height: 42px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 5px 9px;
+
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    border-radius: 9px;
+
+    color: #222222;
+
+    font-family: inherit;
+
+    font-size: 14px !important;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+
+}
+
+
+/* ==================================================
+   ICONOS DE LAS OPCIONES
+================================================== */
+
+.user-option i {
+
+    width: 29px;
+
+    height: 29px;
+
+    min-width: 29px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #faf6e8;
+
+    color: #D4AF37;
+
+    font-size: 14px !important;
+
+}
+
+
+/* ==================================================
+   TEXTO
+================================================== */
+
+.user-option span {
+
+    display: block;
+
+    flex: 1;
+
+    white-space: nowrap;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+}
+
+
+/* ==================================================
+   HOVER MIS COMPRAS
+================================================== */
+
+.user-option:hover {
+
+    background: #faf8f0;
+
+    color: #111111;
+
+}
+
+
+.user-option:hover i {
+
+    background: #D4AF37;
+
+    color: #111111;
+
+}
+
+
+/* ==================================================
+   CERRAR SESIÓN
+================================================== */
+
+.user-option.logout {
+
+    color: #333333;
+
+}
+
+
+.user-option.logout i {
+
+    background: #fff1f1;
+
+    color: #c62828;
+
+}
+
+
+.user-option.logout:hover {
+
+    background: #fff5f5;
+
+    color: #b42323;
+
+}
+
+
+.user-option.logout:hover i {
+
+    background: #c62828;
+
+    color: #ffffff;
+
+}
+
+
+/* ==================================================
+   SEPARADOR
+================================================== */
+
+.user-divider {
+
+    width: calc(100% - 12px);
+
+    height: 1px;
+
+    background: #eeeeee;
+
+    margin: 3px auto;
+
 }
 
 
 /* ===========================
-   RESPONSIVE
+   TABLET
 =========================== */
 
 @media (max-width: 992px) {
 
-    .navbar {
+    .navbar-container {
 
         height: auto;
 
         min-height: 125px;
 
-        background: #ffffff;
-    }
-
-
-    .navbar-container {
+        padding: 20px 25px;
 
         display: flex;
 
@@ -352,19 +621,24 @@
 
         justify-content: center;
 
-        height: auto;
-
-        padding: 25px;
-
-        gap: 25px;
+        gap: 20px;
 
         background: #ffffff;
+
+    }
+
+
+    :host::after {
+
+        height: 250px;
+
     }
 
 
     .logo {
 
         justify-content: center;
+
     }
 
 
@@ -375,12 +649,14 @@
         justify-content: center;
 
         gap: 25px;
+
     }
 
 
     .menu a {
 
         font-size: 16px;
+
     }
 
 
@@ -389,6 +665,7 @@
         justify-content: center;
 
         gap: 25px;
+
     }
 
 
@@ -397,18 +674,147 @@
         width: 90px;
 
         height: 90px;
+
     }
 
 
     .logo-text span {
 
         font-size: 34px;
+
     }
 
 
     .logo-text small {
 
         font-size: 18px;
+
+    }
+
+
+    .user-dropdown {
+
+        right: 50%;
+
+        transform: translateX(50%);
+
+    }
+
+}
+
+
+/* ===========================
+   CELULAR
+=========================== */
+
+@media (max-width: 600px) {
+
+    .navbar-container {
+
+        padding: 15px;
+
+        gap: 16px;
+
+    }
+
+
+    :host::after {
+
+        height: 230px;
+
+    }
+
+
+    .logo-image {
+
+        width: 65px;
+
+        height: 65px;
+
+    }
+
+
+    .logo-text span {
+
+        font-size: 28px;
+
+    }
+
+
+    .logo-text small {
+
+        font-size: 15px;
+
+    }
+
+
+    .menu {
+
+        gap: 18px;
+
+    }
+
+
+    .menu a {
+
+        font-size: 14px;
+
+    }
+
+
+    .actions {
+
+        gap: 20px;
+
+    }
+
+
+    .actions > button {
+
+        font-size: 25px;
+
+    }
+
+
+    .user-button {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 25px !important;
+
+    }
+
+
+    .user-dropdown {
+
+        width: 220px;
+
+        right: 50%;
+
+        transform: translateX(50%);
+
+    }
+
+
+    .user-option {
+
+        height: 42px;
+
+        font-size: 14px !important;
+
+    }
+
+
+    .user-option i {
+
+        width: 29px;
+
+        height: 29px;
+
+        font-size: 14px !important;
+
     }
 
 }

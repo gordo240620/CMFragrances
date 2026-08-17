@@ -1,0 +1,981 @@
+<!-- ==========================================
+     CONFIRMACIÓN DEL PEDIDO
+========================================== -->
+
+<section class="confirmacion-page">
+
+    <div class="confirmacion-container">
+
+
+        <!-- ======================================
+             CARGANDO
+        ======================================= -->
+
+        @if (cargando) {
+
+            <div class="confirmacion-loading">
+
+                <div class="loading-circle">
+
+                    <div class="spinner"></div>
+
+                </div>
+
+                <span>
+                    CM FRAGRANCES
+                </span>
+
+                <h2>
+                    Cargando tu pedido...
+                </h2>
+
+                <p>
+                    Estamos preparando la información de tu compra.
+                </p>
+
+            </div>
+
+        }
+
+
+        <!-- ======================================
+             ERROR
+        ======================================= -->
+
+        @if (!cargando && mensajeError) {
+
+            <div class="confirmacion-error">
+
+                <div class="error-icon">
+
+                    <i class="bi bi-exclamation-triangle"></i>
+
+                </div>
+
+                <span class="confirmacion-eyebrow">
+                    CM FRAGRANCES
+                </span>
+
+                <h1>
+                    No encontramos tu pedido
+                </h1>
+
+                <p>
+                    {{ mensajeError }}
+                </p>
+
+                <div class="error-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        (click)="volverInicio()">
+
+                        <i class="bi bi-house"></i>
+
+                        Volver al inicio
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        (click)="seguirComprando()">
+
+                        <i class="bi bi-shop"></i>
+
+                        Ver perfumes
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        }
+
+
+        <!-- ======================================
+             PEDIDO ENCONTRADO
+        ======================================= -->
+
+        @if (!cargando && pedido) {
+
+            <div class="confirmacion-content">
+
+
+                <!-- ==================================
+                     ENCABEZADO DE ÉXITO
+                =================================== -->
+
+                <div class="success-header">
+
+                    <div class="success-check">
+
+                        <div class="check-circle">
+
+                            <i class="bi bi-check-lg"></i>
+
+                        </div>
+
+                    </div>
+
+                    <span class="confirmacion-eyebrow">
+                        CM FRAGRANCES
+                    </span>
+
+                    <h1>
+                        ¡Gracias por tu compra!
+                    </h1>
+
+                    <p>
+                        Tu pedido ha sido confirmado correctamente.
+                        Estamos preparando todo para ti.
+                    </p>
+
+                    <div class="order-number">
+
+                        <span>
+                            PEDIDO
+                        </span>
+
+                        <strong>
+                            #{{ idPedido }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     ESTADO DEL PEDIDO
+                =================================== -->
+
+                <div class="order-status-card">
+
+                    <div class="status-icon">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    </div>
+
+                    <div class="status-info">
+
+                        <span>
+                            ESTADO DEL PEDIDO
+                        </span>
+
+                        <strong>
+                            {{ pedido.estado || 'Pagado' }}
+                        </strong>
+
+                    </div>
+
+                    <div class="status-badge">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        Pago confirmado
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     SEGUIMIENTO DEL PEDIDO
+                =================================== -->
+
+                <section class="tracking-card">
+
+                    <div class="tracking-header">
+
+                        <span>
+                            SEGUIMIENTO
+                        </span>
+
+                        <h2>
+                            Estado de tu pedido
+                        </h2>
+
+                        <p>
+                            Puedes consultar el avance de tu pedido
+                            en todo momento.
+                        </p>
+
+                    </div>
+
+
+                    <div class="tracking-steps">
+
+
+                        <!-- ==============================
+                             PAGADO
+                        =============================== -->
+
+                        <div
+                            class="tracking-step"
+                            [class.completed]="
+                                estadoPaso('Pagado') === 'completed'
+                            "
+                            [class.active]="
+                                estadoPaso('Pagado') === 'active'
+                            "
+                        >
+
+                            <div class="step-circle">
+
+                                @if (
+                                    estadoPaso('Pagado') === 'completed'
+                                ) {
+
+                                    <i class="bi bi-check-lg"></i>
+
+                                } @else {
+
+                                    <i class="bi bi-credit-card"></i>
+
+                                }
+
+                            </div>
+
+                            <div class="step-info">
+
+                                <strong>
+                                    Pagado
+                                </strong>
+
+                                <span>
+                                    Pago confirmado
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONECTOR -->
+
+                        <div
+                            class="step-line"
+                            [class.completed]="
+                                pasoCompletado('Preparando')
+                            "
+                        ></div>
+
+
+                        <!-- ==============================
+                             PREPARANDO
+                        =============================== -->
+
+                        <div
+                            class="tracking-step"
+                            [class.completed]="
+                                estadoPaso('Preparando') === 'completed'
+                            "
+                            [class.active]="
+                                estadoPaso('Preparando') === 'active'
+                            "
+                        >
+
+                            <div class="step-circle">
+
+                                @if (
+                                    estadoPaso('Preparando') === 'completed'
+                                ) {
+
+                                    <i class="bi bi-check-lg"></i>
+
+                                } @else {
+
+                                    <i class="bi bi-box-seam"></i>
+
+                                }
+
+                            </div>
+
+                            <div class="step-info">
+
+                                <strong>
+                                    Preparando
+                                </strong>
+
+                                <span>
+                                    Estamos preparando tu pedido
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONECTOR -->
+
+                        <div
+                            class="step-line"
+                            [class.completed]="
+                                pasoCompletado('Enviado')
+                            "
+                        ></div>
+
+
+                        <!-- ==============================
+                             ENVIADO
+                        =============================== -->
+
+                        <div
+                            class="tracking-step"
+                            [class.completed]="
+                                estadoPaso('Enviado') === 'completed'
+                            "
+                            [class.active]="
+                                estadoPaso('Enviado') === 'active'
+                            "
+                        >
+
+                            <div class="step-circle">
+
+                                @if (
+                                    estadoPaso('Enviado') === 'completed'
+                                ) {
+
+                                    <i class="bi bi-check-lg"></i>
+
+                                } @else {
+
+                                    <i class="bi bi-truck"></i>
+
+                                }
+
+                            </div>
+
+                            <div class="step-info">
+
+                                <strong>
+                                    Enviado
+                                </strong>
+
+                                <span>
+                                    Tu pedido está en camino
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONECTOR -->
+
+                        <div
+                            class="step-line"
+                            [class.completed]="
+                                pasoCompletado('Entregado')
+                            "
+                        ></div>
+
+
+                        <!-- ==============================
+                             ENTREGADO
+                        =============================== -->
+
+                        <div
+                            class="tracking-step"
+                            [class.completed]="
+                                estadoPaso('Entregado') === 'completed'
+                            "
+                            [class.active]="
+                                estadoPaso('Entregado') === 'active'
+                            "
+                        >
+
+                            <div class="step-circle">
+
+                                @if (
+                                    estadoPaso('Entregado') === 'completed'
+                                ) {
+
+                                    <i class="bi bi-check-lg"></i>
+
+                                } @else {
+
+                                    <i class="bi bi-house-check"></i>
+
+                                }
+
+                            </div>
+
+                            <div class="step-info">
+
+                                <strong>
+                                    Entregado
+                                </strong>
+
+                                <span>
+                                    Pedido recibido
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     INFORMACIÓN PRINCIPAL
+                =================================== -->
+
+                <div class="confirmation-grid">
+
+
+                    <!-- ==================================
+                         PRODUCTOS
+                    =================================== -->
+
+                    <section class="confirmation-card products-card">
+
+                        <div class="card-title">
+
+                            <div class="card-title-icon">
+
+                                <i class="bi bi-bag-check"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    TU COMPRA
+                                </span>
+
+                                <h2>
+                                    Productos
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="confirmation-products">
+
+                            @if (
+                                pedido.detalles &&
+                                pedido.detalles.length > 0
+                            ) {
+
+                                @for (
+                                    detalle of pedido.detalles;
+                                    track detalle.id
+                                ) {
+
+                                    <div class="confirmation-product">
+
+
+                                        <div class="product-image">
+
+                                            @if (detalle.perfume?.imagen) {
+
+                                                <img
+                                                    [src]="'/' + detalle.perfume.imagen"
+                                                    [alt]="detalle.perfume?.nombre">
+
+                                            }
+
+                                            @else {
+
+                                                <div class="product-placeholder">
+
+                                                    <i class="bi bi-box"></i>
+
+                                                </div>
+
+                                            }
+
+                                        </div>
+
+
+                                        <div class="product-info">
+
+                                            <strong>
+
+                                                {{
+                                                    detalle.perfume?.nombre
+                                                    ||
+                                                    detalle.perfume
+                                                    ||
+                                                    'Perfume'
+                                                }}
+
+                                            </strong>
+
+                                            <span>
+
+                                                Cantidad:
+                                                {{ detalle.cantidad }}
+
+                                            </span>
+
+                                            <small>
+
+                                                {{
+                                                    detalle.precio
+                                                    | currency:
+                                                    'MXN':
+                                                    'symbol-narrow':
+                                                    '1.2-2'
+                                                }}
+
+                                                c/u
+
+                                            </small>
+
+                                        </div>
+
+
+                                        <div class="product-total">
+
+                                            {{
+                                                detalle.precio *
+                                                detalle.cantidad
+                                                | currency:
+                                                'MXN':
+                                                'symbol-narrow':
+                                                '1.2-2'
+                                            }}
+
+                                        </div>
+
+                                    </div>
+
+                                }
+
+                            }
+
+                            @else {
+
+                                <div class="no-products">
+
+                                    <i class="bi bi-box-seam"></i>
+
+                                    <span>
+                                        Los productos de tu pedido
+                                        aparecerán aquí.
+                                    </span>
+
+                                </div>
+
+                            }
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ==================================
+                         RESUMEN
+                    =================================== -->
+
+                    <section class="confirmation-card summary-card">
+
+                        <div class="card-title">
+
+                            <div class="card-title-icon">
+
+                                <i class="bi bi-receipt"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    RESUMEN
+                                </span>
+
+                                <h2>
+                                    Total de compra
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="summary-details">
+
+
+                            <div class="summary-row">
+
+                                <span>
+                                    Subtotal
+                                </span>
+
+                                <strong>
+
+                                    {{
+                                        pedido.total - 150
+                                        | currency:
+                                        'MXN':
+                                        'symbol-narrow':
+                                        '1.2-2'
+                                    }}
+
+                                </strong>
+
+                            </div>
+
+
+                            <div class="summary-row">
+
+                                <span>
+                                    Envío
+                                </span>
+
+                                <strong>
+                                    $150.00
+                                </strong>
+
+                            </div>
+
+
+                            <div class="summary-divider"></div>
+
+
+                            <div class="summary-total">
+
+                                <span>
+                                    Total pagado
+                                </span>
+
+                                <strong>
+
+                                    {{
+                                        pedido.total
+                                        | currency:
+                                        'MXN':
+                                        'symbol-narrow':
+                                        '1.2-2'
+                                    }}
+
+                                </strong>
+
+                            </div>
+
+
+                            <div class="payment-confirmed">
+
+                                <i class="bi bi-credit-card-2-front"></i>
+
+                                <div>
+
+                                    <strong>
+                                        Pago confirmado
+                                    </strong>
+
+                                    <span>
+                                        Pago procesado correctamente
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- ==================================
+                     INFORMACIÓN DEL PEDIDO
+                =================================== -->
+
+                <section class="confirmation-card order-info-card">
+
+                    <div class="card-title">
+
+                        <div class="card-title-icon">
+
+                            <i class="bi bi-info-circle"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                INFORMACIÓN
+                            </span>
+
+                            <h2>
+                                Detalles del pedido
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-info-grid">
+
+
+                        <div class="info-item">
+
+                            <div class="info-icon">
+
+                                <i class="bi bi-hash"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Número de pedido
+                                </span>
+
+                                <strong>
+                                    #{{ idPedido }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-icon">
+
+                                <i class="bi bi-calendar3"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Fecha del pedido
+                                </span>
+
+                                <strong>
+
+                                    {{
+                                        pedido.fechaPedido
+                                        | date:'dd/MM/yyyy HH:mm'
+                                    }}
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-icon">
+
+                                <i class="bi bi-check2-circle"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Estado
+                                </span>
+
+                                <strong class="paid-text">
+                                    {{ pedido.estado || 'Pagado' }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-icon">
+
+                                <i class="bi bi-person"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Cliente
+                                </span>
+
+                                <strong>
+                                    {{ nombreCliente }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     ENTREGA
+                =================================== -->
+
+                <section class="delivery-card">
+
+                    <div class="delivery-icon">
+
+                        <i
+                            class="bi"
+                            [ngClass]="{
+
+                                'bi-credit-card':
+                                    pedido.estado?.toLowerCase() === 'pagado',
+
+                                'bi-box-seam':
+                                    pedido.estado?.toLowerCase() === 'preparando',
+
+                                'bi-truck':
+                                    pedido.estado?.toLowerCase() === 'enviado',
+
+                                'bi-house-check':
+                                    pedido.estado?.toLowerCase() === 'entregado'
+
+                            }"
+                        ></i>
+
+                    </div>
+
+
+                    <div class="delivery-content">
+
+                        <span>
+                            PRÓXIMO PASO
+                        </span>
+
+                        <h3>
+                            {{ mensajeEstado }}
+                        </h3>
+
+                        <p>
+                            {{ descripcionEstado }}
+                        </p>
+
+                    </div>
+
+
+                    <div class="delivery-status">
+
+                        <i
+                            class="bi"
+                            [ngClass]="{
+
+                                'bi-check2':
+                                    pedido.estado?.toLowerCase() === 'pagado',
+
+                                'bi-box-seam':
+                                    pedido.estado?.toLowerCase() === 'preparando',
+
+                                'bi-truck':
+                                    pedido.estado?.toLowerCase() === 'enviado',
+
+                                'bi-house-check':
+                                    pedido.estado?.toLowerCase() === 'entregado'
+
+                            }"
+                        ></i>
+
+                        {{ textoEstado }}
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     ACCIONES
+                =================================== -->
+
+                <div class="confirmation-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        (click)="volverInicio()">
+
+                        <i class="bi bi-house"></i>
+
+                        Volver al inicio
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        (click)="seguirComprando()">
+
+                        <i class="bi bi-bag-plus"></i>
+
+                        Seguir comprando
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- ==================================
+                     SEGURIDAD
+                =================================== -->
+
+                <div class="confirmation-footer">
+
+                    <div>
+
+                        <i class="bi bi-shield-check"></i>
+
+                        <span>
+                            Compra segura
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="bi bi-check-circle"></i>
+
+                        <span>
+                            Pedido confirmado
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="bi bi-heart"></i>
+
+                        <span>
+                            Gracias por elegirnos
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+
+</section>

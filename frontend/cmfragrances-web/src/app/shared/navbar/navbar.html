@@ -1,77 +1,187 @@
-<nav class="navbar">
+<!-- ==========================================
+     NAVBAR
+========================================== -->
 
-    <div class="navbar-container">
-
-        <!-- LOGO -->
-        <a class="logo" href="#">
-
-            <img
-                src="/cm-logo.png"
-                alt="CM Fragrances"
-                class="logo-image">
-
-            <div class="logo-text">
-
-                <span>CM</span>
-
-                <small>Fragrances</small>
-
-            </div>
-
-        </a>
+<div class="navbar-container">
 
 
-<!-- MENÚ -->
-<ul class="menu">
+    <!-- ======================================
+         LOGO
+    ======================================= -->
 
-    <li>
-        <a routerLink="/home">
-            Inicio
-        </a>
-    </li>
+    <a
+        class="logo"
+        routerLink="/home">
 
-    <li>
-        <a href="#">
-            Perfumes
-        </a>
-    </li>
+        <img
+            src="/cm-logo.png"
+            alt="CM Fragrances"
+            class="logo-image">
 
-    <li>
-    <a routerLink="/home" fragment="contacto">
-        Contacto
-    </a>
-</li>
-</ul>
+        <div class="logo-text">
 
+            <span>
+                CM
+            </span>
 
-        <!-- ACCIONES -->
-        <div class="actions">
-
-            <!-- BUSCAR -->
-            <button
-                type="button"
-                aria-label="Buscar">
-
-                <i class="bi bi-search"></i>
-
-            </button>
-
-
-
-            <!-- CARRITO -->
-            <button
-                type="button"
-                class="cart"
-                aria-label="Carrito">
-
-                <i class="bi bi-bag"></i>
-
-                <span>0</span>
-
-            </button>
+            <small>
+                Fragrances
+            </small>
 
         </div>
 
+    </a>
+
+
+
+    <!-- ======================================
+         MENÚ
+    ======================================= -->
+
+    <ul class="menu">
+
+        <li>
+
+            <a routerLink="/home">
+
+                Inicio
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a routerLink="/catalogo">
+
+                Perfumes
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                routerLink="/home"
+                fragment="contacto">
+
+                Contacto
+
+            </a>
+
+        </li>
+
+    </ul>
+
+
+
+    <!-- ======================================
+         ACCIONES
+    ======================================= -->
+
+    <div class="actions">
+
+
+        <!-- ==================================
+             CARRITO
+        =================================== -->
+
+        <button
+            type="button"
+            class="cart"
+            aria-label="Carrito"
+            (click)="irAlCarrito()">
+
+            <i class="bi bi-bag"></i>
+
+            <span>
+                {{ cantidadCarrito }}
+            </span>
+
+        </button>
+
+
+
+        <!-- ==================================
+             USUARIO
+        =================================== -->
+
+        <div class="user-menu-container">
+
+
+            <!-- BOTÓN USUARIO -->
+
+            <button
+                type="button"
+                class="user-button"
+                aria-label="Cuenta"
+                (click)="toggleUserMenu()">
+
+                <i class="bi bi-person-circle"></i>
+
+            </button>
+
+
+
+            <!-- ==================================
+                 MENÚ USUARIO
+            =================================== -->
+
+            @if(userMenuOpen) {
+
+                <div class="user-dropdown">
+
+
+                    <!-- MIS COMPRAS -->
+
+                    <button
+                        type="button"
+                        class="user-option"
+                        (click)="irAMisCompras()">
+
+                        <i class="bi bi-bag-check"></i>
+
+                        <span>
+                            Mis compras
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- SEPARADOR -->
+
+                    <div class="user-divider"></div>
+
+
+
+                    <!-- CERRAR SESIÓN -->
+
+                    <button
+                        type="button"
+                        class="user-option logout"
+                        (click)="cerrarSesion()">
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        <span>
+                            Cerrar sesión
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            }
+
+
+        </div>
+
+
     </div>
 
-</nav>
+</div>

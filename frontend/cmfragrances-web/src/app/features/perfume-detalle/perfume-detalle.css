@@ -1,0 +1,914 @@
+/* ==========================================
+   DETALLE DEL PERFUME
+========================================== */
+
+.detalle-perfume {
+
+    min-height: 100vh;
+
+    background: #ffffff;
+
+}
+
+
+/* ==========================================
+   CONTENIDO
+========================================== */
+
+.detalle-contenido {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+}
+
+
+/* ==========================================
+   CARGANDO
+========================================== */
+
+.detalle-cargando {
+
+    min-height: 500px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #666;
+
+}
+
+
+.detalle-cargando .spinner-border {
+
+    width: 50px;
+
+    height: 50px;
+
+}
+
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.detalle-error {
+
+    min-height: 500px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: #666;
+
+}
+
+
+.detalle-error i {
+
+    color: #D4AF37;
+
+    font-size: 55px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.detalle-error h2 {
+
+    color: #111;
+
+    font-weight: 700;
+
+}
+
+
+.detalle-error p {
+
+    margin-top: 10px;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* ==========================================
+   BOTÓN VOLVER
+========================================== */
+
+.btn-regresar {
+
+    border: none;
+
+    background: transparent;
+
+    color: #555;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    padding: 8px 0;
+
+    transition: .3s;
+
+}
+
+
+.btn-regresar i {
+
+    margin-right: 8px;
+
+}
+
+
+.btn-regresar:hover {
+
+    color: #D4AF37;
+
+}
+
+
+/* ==========================================
+   IMAGEN DEL PERFUME
+========================================== */
+
+.detalle-imagen {
+
+    width: 100%;
+
+    height: 550px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #fafafa;
+
+    border-radius: 25px;
+
+    padding: 45px;
+
+    overflow: hidden;
+
+    border: 1px solid #eeeeee;
+
+}
+
+
+.detalle-imagen img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    max-width: 100%;
+
+    max-height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+}
+
+
+/* ==========================================
+   CATEGORÍA
+========================================== */
+
+.detalle-categoria {
+
+    display: inline-block;
+
+    color: #D4AF37;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* ==========================================
+   TÍTULO
+========================================== */
+
+.detalle-titulo {
+
+    color: #111;
+
+    font-size: 45px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    margin: 0;
+
+}
+
+
+/* ==========================================
+   MARCA
+========================================== */
+
+.detalle-marca {
+
+    color: #777;
+
+    font-size: 18px;
+
+    margin-top: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* ==========================================
+   PRECIO
+========================================== */
+
+.detalle-precio {
+
+    color: #111;
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* ==========================================
+   SECCIÓN DESCRIPCIÓN
+========================================== */
+
+.detalle-seccion {
+
+    border-top: 1px solid #eeeeee;
+
+    padding-top: 25px;
+
+    margin-top: 20px;
+
+}
+
+
+.detalle-seccion h3 {
+
+    color: #111;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+
+}
+
+
+.detalle-seccion p {
+
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    margin: 0;
+
+}
+
+
+/* ==========================================
+   DATOS DEL PERFUME
+========================================== */
+
+.detalle-datos {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+}
+
+
+.dato {
+
+    background: #fafafa;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 12px;
+
+    padding: 16px;
+
+}
+
+
+.dato-label {
+
+    display: block;
+
+    color: #888;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-bottom: 6px;
+
+}
+
+
+.dato-valor {
+
+    display: block;
+
+    color: #111;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+.stock-agotado {
+
+    color: #d00000;
+
+}
+
+
+/* ==========================================
+   BOTÓN AGREGAR AL CARRITO
+========================================== */
+
+.btn-carrito {
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    padding: 15px 25px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #D4AF37;
+
+    color: #111;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    transition: .3s;
+
+}
+
+
+.btn-carrito i {
+
+    margin-right: 8px;
+
+}
+
+
+.btn-carrito:hover {
+
+    background: #111;
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+}
+
+
+.btn-carrito:disabled {
+
+    background: #cccccc;
+
+    color: #777;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* ==========================================
+   BOTÓN VOLVER DEL ERROR
+========================================== */
+
+.btn-volver {
+
+    border: none;
+
+    border-radius: 25px;
+
+    padding: 11px 22px;
+
+    background: #D4AF37;
+
+    color: #111;
+
+    font-weight: 700;
+
+    transition: .3s;
+
+}
+
+
+.btn-volver:hover {
+
+    background: #111;
+
+    color: #ffffff;
+
+}
+
+
+/* ==========================================
+   MODAL PRODUCTO AGREGADO
+========================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(17, 17, 17, .65);
+
+    backdrop-filter: blur(6px);
+
+    animation: modalOverlay .25s ease;
+
+}
+
+
+/* ==========================================
+   TARJETA DEL MODAL
+========================================== */
+
+.modal-carrito {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, .25);
+
+    animation: modalEntrada .3s ease;
+
+}
+
+
+/* ==========================================
+   ICONO
+========================================== */
+
+.modal-icono {
+
+    width: 72px;
+
+    height: 72px;
+
+    margin: 0 auto 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(212, 175, 55, .14);
+
+    border: 1px solid rgba(212, 175, 55, .35);
+
+}
+
+
+.modal-icono i {
+
+    font-size: 34px;
+
+    color: #D4AF37;
+
+}
+
+
+/* ==========================================
+   EYEBROW
+========================================== */
+
+.modal-eyebrow {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #D4AF37;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+}
+
+
+/* ==========================================
+   TÍTULO DEL MODAL
+========================================== */
+
+.modal-contenido h2 {
+
+    margin: 0;
+
+    color: #111;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==========================================
+   NOMBRE DEL PRODUCTO
+========================================== */
+
+.modal-producto {
+
+    margin: 16px 0 6px;
+
+    color: #111;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==========================================
+   DESCRIPCIÓN DEL MODAL
+========================================== */
+
+.modal-descripcion {
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==========================================
+   ACCIONES DEL MODAL
+========================================== */
+
+.modal-acciones {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 28px;
+
+}
+
+
+/* ==========================================
+   BOTÓN SEGUIR COMPRANDO
+========================================== */
+
+.btn-seguir {
+
+    flex: 1;
+
+    min-height: 48px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #222;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+
+.btn-seguir:hover {
+
+    border-color: #D4AF37;
+
+    color: #D4AF37;
+
+}
+
+
+/* ==========================================
+   BOTÓN VER CARRITO
+========================================== */
+
+.btn-ver-carrito {
+
+    flex: 1;
+
+    min-height: 48px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #D4AF37;
+
+    color: #111;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+
+.btn-ver-carrito:hover {
+
+    background: #111;
+
+    color: #ffffff;
+
+}
+
+
+.btn-ver-carrito i {
+
+    margin-right: 7px;
+
+}
+
+
+/* ==========================================
+   ANIMACIÓN FONDO
+========================================== */
+
+@keyframes modalOverlay {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* ==========================================
+   ANIMACIÓN MODAL
+========================================== */
+
+@keyframes modalEntrada {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 991px) {
+
+    .detalle-imagen {
+
+        height: 450px;
+
+    }
+
+
+    .detalle-titulo {
+
+        font-size: 38px;
+
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .detalle-perfume {
+
+        padding-bottom: 30px;
+
+    }
+
+
+    .detalle-imagen {
+
+        height: 380px;
+
+        padding: 30px;
+
+    }
+
+
+    .detalle-titulo {
+
+        font-size: 32px;
+
+    }
+
+
+    .detalle-precio {
+
+        font-size: 29px;
+
+    }
+
+
+    .detalle-datos {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .btn-carrito {
+
+        margin-top: 25px;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .modal-carrito {
+
+        padding: 28px 22px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .modal-contenido h2 {
+
+        font-size: 24px;
+
+    }
+
+
+    .modal-acciones {
+
+        flex-direction: column;
+
+    }
+
+
+    .btn-seguir,
+    .btn-ver-carrito {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .detalle-imagen {
+
+        height: 320px;
+
+        padding: 20px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .detalle-titulo {
+
+        font-size: 28px;
+
+    }
+
+
+    .detalle-marca {
+
+        font-size: 16px;
+
+    }
+
+}

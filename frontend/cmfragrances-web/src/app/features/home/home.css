@@ -143,4 +143,233 @@ RESPONSIVE
 
     }
 
+    /* ==========================================
+   TARJETAS DE PERFUMES - HOME
+========================================== */
+
+.featured {
+    padding: 90px 0 100px;
+}
+
+
+.featured .container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+
+/* ==========================================
+   GRID
+========================================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 28px;
+
+    align-items: stretch;
+
+    margin-top: 45px;
+}
+
+
+/* ==========================================
+   TARJETA
+========================================== */
+
+.cards app-perfume-card {
+    display: block;
+
+    min-width: 0;
+
+    height: 100%;
+}
+
+
+/* ==========================================
+   CARGANDO
+========================================== */
+
+.home-loading {
+
+    min-height: 280px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #777;
+
+}
+
+
+.home-loading .spinner-border {
+
+    width: 42px;
+    height: 42px;
+
+}
+
+
+/* ==========================================
+   ERROR
+========================================== */
+
+.home-error {
+
+    min-height: 220px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    text-align: center;
+
+    color: #777;
+
+}
+
+
+.home-error i {
+
+    font-size: 35px;
+
+    color: #d4af37;
+
+}
+
+
+.home-error button {
+
+    border: none;
+
+    padding: 10px 22px;
+
+    border-radius: 25px;
+
+    background: #d4af37;
+
+    color: #111;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+/* ==========================================
+   SIN PRODUCTOS
+========================================== */
+
+.home-vacio {
+
+    min-height: 250px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: #777;
+
+}
+
+
+.home-vacio i {
+
+    font-size: 40px;
+
+    color: #d4af37;
+
+    margin-bottom: 12px;
+
+}
+
+
+.home-vacio h3 {
+
+    margin: 0;
+
+    color: #222;
+
+}
+
+
+.home-vacio p {
+
+    margin-top: 8px;
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1050px) {
+
+    .cards {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ==========================================
+   CELULAR
+========================================== */
+
+@media (max-width: 600px) {
+
+    .featured {
+
+        padding: 65px 0 75px;
+
+    }
+
+
+    .cards {
+
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+
+        margin-top: 30px;
+
+    }
+
+
+    .featured .container {
+
+        padding: 0 18px;
+
+    }
+
+}
+
 }

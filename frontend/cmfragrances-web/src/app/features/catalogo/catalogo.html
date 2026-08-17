@@ -1,0 +1,270 @@
+<section class="catalogo">
+
+    <div class="container py-5">
+
+        <!-- ==========================================
+             ENCABEZADO
+        =========================================== -->
+
+        <div class="text-center mb-5">
+
+            <span class="catalogo-subtitulo">
+                CM FRAGRANCES
+            </span>
+
+            <h1 class="catalogo-titulo">
+                Catálogo de Perfumes
+            </h1>
+
+            <p class="catalogo-descripcion">
+                Descubre nuestra selección de fragancias
+                originales.
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             FILTROS
+        =========================================== -->
+
+        <div class="filtros-box mb-5">
+
+            <div class="row g-3">
+
+                <!-- BUSCADOR -->
+
+                <div class="col-lg-7">
+
+                    <label class="form-label">
+                        Buscar perfume
+                    </label>
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+
+                            <i class="bi bi-search"></i>
+
+                        </span>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Buscar perfume..."
+                            [(ngModel)]="textoBusqueda"
+                            (input)="filtrarPerfumes()">
+
+                    </div>
+
+                </div>
+
+
+                <!-- CATEGORÍA -->
+
+                <div class="col-lg-3">
+
+                    <label class="form-label">
+                        Categoría
+                    </label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="categoriaSeleccionada"
+                        (change)="filtrarPerfumes()">
+
+                        <option [ngValue]="0">
+                            Todas
+                        </option>
+
+                        <option
+                            *ngFor="let categoria of categorias"
+                            [ngValue]="categoria.id">
+
+                            {{ categoria.nombre }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- LIMPIAR -->
+
+                <div
+                    class="col-lg-2 d-flex align-items-end">
+
+                    <button
+                        type="button"
+                        class="btn btn-limpiar w-100"
+                        (click)="limpiarFiltros()">
+
+                        Limpiar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             CARGANDO
+        =========================================== -->
+
+        <div
+            *ngIf="cargando"
+            class="text-center py-5">
+
+            <div
+                class="spinner-border text-warning"
+                role="status">
+
+                <span class="visually-hidden">
+                    Cargando...
+                </span>
+
+            </div>
+
+            <p class="mt-3">
+                Cargando perfumes...
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             SIN RESULTADOS
+        =========================================== -->
+
+        <div
+            *ngIf="
+                !cargando &&
+                perfumesFiltrados.length === 0
+            "
+            class="sin-resultados">
+
+            <i class="bi bi-search"></i>
+
+            <h3>
+                No encontramos perfumes
+            </h3>
+
+            <p>
+                Intenta cambiar los filtros de búsqueda.
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             PERFUMES
+        =========================================== -->
+
+        <div
+            *ngIf="
+                !cargando &&
+                perfumesFiltrados.length > 0
+            "
+            class="row g-4">
+
+            <div
+                class="col-sm-6 col-lg-4 col-xl-3"
+                *ngFor="
+                    let perfume
+                    of perfumesFiltrados
+                ">
+
+                <div class="perfume-card">
+
+
+                    <!-- ==================================
+                         IMAGEN
+                    =================================== -->
+
+                    <div class="perfume-image">
+
+                        <img
+                            [src]="perfume.imagen || '/cm-logo.png'"
+                            [alt]="perfume.nombre"
+                            loading="eager"
+                            decoding="async">
+
+                    </div>
+
+
+                    <!-- ==================================
+                         CONTENIDO
+                    =================================== -->
+
+                    <div class="perfume-body">
+
+                        <span class="perfume-categoria">
+
+                            {{ perfume.categoria }}
+
+                        </span>
+
+
+                        <h3>
+
+                            {{ perfume.nombre }}
+
+                        </h3>
+
+
+                        <p class="perfume-marca">
+
+                            {{ perfume.marca }}
+
+                        </p>
+
+
+                        <!-- ==================================
+                             PRECIO Y DETALLE
+                        =================================== -->
+
+                        <div class="perfume-footer">
+
+                            <span class="perfume-precio">
+
+                                {{
+                                    perfume.precio
+                                    | currency:
+                                    'MXN':
+                                    'symbol-narrow':
+                                    '1.0-0'
+                                }}
+
+                            </span>
+
+
+                            <button
+                                type="button"
+                                class="btn-detalle"
+                                (click)="
+                                    verDetalle(
+                                        perfume.id
+                                    )
+                                ">
+
+                                Ver detalle
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

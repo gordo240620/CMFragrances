@@ -1,4 +1,11 @@
-<div class="card-perfume">
+<div
+    class="card-perfume"
+    (click)="verDetalle()">
+
+
+    <!-- ==========================================
+         IMAGEN
+    =========================================== -->
 
     <div class="image-container">
 
@@ -8,7 +15,15 @@
 
     </div>
 
+
+    <!-- ==========================================
+         INFORMACIÓN
+    =========================================== -->
+
     <div class="card-body">
+
+
+        <!-- MARCA -->
 
         <p class="brand">
 
@@ -16,11 +31,17 @@
 
         </p>
 
+
+        <!-- NOMBRE -->
+
         <h3>
 
             {{ nombre }}
 
         </h3>
+
+
+        <!-- CALIFICACIÓN -->
 
         <div class="rating">
 
@@ -28,17 +49,28 @@
 
         </div>
 
+
+        <!-- PRECIO -->
+
         <div class="price">
 
             ${{ precio }} MXN
 
         </div>
 
-        <button>
+
+        <!-- ======================================
+             AGREGAR AL CARRITO
+        ======================================= -->
+
+        <button
+            type="button"
+            (click)="agregarAlCarrito(); $event.stopPropagation()">
 
             Agregar al carrito
 
         </button>
+
 
     </div>
 
