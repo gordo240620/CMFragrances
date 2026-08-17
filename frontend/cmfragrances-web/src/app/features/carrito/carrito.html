@@ -183,6 +183,7 @@
 
                             </strong>
 
+
                             <button
                                 type="button"
                                 class="remove-button"
@@ -200,7 +201,9 @@
                 }
 
 
-                <!-- VACIAR CARRITO -->
+                <!-- ==================================
+                     VACIAR CARRITO
+                =================================== -->
 
                 <div class="cart-actions">
 
@@ -231,6 +234,7 @@
 
     <aside class="summary-card">
 
+
         <div class="summary-top">
 
             <span>
@@ -244,7 +248,13 @@
         </div>
 
 
+
         <div class="summary-body">
+
+
+            <!-- ==================================
+                 SUBTOTAL
+            =================================== -->
 
             <div class="summary-row">
 
@@ -259,6 +269,11 @@
             </div>
 
 
+
+            <!-- ==================================
+                 ENVÍO
+            =================================== -->
+
             <div class="summary-row">
 
                 <span>
@@ -272,8 +287,14 @@
             </div>
 
 
+
             <div class="summary-line"></div>
 
+
+
+            <!-- ==================================
+                 TOTAL
+            =================================== -->
 
             <div class="total-row">
 
@@ -288,33 +309,28 @@
             </div>
 
 
+
             <!-- ==================================
-                 CONTINUAR CON EL PEDIDO
+                 CONTINUAR AL CHECKOUT
             =================================== -->
 
             <button
                 type="button"
                 class="checkout-button"
-                [disabled]="
-                    productos.length === 0 ||
-                    procesandoPedido
-                "
-                (click)="continuarPedido()">
+                [disabled]="productos.length === 0"
+                (click)="irAlCheckout()">
 
-                @if(procesandoPedido) {
+                Continuar con el pedido
 
-                    Creando pedido...
-
-                } @else {
-
-                    Continuar con el pedido
-
-                    <i class="bi bi-arrow-right"></i>
-
-                }
+                <i class="bi bi-arrow-right"></i>
 
             </button>
 
+
+
+            <!-- ==================================
+                 SEGURIDAD
+            =================================== -->
 
             <div class="secure-payment">
 
@@ -366,6 +382,7 @@
     </div>
 
 
+
     <!-- BENEFICIO 2 -->
 
     <div class="benefit">
@@ -389,6 +406,7 @@
         </div>
 
     </div>
+
 
 
     <!-- BENEFICIO 3 -->

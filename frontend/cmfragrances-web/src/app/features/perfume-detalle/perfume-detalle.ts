@@ -56,6 +56,13 @@ export class PerfumeDetalle implements OnInit {
 
 
     // ==========================================
+    // MODAL CARRITO
+    // ==========================================
+
+    mostrarModalCarrito = false;
+
+
+    // ==========================================
     // API
     // ==========================================
 
@@ -303,10 +310,6 @@ export class PerfumeDetalle implements OnInit {
 
         if (this.perfume.stock <= 0) {
 
-            alert(
-                'Este perfume está agotado.'
-            );
-
             return;
 
         }
@@ -368,9 +371,40 @@ export class PerfumeDetalle implements OnInit {
         );
 
 
-        alert(
-            `${this.perfume.nombre} se agregó al carrito.`
-        );
+        // ======================================
+        // MOSTRAR MODAL PERSONALIZADO
+        // ======================================
+
+        this.mostrarModalCarrito = true;
+
+
+        this.cdr.detectChanges();
+
+    }
+
+
+    // ==========================================
+    // CERRAR MODAL
+    // ==========================================
+
+    cerrarModalCarrito(): void {
+
+        this.mostrarModalCarrito = false;
+
+    }
+
+
+    // ==========================================
+    // IR AL CARRITO
+    // ==========================================
+
+    irAlCarrito(): void {
+
+        this.mostrarModalCarrito = false;
+
+        this.router.navigate([
+            '/carrito'
+        ]);
 
     }
 

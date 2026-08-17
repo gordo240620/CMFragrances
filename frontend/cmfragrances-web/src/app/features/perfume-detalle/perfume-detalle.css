@@ -469,6 +469,317 @@
 
 
 /* ==========================================
+   MODAL PRODUCTO AGREGADO
+========================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(17, 17, 17, .65);
+
+    backdrop-filter: blur(6px);
+
+    animation: modalOverlay .25s ease;
+
+}
+
+
+/* ==========================================
+   TARJETA DEL MODAL
+========================================== */
+
+.modal-carrito {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, .25);
+
+    animation: modalEntrada .3s ease;
+
+}
+
+
+/* ==========================================
+   ICONO
+========================================== */
+
+.modal-icono {
+
+    width: 72px;
+
+    height: 72px;
+
+    margin: 0 auto 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(212, 175, 55, .14);
+
+    border: 1px solid rgba(212, 175, 55, .35);
+
+}
+
+
+.modal-icono i {
+
+    font-size: 34px;
+
+    color: #D4AF37;
+
+}
+
+
+/* ==========================================
+   EYEBROW
+========================================== */
+
+.modal-eyebrow {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #D4AF37;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+}
+
+
+/* ==========================================
+   TÍTULO DEL MODAL
+========================================== */
+
+.modal-contenido h2 {
+
+    margin: 0;
+
+    color: #111;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==========================================
+   NOMBRE DEL PRODUCTO
+========================================== */
+
+.modal-producto {
+
+    margin: 16px 0 6px;
+
+    color: #111;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==========================================
+   DESCRIPCIÓN DEL MODAL
+========================================== */
+
+.modal-descripcion {
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==========================================
+   ACCIONES DEL MODAL
+========================================== */
+
+.modal-acciones {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 28px;
+
+}
+
+
+/* ==========================================
+   BOTÓN SEGUIR COMPRANDO
+========================================== */
+
+.btn-seguir {
+
+    flex: 1;
+
+    min-height: 48px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #222;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+
+.btn-seguir:hover {
+
+    border-color: #D4AF37;
+
+    color: #D4AF37;
+
+}
+
+
+/* ==========================================
+   BOTÓN VER CARRITO
+========================================== */
+
+.btn-ver-carrito {
+
+    flex: 1;
+
+    min-height: 48px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #D4AF37;
+
+    color: #111;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+
+.btn-ver-carrito:hover {
+
+    background: #111;
+
+    color: #ffffff;
+
+}
+
+
+.btn-ver-carrito i {
+
+    margin-right: 7px;
+
+}
+
+
+/* ==========================================
+   ANIMACIÓN FONDO
+========================================== */
+
+@keyframes modalOverlay {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* ==========================================
+   ANIMACIÓN MODAL
+========================================== */
+
+@keyframes modalEntrada {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* ==========================================
    RESPONSIVE
 ========================================== */
 
@@ -533,6 +844,41 @@
     .btn-carrito {
 
         margin-top: 25px;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .modal-carrito {
+
+        padding: 28px 22px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .modal-contenido h2 {
+
+        font-size: 24px;
+
+    }
+
+
+    .modal-acciones {
+
+        flex-direction: column;
+
+    }
+
+
+    .btn-seguir,
+    .btn-ver-carrito {
+
+        width: 100%;
 
     }
 

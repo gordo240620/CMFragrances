@@ -1,10 +1,12 @@
 <div class="admin-page">
 
+
     <!-- ==========================================
          SIDEBAR
     =========================================== -->
 
     <aside class="admin-sidebar">
+
 
         <!-- LOGO -->
 
@@ -16,16 +18,21 @@
 
             <div>
 
-                <strong>CM</strong>
+                <strong>
+                    CM
+                </strong>
 
-                <span>Fragrances</span>
+                <span>
+                    Fragrances
+                </span>
 
             </div>
 
         </div>
 
 
-        <!-- USUARIO -->
+
+        <!-- ADMINISTRADOR -->
 
         <div class="admin-user">
 
@@ -37,27 +44,33 @@
 
             <div>
 
-                <strong>Administrador</strong>
+                <strong>
+                    Administrador
+                </strong>
 
-                <span>Panel de control</span>
+                <span>
+                    Panel de control
+                </span>
 
             </div>
 
         </div>
 
 
-        <!-- ==========================================
+
+        <!-- ======================================
              MENÚ PRINCIPAL
-        =========================================== -->
+        ======================================= -->
 
         <nav class="admin-menu">
+
 
             <span class="menu-title">
                 MENÚ PRINCIPAL
             </span>
 
 
-            <!-- DASHBOARD -->
+            <!-- RESUMEN -->
 
             <a
                 class="menu-item"
@@ -74,7 +87,9 @@
 
             <!-- PERFUMES -->
 
-            <a class="menu-item">
+            <a
+                class="menu-item"
+                routerLink="/admin/perfumes">
 
                 <i class="bi bi-droplet-fill"></i>
 
@@ -100,22 +115,9 @@
             </a>
 
 
-            <!-- USUARIOS -->
-
-            <a class="menu-item">
-
-                <i class="bi bi-people-fill"></i>
-
-                <span>
-                    Usuarios
-                </span>
-
-            </a>
-
-
-            <!-- ======================================
+            <!-- ==================================
                  CUENTA
-            ======================================= -->
+            =================================== -->
 
             <span class="menu-title secondary-title">
                 CUENTA
@@ -124,7 +126,8 @@
 
             <!-- MI CUENTA -->
 
-            <a class="menu-item">
+            <a
+                class="menu-item">
 
                 <i class="bi bi-person-circle"></i>
 
@@ -134,7 +137,9 @@
 
             </a>
 
+
         </nav>
+
 
 
         <!-- ==========================================
@@ -143,7 +148,8 @@
 
         <button
             type="button"
-            class="logout-button">
+            class="logout-button"
+            (click)="cerrarSesion()">
 
             <i class="bi bi-box-arrow-left"></i>
 
@@ -153,7 +159,9 @@
 
         </button>
 
+
     </aside>
+
 
 
     <!-- ==========================================
@@ -164,21 +172,29 @@
 
 
         <!-- ==========================================
-             SI ESTAMOS EN PEDIDOS
+             ROUTER OUTLET
         =========================================== -->
 
-        @if (esPedidos()) {
+        @if (
+            esPedidos() ||
+            esPerfumes()
+        ) {
 
             <router-outlet></router-outlet>
 
         }
 
+
+        <!-- ==========================================
+             DASHBOARD
+        =========================================== -->
+
         @else {
 
 
-            <!-- ==========================================
+            <!-- ======================================
                  HEADER
-            =========================================== -->
+            ======================================= -->
 
             <header class="admin-header">
 
@@ -193,13 +209,12 @@
                     </h1>
 
                     <p>
-                        Administra tu tienda, productos, pedidos y clientes desde aquí.
+                        Administra tu tienda,
+                        productos y pedidos desde aquí.
                     </p>
 
                 </div>
 
-
-                <!-- FECHA -->
 
                 <div class="header-date">
 
@@ -220,6 +235,7 @@
                 </div>
 
             </header>
+
 
 
             <!-- ==========================================
@@ -248,16 +264,22 @@
                         </span>
 
                         <strong>
-                            $0.00
+
+                            {{
+                                totalVentas
+                                | currency:'MXN':'symbol':'1.2-2'
+                            }}
+
                         </strong>
 
                         <small>
-                            Sin ventas registradas
+                            Total de ventas registradas
                         </small>
 
                     </div>
 
                 </article>
+
 
 
                 <!-- ======================================
@@ -279,7 +301,7 @@
                         </span>
 
                         <strong>
-                            0
+                            {{ totalPedidos }}
                         </strong>
 
                         <small>
@@ -290,36 +312,6 @@
 
                 </article>
 
-
-                <!-- ======================================
-                     USUARIOS
-                ======================================= -->
-
-                <article class="stat-card">
-
-                    <div class="stat-icon">
-
-                        <i class="bi bi-people"></i>
-
-                    </div>
-
-                    <div class="stat-info">
-
-                        <span>
-                            Usuarios
-                        </span>
-
-                        <strong>
-                            0
-                        </strong>
-
-                        <small>
-                            Clientes registrados
-                        </small>
-
-                    </div>
-
-                </article>
 
 
                 <!-- ======================================
@@ -341,18 +333,20 @@
                         </span>
 
                         <strong>
-                            0
+                            {{ totalPerfumes }}
                         </strong>
 
                         <small>
-                            Productos disponibles
+                            Productos publicados
                         </small>
 
                     </div>
 
                 </article>
 
+
             </section>
+
 
 
             <!-- ==========================================
@@ -360,6 +354,7 @@
             =========================================== -->
 
             <section class="dashboard-grid">
+
 
 
                 <!-- ======================================
@@ -385,7 +380,8 @@
 
                         <button
                             type="button"
-                            class="view-button">
+                            class="view-button"
+                            (click)="verPedidos()">
 
                             Ver todo
 
@@ -396,28 +392,129 @@
                     </div>
 
 
-                    <!-- SIN ACTIVIDAD -->
 
-                    <div class="empty-dashboard">
+                    <!-- ==================================
+                         CARGANDO
+                    =================================== -->
 
-                        <div class="empty-dashboard-icon">
+                    @if (
+                        cargandoResumen
+                    ) {
 
-                            <i class="bi bi-bar-chart-line"></i>
+                        <div class="empty-dashboard">
+
+                            <div class="empty-dashboard-icon">
+
+                                <i class="bi bi-arrow-repeat"></i>
+
+                            </div>
+
+                            <h3>
+                                Cargando actividad...
+                            </h3>
+
+                            <p>
+                                Estamos obteniendo la información
+                                de tu tienda.
+                            </p>
 
                         </div>
 
-                        <h3>
-                            Sin actividad todavía
-                        </h3>
+                    }
 
-                        <p>
-                            Cuando se registren pedidos o usuarios,
-                            aparecerán aquí.
-                        </p>
 
-                    </div>
+                    <!-- ==================================
+                         SIN PEDIDOS
+                    =================================== -->
+
+                    @else if (
+                        pedidosRecientes.length === 0
+                    ) {
+
+                        <div class="empty-dashboard">
+
+                            <div class="empty-dashboard-icon">
+
+                                <i class="bi bi-bar-chart-line"></i>
+
+                            </div>
+
+                            <h3>
+                                Sin actividad todavía
+                            </h3>
+
+                            <p>
+                                Cuando se registren pedidos,
+                                aparecerán aquí.
+                            </p>
+
+                        </div>
+
+                    }
+
+
+                    <!-- ==================================
+                         PEDIDOS RECIENTES
+                    =================================== -->
+
+                    @else {
+
+                        <div class="actividad-lista">
+
+                            @for (
+                                pedido of pedidosRecientes;
+                                track pedido.id
+                            ) {
+
+                                <div class="actividad-item">
+
+                                    <div class="actividad-icono">
+
+                                        <i class="bi bi-bag-check"></i>
+
+                                    </div>
+
+
+                                    <div class="actividad-info">
+
+                                        <strong>
+                                            Pedido #{{ pedido.id }}
+                                        </strong>
+
+                                        <span>
+                                            {{ formatearFecha(
+                                                pedido.fechaPedido
+                                            ) }}
+                                            ·
+                                            {{ pedido.estado }}
+                                        </span>
+
+                                    </div>
+
+
+                                    <strong class="actividad-total">
+
+                                        {{
+                                            pedido.total
+                                            | currency:
+                                            'MXN':
+                                            'symbol':
+                                            '1.2-2'
+                                        }}
+
+                                    </strong>
+
+                                </div>
+
+                            }
+
+                        </div>
+
+                    }
+
 
                 </div>
+
 
 
                 <!-- ======================================
@@ -443,6 +540,7 @@
                     </div>
 
 
+
                     <div class="quick-actions">
 
 
@@ -450,7 +548,8 @@
 
                         <button
                             type="button"
-                            class="quick-action">
+                            class="quick-action"
+                            routerLink="/admin/perfumes">
 
                             <span class="quick-icon">
 
@@ -473,6 +572,7 @@
                             <i class="bi bi-chevron-right"></i>
 
                         </button>
+
 
 
                         <!-- VER PEDIDOS -->
@@ -505,39 +605,13 @@
                         </button>
 
 
-                        <!-- VER USUARIOS -->
-
-                        <button
-                            type="button"
-                            class="quick-action">
-
-                            <span class="quick-icon">
-
-                                <i class="bi bi-person-plus"></i>
-
-                            </span>
-
-                            <span>
-
-                                <strong>
-                                    Ver usuarios
-                                </strong>
-
-                                <small>
-                                    Administrar clientes
-                                </small>
-
-                            </span>
-
-                            <i class="bi bi-chevron-right"></i>
-
-                        </button>
-
                     </div>
 
                 </div>
 
+
             </section>
+
 
 
             <!-- ==========================================
@@ -559,6 +633,8 @@
 
         }
 
+
     </main>
+
 
 </div>

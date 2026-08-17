@@ -1,0 +1,965 @@
+<!-- ==========================================
+     CHECKOUT
+========================================== -->
+
+<section class="checkout-page">
+
+    <div class="checkout-container">
+
+
+        <!-- ======================================
+             ENCABEZADO
+        ======================================= -->
+
+        <div class="checkout-header">
+
+            <span class="checkout-eyebrow">
+                CM FRAGRANCES
+            </span>
+
+            <h1>
+                Finalizar pedido
+            </h1>
+
+            <p>
+                Completa tus datos y selecciona tu método de pago.
+            </p>
+
+        </div>
+
+
+        <!-- ======================================
+             PROGRESO
+        ======================================= -->
+
+        <div class="checkout-progress">
+
+            <div
+                class="progress-step active">
+
+                <span>
+                    1
+                </span>
+
+                <div>
+
+                    <strong>
+                        Pedido
+                    </strong>
+
+                    <small>
+                        Revisa tu compra
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div
+                class="progress-step active">
+
+                <span>
+                    2
+                </span>
+
+                <div>
+
+                    <strong>
+                        Pago
+                    </strong>
+
+                    <small>
+                        Método de pago
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <div
+                class="progress-step"
+                [class.active]="pagoAprobado">
+
+                <span>
+                    3
+                </span>
+
+                <div>
+
+                    <strong>
+                        Confirmación
+                    </strong>
+
+                    <small>
+                        Pedido realizado
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             MENSAJE DE PAGO
+        ======================================= -->
+
+        @if (mensajePago) {
+
+            <div
+                class="checkout-message"
+                [class.success]="pagoAprobado"
+                [class.error]="pagoRechazado">
+
+                <i
+                    class="bi"
+                    [class.bi-check-circle-fill]="pagoAprobado"
+                    [class.bi-exclamation-circle-fill]="pagoRechazado"
+                    [class.bi-info-circle-fill]="
+                        !pagoAprobado &&
+                        !pagoRechazado
+                    ">
+                </i>
+
+                <span>
+                    {{ mensajePago }}
+                </span>
+
+            </div>
+
+        }
+
+
+        <!-- ======================================
+             CONFIRMACIÓN
+        ======================================= -->
+
+        @if (pagoAprobado) {
+
+            <div class="payment-success">
+
+                <div class="success-icon">
+
+                    <i class="bi bi-check-lg"></i>
+
+                </div>
+
+                <span class="success-eyebrow">
+                    CM FRAGRANCES
+                </span>
+
+                <h2>
+                    ¡Pago realizado con éxito!
+                </h2>
+
+                <p>
+                    Tu pedido fue registrado correctamente.
+                </p>
+
+                <strong>
+                    Pedido #{{ idPedido }}
+                </strong>
+
+                <button
+                    type="button"
+                    class="pay-button success-button"
+                    (click)="irAConfirmacion()">
+
+                    <i class="bi bi-box-seam"></i>
+
+                    Ver confirmación
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        }
+
+
+        <!-- ======================================
+             CONTENIDO PRINCIPAL
+        ======================================= -->
+
+        @if (!pagoAprobado) {
+
+            <div class="checkout-layout">
+
+
+                <!-- ==================================
+                     INFORMACIÓN DE ENVÍO
+                =================================== -->
+
+                <section class="checkout-card">
+
+
+                    <!-- ENCABEZADO -->
+
+                    <div class="card-heading">
+
+                        <div class="heading-icon">
+
+                            <i class="bi bi-geo-alt"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                INFORMACIÓN DE ENVÍO
+                            </span>
+
+                            <h2>
+                                ¿Dónde entregamos tu pedido?
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==================================
+                         DATOS
+                    =================================== -->
+
+                    <div class="form-grid">
+
+
+                        <!-- NOMBRE -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Nombre completo
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Ej. Manuel Acosta"
+                                [value]="nombreCompleto"
+                                (input)="nombreCompleto = $any($event.target).value">
+
+                        </div>
+
+
+                        <!-- TELÉFONO -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Teléfono
+                            </label>
+
+                            <input
+                                type="tel"
+                                class="form-control"
+                                placeholder="Ej. 644 123 4567"
+                                [value]="telefono"
+                                (input)="telefono = $any($event.target).value">
+
+                        </div>
+
+
+                        <!-- DIRECCIÓN -->
+
+                        <div class="form-group full">
+
+                            <label>
+                                Dirección
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Calle, número y colonia"
+                                [value]="direccion"
+                                (input)="direccion = $any($event.target).value">
+
+                        </div>
+
+
+                        <!-- CIUDAD -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Ciudad
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Ciudad"
+                                [value]="ciudad"
+                                (input)="ciudad = $any($event.target).value">
+
+                        </div>
+
+
+                        <!-- CÓDIGO POSTAL -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Código postal
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="CP"
+                                [value]="codigoPostal"
+                                (input)="codigoPostal = $any($event.target).value">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==================================
+                         MÉTODO DE PAGO
+                    =================================== -->
+
+                    <div class="payment-section">
+
+
+                        <div class="payment-heading">
+
+                            <div class="heading-icon">
+
+                                <i class="bi bi-credit-card"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    MÉTODO DE PAGO
+                                </span>
+
+                                <h2>
+                                    Selecciona una opción
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             OPCIONES
+                        =================================== -->
+
+                        <div class="payment-options">
+
+
+                            <!-- TARJETA -->
+
+                            <button
+                                type="button"
+                                class="payment-option"
+                                [class.selected]="metodoPago === 'tarjeta'"
+                                (click)="seleccionarMetodoPago('tarjeta')">
+
+                                <div class="payment-option-icon">
+
+                                    <i class="bi bi-credit-card-2-front"></i>
+
+                                </div>
+
+                                <div class="payment-option-info">
+
+                                    <strong>
+                                        Tarjeta bancaria
+                                    </strong>
+
+                                    <span>
+                                        Visa, Mastercard o American Express
+                                    </span>
+
+                                </div>
+
+                                @if (metodoPago === 'tarjeta') {
+
+                                    <i class="bi bi-check-circle-fill payment-check"></i>
+
+                                }
+
+                            </button>
+
+
+                            <!-- PAGO ELECTRÓNICO -->
+
+                            <button
+                                type="button"
+                                class="payment-option"
+                                [class.selected]="metodoPago === 'electronico'"
+                                (click)="seleccionarMetodoPago('electronico')">
+
+                                <div class="payment-option-icon paypal">
+
+                                    <i class="bi bi-wallet2"></i>
+
+                                </div>
+
+                                <div class="payment-option-info">
+
+                                    <strong>
+                                        Pago electrónico
+                                    </strong>
+
+                                    <span>
+                                        Pago simulado en línea
+                                    </span>
+
+                                </div>
+
+                                @if (metodoPago === 'electronico') {
+
+                                    <i class="bi bi-check-circle-fill payment-check"></i>
+
+                                }
+
+                            </button>
+
+
+                            <!-- CONTRA ENTREGA -->
+
+                            <button
+                                type="button"
+                                class="payment-option"
+                                [class.selected]="metodoPago === 'contraentrega'"
+                                (click)="seleccionarMetodoPago('contraentrega')">
+
+                                <div class="payment-option-icon">
+
+                                    <i class="bi bi-cash-stack"></i>
+
+                                </div>
+
+                                <div class="payment-option-info">
+
+                                    <strong>
+                                        Pago contra entrega
+                                    </strong>
+
+                                    <span>
+                                        Paga al recibir tu pedido
+                                    </span>
+
+                                </div>
+
+                                @if (metodoPago === 'contraentrega') {
+
+                                    <i class="bi bi-check-circle-fill payment-check"></i>
+
+                                }
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             TARJETA
+                        =================================== -->
+
+                        @if (metodoPago === 'tarjeta') {
+
+                            <div class="card-payment">
+
+                                <div class="form-group full">
+
+                                    <label>
+                                        Número de tarjeta
+                                    </label>
+
+                                    <div class="input-icon">
+
+                                        <i class="bi bi-credit-card"></i>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="0000 0000 0000 0000"
+                                            maxlength="19"
+                                            [value]="numeroTarjeta"
+                                            (input)="numeroTarjeta = $any($event.target).value">
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-grid">
+
+
+                                    <!-- TITULAR -->
+
+                                    <div class="form-group">
+
+                                        <label>
+                                            Nombre del titular
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Como aparece en la tarjeta"
+                                            [value]="nombreTitular"
+                                            (input)="nombreTitular = $any($event.target).value">
+
+                                    </div>
+
+
+                                    <!-- FECHA -->
+
+                                    <div class="form-group">
+
+                                        <label>
+                                            Fecha de vencimiento
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="MM / AA"
+                                            maxlength="5"
+                                            [value]="fechaVencimiento"
+                                            (input)="fechaVencimiento = $any($event.target).value">
+
+                                    </div>
+
+
+                                    <!-- CVV -->
+
+                                    <div class="form-group">
+
+                                        <label>
+                                            CVV
+                                        </label>
+
+                                        <div class="input-icon">
+
+                                            <i class="bi bi-lock"></i>
+
+                                            <input
+                                                type="password"
+                                                class="form-control"
+                                                placeholder="•••"
+                                                maxlength="4"
+                                                [value]="cvv"
+                                                (input)="cvv = $any($event.target).value">
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="secure-box">
+
+                                    <i class="bi bi-shield-check"></i>
+
+                                    <div>
+
+                                        <strong>
+                                            Pago seguro
+                                        </strong>
+
+                                        <span>
+                                            Esta demostración utiliza un sistema
+                                            de pago simulado.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+
+
+                        <!-- ==================================
+                             PAGO ELECTRÓNICO
+                        =================================== -->
+
+                        @if (metodoPago === 'electronico') {
+
+                            <div class="card-payment">
+
+                                <div class="secure-box">
+
+                                    <i class="bi bi-wallet2"></i>
+
+                                    <div>
+
+                                        <strong>
+                                            Pago electrónico
+                                        </strong>
+
+                                        <span>
+                                            El pago será simulado y se registrará
+                                            como pagado cuando confirmes la compra.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+
+
+                        <!-- ==================================
+                             CONTRA ENTREGA
+                        =================================== -->
+
+                        @if (metodoPago === 'contraentrega') {
+
+                            <div class="card-payment">
+
+                                <div class="secure-box">
+
+                                    <i class="bi bi-cash-stack"></i>
+
+                                    <div>
+
+                                        <strong>
+                                            Pago contra entrega
+                                        </strong>
+
+                                        <span>
+                                            Realizarás el pago cuando recibas
+                                            tu pedido.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================
+                     RESUMEN DEL PEDIDO
+                =================================== -->
+
+                <aside class="order-summary">
+
+
+                    <div class="summary-heading">
+
+                        <span>
+                            TU PEDIDO
+                        </span>
+
+                        <h2>
+                            Resumen
+                        </h2>
+
+                    </div>
+
+
+                    <!-- ==================================
+                         PRODUCTOS
+                    =================================== -->
+
+                    @if (productos.length === 0) {
+
+                        <div class="summary-empty">
+
+                            <div class="summary-empty-icon">
+
+                                <i class="bi bi-bag-x"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Carrito vacío
+                                </strong>
+
+                                <span>
+                                    No hay productos seleccionados.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    }
+
+
+                    @else {
+
+                        <div class="checkout-products">
+
+                            @for (
+                                producto of productos;
+                                track producto.id
+                            ) {
+
+                                <div class="checkout-product">
+
+
+                                    <!-- IMAGEN -->
+
+                                    <div class="checkout-product-image">
+
+                                        <img
+                                            [src]="producto.imagen"
+                                            [alt]="producto.nombre">
+
+                                    </div>
+
+
+                                    <!-- INFORMACIÓN -->
+
+                                    <div class="checkout-product-info">
+
+                                        <strong>
+                                            {{ producto.nombre }}
+                                        </strong>
+
+                                        <span>
+
+                                            {{ producto.cantidad }}
+
+                                            {{
+                                                producto.cantidad === 1
+                                                ? 'unidad'
+                                                : 'unidades'
+                                            }}
+
+                                        </span>
+
+                                        <small>
+
+                                            {{
+                                                producto.precio
+                                                | currency:
+                                                'MXN':
+                                                'symbol-narrow':
+                                                '1.2-2'
+                                            }}
+
+                                            c/u
+
+                                        </small>
+
+                                    </div>
+
+
+                                    <!-- TOTAL -->
+
+                                    <div class="checkout-product-total">
+
+                                        <strong>
+
+                                            {{
+                                                producto.precio *
+                                                producto.cantidad
+                                                | currency:
+                                                'MXN':
+                                                'symbol-narrow':
+                                                '1.2-2'
+                                            }}
+
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            }
+
+                        </div>
+
+                    }
+
+
+
+                    <!-- ==================================
+                         DIVISOR
+                    =================================== -->
+
+                    <div class="summary-divider"></div>
+
+
+                    <!-- ==================================
+                         SUBTOTAL
+                    =================================== -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <strong>
+
+                            {{
+                                subtotal
+                                | currency:
+                                'MXN':
+                                'symbol-narrow':
+                                '1.2-2'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ==================================
+                         ENVÍO
+                    =================================== -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Envío
+                        </span>
+
+                        <strong>
+
+                            {{
+                                envio
+                                | currency:
+                                'MXN':
+                                'symbol-narrow':
+                                '1.2-2'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ==================================
+                         DIVISOR
+                    =================================== -->
+
+                    <div class="summary-divider"></div>
+
+
+                    <!-- ==================================
+                         TOTAL
+                    =================================== -->
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong>
+
+                            {{
+                                total
+                                | currency:
+                                'MXN':
+                                'symbol-narrow':
+                                '1.2-2'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ==================================
+                         BOTÓN PAGAR
+                    =================================== -->
+
+                    <button
+                        type="button"
+                        class="pay-button"
+                        [disabled]="
+                            productos.length === 0 ||
+                            procesandoPago
+                        "
+                        (click)="pagar()">
+
+                        @if (procesandoPago) {
+
+                            <span>
+
+                                <i class="bi bi-hourglass-split"></i>
+
+                                Procesando pago...
+
+                            </span>
+
+                        }
+
+                        @else {
+
+                            <span>
+
+                                <i class="bi bi-lock-fill"></i>
+
+                                Pagar
+
+                                {{
+                                    total
+                                    | currency:
+                                    'MXN':
+                                    'symbol-narrow':
+                                    '1.2-2'
+                                }}
+
+                            </span>
+
+                        }
+
+                    </button>
+
+
+                    <!-- ==================================
+                         SEGURIDAD
+                    =================================== -->
+
+                    <div class="summary-secure">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        <span>
+                            Compra protegida y segura
+                        </span>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        }
+
+    </div>
+
+</section>

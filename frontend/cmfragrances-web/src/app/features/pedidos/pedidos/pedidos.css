@@ -1737,10 +1737,9 @@ td small {
     }
 }
 
-
 /* ==========================================
    RESPONSIVE - EDITOR DE ESTADO
-   ========================================== */
+========================================== */
 
 @media (max-width: 700px) {
 
@@ -1760,4 +1759,60 @@ td small {
         width: 100%;
     }
 
+}
+
+
+/* ==========================================
+   ESTADOS DE PEDIDOS
+   FUERA DEL MEDIA QUERY
+========================================== */
+
+.status {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 70px !important;
+    padding: 5px 10px !important;
+    border-radius: 20px !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    border: 1px solid transparent !important;
+    white-space: nowrap !important;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.status.status-pendiente {
+    background: #fff5d8 !important;
+    color: #9a7200 !important;
+    border-color: #f0d98a !important;
+}
+
+.status.status-pagado {
+    background: #eaf8ef !important;
+    color: #218739 !important;
+    border-color: #cdebd6 !important;
+}
+
+.status.status-preparando {
+    background: #fff0d6 !important;
+    color: #c27600 !important;
+    border-color: #f0c875 !important;
+}
+
+.status.status-enviado {
+    background: #e9f3ff !important;
+    color: #2874bd !important;
+    border-color: #cfe3f8 !important;
+}
+
+.status.status-entregado {
+    background: #e8f8ed !important;
+    color: #218739 !important;
+    border-color: #c9e8d1 !important;
+}
+
+.status.status-cancelado {
+    background: #ffeaea !important;
+    color: #c62828 !important;
+    border-color: #f3c1c1 !important;
 }

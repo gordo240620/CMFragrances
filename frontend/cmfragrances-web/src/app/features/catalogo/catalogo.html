@@ -188,7 +188,7 @@
                     <div class="perfume-image">
 
                         <img
-                            [src]="'/' + perfume.imagen"
+                            [src]="perfume.imagen || '/cm-logo.png'"
                             [alt]="perfume.nombre"
                             loading="eager"
                             decoding="async">

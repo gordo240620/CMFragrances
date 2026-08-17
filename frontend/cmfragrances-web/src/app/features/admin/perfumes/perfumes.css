@@ -1,0 +1,2005 @@
+/* ==================================================
+   CONTENEDOR PRINCIPAL
+================================================== */
+
+.perfumes-admin {
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 45px 55px 60px;
+
+    box-sizing: border-box;
+
+    background: #f8f8f8;
+
+}
+
+
+/* ==================================================
+   ENCABEZADO
+================================================== */
+
+.perfumes-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 35px;
+
+}
+
+
+.perfumes-eyebrow {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #c49a25;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+}
+
+
+.perfumes-header h1 {
+
+    margin: 0;
+
+    color: #171717;
+
+    font-size: 36px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+}
+
+
+.perfumes-header p {
+
+    margin: 10px 0 0;
+
+    color: #777777;
+
+    font-size: 15px;
+
+}
+
+
+/* ==================================================
+   BOTÓN AGREGAR
+================================================== */
+
+.btn-agregar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 46px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #d4af37;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(212, 175, 55, .22);
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.btn-agregar i {
+
+    font-size: 16px;
+
+}
+
+
+.btn-agregar:hover {
+
+    background: #bd9624;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(212, 175, 55, .30);
+
+}
+
+
+/* ==================================================
+   ESTADO DE CARGA
+================================================== */
+
+.estado-carga {
+
+    min-height: 350px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #777777;
+
+}
+
+
+.estado-carga p {
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+}
+
+
+.spinner {
+
+    width: 38px;
+
+    height: 38px;
+
+    border: 3px solid #eeeeee;
+
+    border-top-color: #d4af37;
+
+    border-radius: 50%;
+
+    animation: girar .8s linear infinite;
+
+}
+
+
+@keyframes girar {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+
+/* ==================================================
+   MENSAJE DE ERROR
+================================================== */
+
+.mensaje-error {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 18px 20px;
+
+    background: #fff5f5;
+
+    border: 1px solid #f2d0d0;
+
+    border-radius: 12px;
+
+    color: #b42323;
+
+}
+
+
+.mensaje-error i {
+
+    font-size: 20px;
+
+}
+
+
+.mensaje-error span {
+
+    flex: 1;
+
+    font-size: 14px;
+
+}
+
+
+.mensaje-error button {
+
+    border: none;
+
+    background: #b42323;
+
+    color: #ffffff;
+
+    padding: 9px 15px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+/* ==================================================
+   CONTENEDOR DEL CONTENIDO
+================================================== */
+
+.perfumes-contenido {
+
+    width: 100%;
+
+}
+
+
+/* ==================================================
+   HEADER DE TABLA
+================================================== */
+
+.tabla-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+}
+
+
+.tabla-header h2 {
+
+    margin: 0;
+
+    color: #222222;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+
+.tabla-header p {
+
+    margin: 5px 0 0;
+
+    color: #888888;
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   TABLA
+================================================== */
+
+.tabla-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 7px 25px rgba(0, 0, 0, .05);
+
+}
+
+
+table {
+
+    width: 100%;
+
+    min-width: 1050px;
+
+    border-collapse: collapse;
+
+}
+
+
+/* ==================================================
+   CABECERA TABLA
+================================================== */
+
+thead {
+
+    background: #fafafa;
+
+}
+
+
+thead tr {
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+th {
+
+    padding: 17px 16px;
+
+    color: #777777;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: .7px;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==================================================
+   FILAS
+================================================== */
+
+tbody tr {
+
+    border-bottom: 1px solid #eeeeee;
+
+    transition: background .2s ease;
+
+}
+
+
+tbody tr:last-child {
+
+    border-bottom: none;
+
+}
+
+
+tbody tr:hover {
+
+    background: #fffdf7;
+
+}
+
+
+td {
+
+    padding: 16px;
+
+    color: #333333;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+}
+
+
+/* ==================================================
+   IMAGEN
+================================================== */
+
+.imagen-container {
+
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #fafafa;
+
+    border: 1px solid #eeeeee;
+
+}
+
+
+.perfume-imagen {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 5px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ==================================================
+   NOMBRE DEL PERFUME
+================================================== */
+
+.nombre-perfume {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    min-width: 190px;
+
+}
+
+
+.nombre-perfume strong {
+
+    color: #222222;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+.nombre-perfume span {
+
+    color: #999999;
+
+    font-size: 12px;
+
+}
+
+
+/* ==================================================
+   CATEGORÍA
+================================================== */
+
+.categoria {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #faf6e8;
+
+    color: #b18a1e;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==================================================
+   PRECIO
+================================================== */
+
+.precio {
+
+    color: #c49a25;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==================================================
+   STOCK
+================================================== */
+
+.stock {
+
+    display: inline-flex;
+
+    min-width: 32px;
+
+    justify-content: center;
+
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    background: #edf8f1;
+
+    color: #21864a;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.stock-bajo {
+
+    background: #fff7df;
+
+    color: #b17c00;
+
+}
+
+
+.stock-agotado {
+
+    background: #fff0f0;
+
+    color: #c62828;
+
+}
+
+
+/* ==================================================
+   ESTADO DEL PERFUME
+================================================== */
+
+.estado {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+}
+
+
+.estado.activo {
+
+    background: #eaf7ef;
+
+    color: #16834b;
+
+}
+
+
+.estado.inactivo {
+
+    background: #fff0f0;
+
+    color: #c62828;
+
+}
+
+
+.estado i {
+
+    font-size: 11px;
+
+}
+
+
+/* ==================================================
+   ACCIONES
+================================================== */
+
+.acciones {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.btn-accion {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+
+}
+
+
+.btn-accion:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+.btn-editar {
+
+    background: #faf6e8;
+
+    color: #b18a1e;
+
+}
+
+
+.btn-editar:hover {
+
+    background: #d4af37;
+
+    color: #ffffff;
+
+}
+
+
+.btn-eliminar {
+
+    background: #fff1f1;
+
+    color: #c62828;
+
+}
+
+
+.btn-eliminar:hover {
+
+    background: #c62828;
+
+    color: #ffffff;
+
+}
+
+
+/* ==================================================
+   SIN PERFUMES
+================================================== */
+
+.sin-perfumes {
+
+    padding: 70px 20px !important;
+
+    text-align: center;
+
+}
+
+
+.sin-perfumes-icono {
+
+    width: 65px;
+
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #faf6e8;
+
+    color: #d4af37;
+
+    font-size: 26px;
+
+}
+
+
+.sin-perfumes h3 {
+
+    margin: 0;
+
+    color: #333333;
+
+    font-size: 18px;
+
+}
+
+
+.sin-perfumes p {
+
+    margin: 8px 0 0;
+
+    color: #999999;
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 1100px) {
+
+    .perfumes-admin {
+
+        padding: 35px 30px 50px;
+
+    }
+
+
+    .perfumes-header h1 {
+
+        font-size: 32px;
+
+    }
+
+}
+
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width: 700px) {
+
+    .perfumes-admin {
+
+        padding: 25px 18px 40px;
+
+    }
+
+
+    .perfumes-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .perfumes-header h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .btn-agregar {
+
+        width: 100%;
+
+    }
+
+
+    .tabla-wrapper {
+
+        border-radius: 12px;
+
+    }
+
+
+    th,
+    td {
+
+        padding: 13px 12px;
+
+    }
+
+}
+
+
+/* ==================================================
+   PANTALLAS PEQUEÑAS
+================================================== */
+
+@media (max-width: 480px) {
+
+    .perfumes-header h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .perfumes-header p {
+
+        font-size: 13px;
+
+    }
+
+
+    .tabla-header h2 {
+
+        font-size: 17px;
+
+    }
+
+}
+
+
+/* ==================================================
+   MODAL AGREGAR PERFUME
+================================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    background: rgba(0, 0, 0, .50);
+
+    backdrop-filter: blur(5px);
+
+    animation: modalFadeIn .20s ease;
+
+}
+
+
+/* ==================================================
+   CONTENEDOR DEL MODAL
+================================================== */
+
+.modal-perfume {
+
+    width: min(680px, 100%);
+
+    max-height: calc(100vh - 50px);
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, .22);
+
+    animation: modalAppear .25s ease;
+
+}
+
+
+/* ==================================================
+   ANIMACIONES
+================================================== */
+
+@keyframes modalFadeIn {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes modalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* ==================================================
+   HEADER DEL MODAL
+================================================== */
+
+.modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 27px 30px 23px;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.modal-eyebrow {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #c49a25;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.modal-header h2 {
+
+    margin: 0;
+
+    color: #171717;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+}
+
+
+.modal-header p {
+
+    margin: 7px 0 0;
+
+    color: #888888;
+
+    font-size: 13px;
+
+}
+
+
+/* ==================================================
+   BOTÓN CERRAR
+================================================== */
+
+.btn-cerrar-modal {
+
+    width: 38px;
+
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #f5f5f5;
+
+    color: #555555;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+
+}
+
+
+.btn-cerrar-modal:hover {
+
+    background: #222222;
+
+    color: #ffffff;
+
+    transform: rotate(3deg);
+
+}
+
+
+.btn-cerrar-modal:disabled {
+
+    opacity: .5;
+
+    cursor: not-allowed;
+
+}
+
+
+/* ==================================================
+   FORMULARIO
+================================================== */
+
+.form-perfume {
+
+    padding: 27px 30px 30px;
+
+}
+
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.form-group label {
+
+    color: #333333;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #222222;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.form-group input,
+.form-group select {
+
+    height: 44px;
+
+    padding: 0 13px;
+
+}
+
+
+.form-group textarea {
+
+    min-height: 85px;
+
+    padding: 12px 13px;
+
+    resize: vertical;
+
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+
+    border-color: #d4af37;
+
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, .12);
+
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+
+    color: #b0b0b0;
+
+}
+
+
+.form-group small {
+
+    color: #999999;
+
+    font-size: 11px;
+
+}
+
+
+/* ==================================================
+   INPUT PRECIO
+================================================== */
+
+.input-con-icono {
+
+    position: relative;
+
+}
+
+
+.input-con-icono > span {
+
+    position: absolute;
+
+    left: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #999999;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    pointer-events: none;
+
+}
+
+
+.input-con-icono input {
+
+    padding-left: 28px !important;
+
+}
+
+
+/* ==================================================
+   ESTADO PUBLICAR
+================================================== */
+
+.estado-formulario {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 14px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 11px;
+
+    background: #fafafa;
+
+}
+
+
+.estado-formulario > div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+
+.estado-formulario strong {
+
+    color: #333333;
+
+    font-size: 13px;
+
+}
+
+
+.estado-formulario small {
+
+    color: #999999;
+
+    font-size: 11px;
+
+}
+
+
+/* ==================================================
+   SWITCH
+================================================== */
+
+.switch {
+
+    position: relative;
+
+    width: 44px;
+
+    height: 24px;
+
+    flex-shrink: 0;
+
+    display: block;
+
+}
+
+
+.switch input {
+
+    width: 0;
+
+    height: 0;
+
+    opacity: 0;
+
+}
+
+
+.slider {
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 30px;
+
+    background: #d7d7d7;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+
+}
+
+
+.slider::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 18px;
+
+    height: 18px;
+
+    left: 3px;
+
+    top: 3px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, .18);
+
+    transition: .25s ease;
+
+}
+
+
+.switch input:checked + .slider {
+
+    background: #d4af37;
+
+}
+
+
+.switch input:checked + .slider::before {
+
+    transform: translateX(20px);
+
+}
+
+
+/* ==================================================
+   MENSAJE DEL FORMULARIO
+================================================== */
+
+.mensaje-formulario {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 11px 13px;
+
+    margin-bottom: 17px;
+
+    border-radius: 9px;
+
+    background: #fff4f4;
+
+    border: 1px solid #f1d0d0;
+
+    color: #b42323;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.mensaje-formulario i {
+
+    font-size: 15px;
+
+}
+
+
+/* ==================================================
+   FOOTER DEL MODAL
+================================================== */
+
+.modal-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 7px;
+
+}
+
+
+/* ==================================================
+   BOTÓN CANCELAR
+================================================== */
+
+.btn-cancelar {
+
+    min-width: 105px;
+
+    height: 43px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #555555;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+
+}
+
+
+.btn-cancelar:hover {
+
+    background: #f7f7f7;
+
+    border-color: #cccccc;
+
+}
+
+
+.btn-cancelar:disabled {
+
+    opacity: .5;
+
+    cursor: not-allowed;
+
+}
+
+
+/* ==================================================
+   BOTÓN GUARDAR
+================================================== */
+
+.btn-guardar {
+
+    min-width: 155px;
+
+    height: 43px;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #d4af37;
+
+    color: #111111;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 15px rgba(212, 175, 55, .18);
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.btn-guardar:hover:not(:disabled) {
+
+    background: #bd9624;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 20px rgba(212, 175, 55, .25);
+
+}
+
+
+.btn-guardar:disabled {
+
+    opacity: .65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* ==================================================
+   SPINNER DEL BOTÓN
+================================================== */
+
+.spinner-mini {
+
+    width: 15px;
+
+    height: 15px;
+
+    border: 2px solid rgba(17, 17, 17, .25);
+
+    border-top-color: #111111;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    animation:
+        spinnerMini .7s linear infinite;
+
+}
+
+
+@keyframes spinnerMini {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+
+/* ==================================================
+   SCROLLBAR DEL MODAL
+================================================== */
+
+.modal-perfume::-webkit-scrollbar {
+
+    width: 7px;
+
+}
+
+
+.modal-perfume::-webkit-scrollbar-track {
+
+    background: #f5f5f5;
+
+}
+
+
+.modal-perfume::-webkit-scrollbar-thumb {
+
+    background: #d4af37;
+
+    border-radius: 10px;
+
+}
+
+
+/* ==================================================
+   MODAL - TABLET
+================================================== */
+
+@media (max-width: 700px) {
+
+    .modal-overlay {
+
+        padding: 15px;
+
+    }
+
+
+    .modal-perfume {
+
+        max-height:
+            calc(100vh - 30px);
+
+        border-radius: 15px;
+
+    }
+
+
+    .modal-header {
+
+        padding:
+            22px 20px 18px;
+
+    }
+
+
+    .modal-header h2 {
+
+        font-size: 21px;
+
+    }
+
+
+    .form-perfume {
+
+        padding:
+            22px 20px 23px;
+
+    }
+
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+}
+
+
+/* ==================================================
+   MODAL - CELULAR
+================================================== */
+
+@media (max-width: 480px) {
+
+    .modal-overlay {
+
+        padding: 10px;
+
+    }
+
+
+    .modal-perfume {
+
+        max-height:
+            calc(100vh - 20px);
+
+    }
+
+
+    .modal-header {
+
+        padding:
+            20px 16px 16px;
+
+    }
+
+
+    .modal-header h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .modal-header p {
+
+        font-size: 12px;
+
+    }
+
+
+    .form-perfume {
+
+        padding:
+            20px 16px 20px;
+
+    }
+
+
+    .modal-footer {
+
+        flex-direction: column-reverse;
+
+    }
+
+
+    .btn-cancelar,
+    .btn-guardar {
+
+        width: 100%;
+
+    }
+
+}
+
+/* ==================================================
+   MODAL CONFIRMAR ELIMINACIÓN
+================================================== */
+
+.modal-eliminar-overlay {
+    z-index: 6000;
+}
+
+.modal-confirmar-eliminar {
+    width: min(460px, 100%);
+    padding: 35px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, .25);
+    animation: modalEliminarEntrada .25s ease;
+}
+
+@keyframes modalEliminarEntrada {
+    from { opacity: 0; transform: translateY(20px) scale(.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.icono-eliminar {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: #fff1f2;
+    color: #dc3545;
+    font-size: 28px;
+}
+
+.confirmacion-eyebrow {
+    display: block;
+    margin-bottom: 7px;
+    color: #c49a25;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.confirmacion-contenido h2 {
+    margin: 0 0 17px;
+    color: #171717;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.confirmacion-pregunta {
+    margin: 0;
+    color: #444444;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.confirmacion-pregunta strong {
+    color: #171717;
+    font-weight: 800;
+}
+
+.confirmacion-advertencia {
+    margin: 12px 0 0;
+    color: #929292;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.confirmacion-botones {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.btn-confirmar-cancelar,
+.btn-confirmar-eliminar {
+    flex: 1;
+    min-height: 47px;
+    padding: 0 15px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.btn-confirmar-cancelar {
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    color: #555555;
+}
+
+.btn-confirmar-cancelar:hover:not(:disabled) {
+    background: #f7f7f7;
+    border-color: #cccccc;
+    transform: translateY(-1px);
+}
+
+.btn-confirmar-eliminar {
+    border: none;
+    background: #dc3545;
+    color: #ffffff;
+    box-shadow: 0 7px 18px rgba(220, 53, 69, .20);
+}
+
+.btn-confirmar-eliminar:hover:not(:disabled) {
+    background: #bb2d3b;
+    transform: translateY(-1px);
+    box-shadow: 0 9px 22px rgba(220, 53, 69, .27);
+}
+
+.btn-confirmar-cancelar:disabled,
+.btn-confirmar-eliminar:disabled {
+    opacity: .60;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner-mini-eliminar {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
+    vertical-align: -2px;
+    border: 2px solid rgba(255,255,255,.40);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spinnerEliminar .7s linear infinite;
+}
+
+@keyframes spinnerEliminar {
+    to { transform: rotate(360deg); }
+}
+
+.notificacion-eliminacion {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    z-index: 7000;
+    min-width: 330px;
+    max-width: 420px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-left: 4px solid #1f9d55;
+    border-radius: 13px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, .15);
+    animation: notificacionEntrada .25s ease;
+}
+
+@keyframes notificacionEntrada {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.notificacion-icono {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #eaf7ef;
+    color: #16834b;
+}
+
+.notificacion-eliminacion > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+}
+
+.notificacion-eliminacion strong {
+    color: #222222;
+    font-size: 13px;
+}
+
+.notificacion-eliminacion span {
+    color: #777777;
+    font-size: 12px;
+}
+
+.notificacion-eliminacion > button {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #999999;
+    cursor: pointer;
+}
+
+.notificacion-eliminacion > button:hover {
+    background: #f5f5f5;
+    color: #333333;
+}
+
+@media (max-width: 500px) {
+    .modal-confirmar-eliminar { padding: 28px 22px; border-radius: 18px; }
+    .confirmacion-botones { flex-direction: column-reverse; }
+    .btn-confirmar-cancelar,
+    .btn-confirmar-eliminar { width: 100%; }
+    .notificacion-eliminacion { right: 15px; left: 15px; bottom: 15px; min-width: 0; max-width: none; }
+}

@@ -1,6 +1,7 @@
 import {
     Component,
     OnInit,
+    OnDestroy,
     ChangeDetectorRef
 } from '@angular/core';
 
@@ -24,7 +25,7 @@ import { environment } from '../../../environments/environment';
     templateUrl: './catalogo.html',
     styleUrl: './catalogo.css'
 })
-export class Catalogo implements OnInit {
+export class Catalogo implements OnInit, OnDestroy {
 
 
     // ==========================================
@@ -63,7 +64,20 @@ export class Catalogo implements OnInit {
     // API
     // ==========================================
 
-    private apiUrl = environment.apiUrl;
+    private apiUrl =
+        environment.apiUrl;
+
+
+    // ==========================================
+    // ACTUALIZACIÓN AUTOMÁTICA
+    // ==========================================
+
+    private intervaloActualizacion:
+        ReturnType<typeof setInterval> | null = null;
+
+
+    private readonly TIEMPO_ACTUALIZACION =
+        10000;
 
 
     // ==========================================
@@ -101,9 +115,72 @@ export class Catalogo implements OnInit {
         );
 
 
-        this.obtenerPerfumes();
+        // ======================================
+        // CARGA INICIAL
+        // ======================================
+
+        this.obtenerPerfumes(true);
 
         this.obtenerCategorias();
+
+
+        // ======================================
+        // ACTUALIZACIÓN AUTOMÁTICA
+        // ======================================
+
+        this.iniciarActualizacionAutomatica();
+
+    }
+
+
+    // ==========================================
+    // INICIAR ACTUALIZACIÓN AUTOMÁTICA
+    // ==========================================
+
+    private iniciarActualizacionAutomatica(): void {
+
+        console.log(
+            'Actualización automática activada cada 10 segundos.'
+        );
+
+
+        this.intervaloActualizacion =
+            setInterval(() => {
+
+                console.log(
+                    'Actualizando catálogo automáticamente...'
+                );
+
+
+                this.obtenerPerfumes(false);
+
+            }, this.TIEMPO_ACTUALIZACION);
+
+    }
+
+
+    // ==========================================
+    // DETENER ACTUALIZACIÓN
+    // ==========================================
+
+    ngOnDestroy(): void {
+
+        console.log(
+            'Destruyendo catálogo...'
+        );
+
+
+        if (
+            this.intervaloActualizacion !== null
+        ) {
+
+            clearInterval(
+                this.intervaloActualizacion
+            );
+
+            this.intervaloActualizacion = null;
+
+        }
 
     }
 
@@ -112,9 +189,20 @@ export class Catalogo implements OnInit {
     // OBTENER PERFUMES
     // ==========================================
 
-    obtenerPerfumes(): void {
+    obtenerPerfumes(
+        mostrarLoading: boolean = false
+    ): void {
 
-        this.cargando = true;
+
+        // ======================================
+        // SOLO MOSTRAR SPINNER EN CARGA INICIAL
+        // ======================================
+
+        if (mostrarLoading) {
+
+            this.cargando = true;
+
+        }
 
 
         const url =
@@ -129,7 +217,12 @@ export class Catalogo implements OnInit {
 
         this.http
             .get<any[]>(url)
+
             .subscribe({
+
+                // ==================================
+                // RESPUESTA
+                // ==================================
 
                 next: (respuesta) => {
 
@@ -139,25 +232,13 @@ export class Catalogo implements OnInit {
                     );
 
 
-                    console.log(
-                        '¿ES ARRAY?:',
-                        Array.isArray(respuesta)
-                    );
-
-
-                    console.log(
-                        'CANTIDAD RECIBIDA:',
-                        respuesta?.length
-                    );
-
-
                     // ==================================
-                    // GUARDAR TODOS LOS PERFUMES
+                    // GUARDAR TODOS
                     // ==================================
 
                     this.perfumes =
                         Array.isArray(respuesta)
-                            ? respuesta
+                            ? [...respuesta]
                             : [];
 
 
@@ -178,41 +259,32 @@ export class Catalogo implements OnInit {
                     );
 
 
-                    console.log(
-                        'CANTIDAD ACTIVOS:',
-                        this.perfumes.length
-                    );
+                    // ==================================
+                    // APLICAR FILTROS ACTUALES
+                    // ==================================
+
+                    this.filtrarPerfumes();
 
 
                     // ==================================
-                    // MOSTRAR TODOS
-                    // ==================================
-
-                    this.perfumesFiltrados =
-                        [...this.perfumes];
-
-
-                    // ==================================
-                    // TERMINÓ CARGA
+                    // TERMINAR CARGA
                     // ==================================
 
                     this.cargando = false;
 
 
                     // ==================================
-                    // FORZAR ACTUALIZACIÓN DE LA VISTA
+                    // ACTUALIZAR VISTA
                     // ==================================
 
                     this.cdr.detectChanges();
 
-
-                    console.log(
-                        'PERFUMES FILTRADOS:',
-                        this.perfumesFiltrados
-                    );
-
                 },
 
+
+                // ==================================
+                // ERROR
+                // ==================================
 
                 error: (error) => {
 
@@ -233,16 +305,21 @@ export class Catalogo implements OnInit {
                     );
 
 
-                    this.perfumes = [];
-
-                    this.perfumesFiltrados = [];
-
-                    this.cargando = false;
-
-
                     // ==================================
-                    // ACTUALIZAR VISTA EN CASO DE ERROR
+                    // SOLO MOSTRAR SIN RESULTADOS
+                    // SI FUE LA CARGA INICIAL
                     // ==================================
+
+                    if (mostrarLoading) {
+
+                        this.perfumes = [];
+
+                        this.perfumesFiltrados = [];
+
+                        this.cargando = false;
+
+                    }
+
 
                     this.cdr.detectChanges();
 
@@ -271,6 +348,7 @@ export class Catalogo implements OnInit {
 
         this.http
             .get<any[]>(url)
+
             .subscribe({
 
                 next: (respuesta) => {
@@ -286,10 +364,6 @@ export class Catalogo implements OnInit {
                             ? respuesta
                             : [];
 
-
-                    // ==================================
-                    // ACTUALIZAR VISTA
-                    // ==================================
 
                     this.cdr.detectChanges();
 
@@ -333,6 +407,10 @@ export class Catalogo implements OnInit {
                 perfume => {
 
 
+                    // ==================================
+                    // NOMBRE
+                    // ==================================
+
                     const nombre =
                         String(
                             perfume.nombre ?? ''
@@ -340,11 +418,26 @@ export class Catalogo implements OnInit {
                             .toLowerCase();
 
 
-                    const coincideNombre =
-                        nombre.includes(texto);
+                    const marca =
+                        String(
+                            perfume.marca ?? ''
+                        )
+                            .toLowerCase();
 
+
+                    const coincideTexto =
+
+                        nombre.includes(texto) ||
+
+                        marca.includes(texto);
+
+
+                    // ==================================
+                    // CATEGORÍA
+                    // ==================================
 
                     const coincideCategoria =
+
                         this.categoriaSeleccionada === 0 ||
 
                         Number(
@@ -356,18 +449,17 @@ export class Catalogo implements OnInit {
 
 
                     return (
-                        coincideNombre &&
+
+                        coincideTexto &&
+
                         coincideCategoria
+
                     );
 
                 }
 
             );
 
-
-        // ==================================
-        // ACTUALIZAR VISTA
-        // ==================================
 
         this.cdr.detectChanges();
 

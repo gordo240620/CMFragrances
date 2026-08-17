@@ -33,6 +33,7 @@
     </a>
 
 
+
     <!-- ======================================
          MENÚ
     ======================================= -->
@@ -76,6 +77,7 @@
     </ul>
 
 
+
     <!-- ======================================
          ACCIONES
     ======================================= -->
@@ -83,18 +85,17 @@
     <div class="actions">
 
 
-        <!-- BUSCAR -->
-
-        <button
-            type="button"
-            aria-label="Buscar">
-
-            <i class="bi bi-search"></i>
-
-        </button>
+        <!-- ==================================
+             BUSCAR
+        =================================== -->
 
 
-        <!-- CARRITO -->
+
+
+
+        <!-- ==================================
+             CARRITO
+        =================================== -->
 
         <button
             type="button"
@@ -109,6 +110,85 @@
             </span>
 
         </button>
+
+
+
+        <!-- ==================================
+             USUARIO
+        =================================== -->
+
+        <div class="user-menu-container">
+
+
+            <!-- BOTÓN USUARIO -->
+
+            <button
+                type="button"
+                class="user-button"
+                aria-label="Cuenta"
+                (click)="toggleUserMenu()">
+
+                <i class="bi bi-person-circle"></i>
+
+            </button>
+
+
+
+            <!-- ==================================
+                 MENÚ USUARIO
+            =================================== -->
+
+            @if(userMenuOpen) {
+
+                <div class="user-dropdown">
+
+
+                    <!-- MIS COMPRAS -->
+
+                    <button
+                        type="button"
+                        class="user-option"
+                        (click)="irAMisCompras()">
+
+                        <i class="bi bi-bag-check"></i>
+
+                        <span>
+                            Mis compras
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- SEPARADOR -->
+
+                    <div class="user-divider"></div>
+
+
+
+                    <!-- CERRAR SESIÓN -->
+
+                    <button
+                        type="button"
+                        class="user-option logout"
+                        (click)="cerrarSesion()">
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        <span>
+                            Cerrar sesión
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            }
+
+
+        </div>
+
 
     </div>
 

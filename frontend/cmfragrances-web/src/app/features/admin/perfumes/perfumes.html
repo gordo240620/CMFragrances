@@ -1,0 +1,923 @@
+<!-- ==========================================
+     ADMINISTRACIÓN DE PERFUMES
+========================================== -->
+
+<section class="perfumes-admin">
+
+    <!-- ======================================
+         ENCABEZADO
+    ======================================= -->
+
+    <header class="perfumes-header">
+
+        <div>
+
+            <span class="perfumes-eyebrow">
+                CM FRAGRANCES
+            </span>
+
+            <h1>
+                Perfumes
+            </h1>
+
+            <p>
+                Administra los perfumes disponibles
+                en tu tienda.
+            </p>
+
+        </div>
+
+
+        <!-- ==================================
+             AGREGAR PERFUME
+        =================================== -->
+
+        <button
+            type="button"
+            class="btn-agregar"
+            (click)="abrirFormulario()">
+
+            <i class="bi bi-plus-lg"></i>
+
+            Agregar perfume
+
+        </button>
+
+    </header>
+
+
+
+    <!-- ======================================
+         ERROR
+    ======================================= -->
+
+    <div
+        class="mensaje-error"
+        *ngIf="mensajeError">
+
+        <i class="bi bi-exclamation-circle"></i>
+
+        <span>
+            {{ mensajeError }}
+        </span>
+
+        <button
+            type="button"
+            (click)="cargarPerfumes()">
+
+            Reintentar
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================
+         CONTENIDO
+    ======================================= -->
+
+    <div
+        class="perfumes-contenido"
+        *ngIf="!mensajeError">
+
+
+        <!-- ==================================
+             INFORMACIÓN
+        =================================== -->
+
+        <div class="tabla-header">
+
+            <div>
+
+                <h2>
+                    Catálogo de perfumes
+                </h2>
+
+                <p>
+
+                    {{ perfumes.length }}
+
+                    {{
+                        perfumes.length === 1
+                            ? 'perfume registrado'
+                            : 'perfumes registrados'
+                    }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================
+             TABLA
+        =================================== -->
+
+        <div class="tabla-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Imagen
+                        </th>
+
+                        <th>
+                            Perfume
+                        </th>
+
+                        <th>
+                            Marca
+                        </th>
+
+                        <th>
+                            Categoría
+                        </th>
+
+                        <th>
+                            Precio
+                        </th>
+
+                        <th>
+                            Stock
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Acciones
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+
+                    <!-- ==================================
+                         PERFUMES
+                    =================================== -->
+
+                    <tr
+                        *ngFor="let perfume of perfumes">
+
+
+                        <!-- IMAGEN -->
+
+                        <td>
+
+                            <div class="imagen-container">
+
+                                <img
+                                    [src]="
+                                        perfume.imagen ||
+                                        '/cm-logo.png'
+                                    "
+                                    [alt]="perfume.nombre"
+                                    class="perfume-imagen">
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- NOMBRE -->
+
+                        <td>
+
+                            <div class="nombre-perfume">
+
+                                <strong>
+                                    {{ perfume.nombre }}
+                                </strong>
+
+                                <span>
+
+                                    {{ perfume.concentracion }}
+
+                                    ·
+
+                                    {{ perfume.contenidoML }}
+
+                                    ml
+
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- MARCA -->
+
+                        <td>
+
+                            {{ perfume.marca }}
+
+                        </td>
+
+
+
+                        <!-- CATEGORÍA -->
+
+                        <td>
+
+                            <span class="categoria">
+
+                                {{ perfume.categoria }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- PRECIO -->
+
+                        <td>
+
+                            <strong class="precio">
+
+                                {{
+                                    perfume.precio
+                                    | currency:'MXN':'symbol':'1.2-2'
+                                }}
+
+                            </strong>
+
+                        </td>
+
+
+
+                        <!-- STOCK -->
+
+                        <td>
+
+                            <span
+                                class="stock"
+                                [class.stock-bajo]="
+                                    perfume.stock > 0 &&
+                                    perfume.stock <= 5
+                                "
+                                [class.stock-agotado]="
+                                    perfume.stock === 0
+                                ">
+
+                                {{ perfume.stock }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- ESTADO -->
+
+                        <td>
+
+                            <span
+                                class="estado"
+                                [class.activo]="perfume.activo"
+                                [class.inactivo]="!perfume.activo">
+
+                                <i
+                                    class="bi"
+                                    [class.bi-check-circle-fill]="
+                                        perfume.activo
+                                    "
+                                    [class.bi-x-circle-fill]="
+                                        !perfume.activo
+                                    ">
+                                </i>
+
+                                {{
+                                    perfume.activo
+                                        ? 'Publicado'
+                                        : 'Oculto'
+                                }}
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- ACCIONES -->
+
+                        <td>
+
+                            <div class="acciones">
+
+                                <!-- EDITAR -->
+
+                                <button
+                                    type="button"
+                                    class="btn-accion btn-editar"
+                                    title="Editar perfume"
+                                    (click)="editarPerfume(perfume)">
+
+                                    <i
+                                        class="bi bi-pencil-fill">
+                                    </i>
+
+                                </button>
+
+
+                                <!-- ELIMINAR -->
+
+                                <button
+                                    type="button"
+                                    class="btn-accion btn-eliminar"
+                                    title="Eliminar perfume"
+                                    (click)="eliminarPerfume(perfume)">
+
+                                    <i
+                                        class="bi bi-trash-fill">
+                                    </i>
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <!-- ==================================
+                         SIN PERFUMES
+                    =================================== -->
+
+                    <tr
+                        *ngIf="perfumes.length === 0">
+
+                        <td
+                            colspan="8"
+                            class="sin-perfumes">
+
+                            <div class="sin-perfumes-icono">
+
+                                <i class="bi bi-droplet"></i>
+
+                            </div>
+
+                            <h3>
+                                No hay perfumes registrados
+                            </h3>
+
+                            <p>
+                                Agrega tu primer perfume
+                                para comenzar.
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         MODAL AGREGAR / EDITAR PERFUME
+    =================================================== -->
+
+    <div
+        class="modal-overlay"
+        *ngIf="mostrarFormulario"
+        (click)="cerrarFormulario()">
+
+
+        <!-- ==================================================
+             CONTENEDOR DEL MODAL
+        =================================================== -->
+
+        <div
+            class="modal-perfume"
+            (click)="$event.stopPropagation()">
+
+
+            <!-- ==============================================
+                 CABECERA DEL MODAL
+            =============================================== -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-eyebrow">
+                        CM FRAGRANCES
+                    </span>
+
+                    <h2>
+                        {{
+                            modoEdicion
+                                ? 'Editar perfume'
+                                : 'Agregar perfume'
+                        }}
+                    </h2>
+
+                    <p>
+
+                        {{
+                            modoEdicion
+                                ? 'Modifica la información del perfume.'
+                                : 'Registra un nuevo perfume en tu catálogo.'
+                        }}
+
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-cerrar-modal"
+                    (click)="cerrarFormulario()"
+                    [disabled]="guardando">
+
+                    <i class="bi bi-x-lg"></i>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ==============================================
+                 FORMULARIO
+            =============================================== -->
+
+            <form
+                class="form-perfume"
+                (submit)="$event.preventDefault()">
+
+
+                <!-- ==========================================
+                     NOMBRE / MARCA
+                =========================================== -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Nombre del perfume
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nombre"
+                            [(ngModel)]="nuevoPerfume.nombre"
+                            placeholder="Ej. Club de Nuit Intense Man"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Marca
+                        </label>
+
+                        <input
+                            type="text"
+                            name="marca"
+                            [(ngModel)]="nuevoPerfume.marca"
+                            placeholder="Ej. Armaf"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     DESCRIPCIÓN
+                =========================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        Descripción
+                    </label>
+
+                    <textarea
+                        name="descripcion"
+                        [(ngModel)]="nuevoPerfume.descripcion"
+                        rows="3"
+                        placeholder="Describe brevemente el perfume...">
+                    </textarea>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     CONCENTRACIÓN / ML
+                =========================================== -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Concentración
+                        </label>
+
+                        <input
+                            type="text"
+                            name="concentracion"
+                            [(ngModel)]="nuevoPerfume.concentracion"
+                            placeholder="Ej. Eau de Parfum">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Contenido (ML)
+                        </label>
+
+                        <input
+                            type="number"
+                            name="contenidoML"
+                            [(ngModel)]="nuevoPerfume.contenidoML"
+                            min="1"
+                            placeholder="100">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     PRECIO / STOCK
+                =========================================== -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Precio
+                        </label>
+
+                        <div class="input-con-icono">
+
+                            <span>
+                                $
+                            </span>
+
+                            <input
+                                type="number"
+                                name="precio"
+                                [(ngModel)]="nuevoPerfume.precio"
+                                min="0"
+                                step="0.01"
+                                placeholder="850">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Stock
+                        </label>
+
+                        <input
+                            type="number"
+                            name="stock"
+                            [(ngModel)]="nuevoPerfume.stock"
+                            min="0"
+                            placeholder="10">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     IMAGEN
+                =========================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        URL de la imagen
+                    </label>
+
+                    <input
+                        type="text"
+                        name="imagen"
+                        [(ngModel)]="nuevoPerfume.imagen"
+                        placeholder="https://...">
+
+                    <small>
+                        Coloca la URL de la imagen del perfume.
+                    </small>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     CATEGORÍA
+                =========================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        Categoría
+                    </label>
+
+                    <select
+                        name="categoriaId"
+                        [(ngModel)]="nuevoPerfume.categoriaId"
+                        required>
+
+                        <option
+                            *ngFor="let categoria of categorias"
+                            [ngValue]="categoria.id">
+
+                            {{ categoria.nombre }}
+
+                        </option>
+
+                    </select>
+
+                    <small>
+                        Selecciona el tipo de perfume.
+                    </small>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     ESTADO
+                =========================================== -->
+
+                <div class="estado-formulario">
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            name="activo"
+                            [(ngModel)]="nuevoPerfume.activo">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+
+                    <div>
+
+                        <strong>
+                            Publicar perfume
+                        </strong>
+
+                        <small>
+                            El perfume aparecerá en el catálogo
+                            de los usuarios.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     MENSAJE DEL FORMULARIO
+                =========================================== -->
+
+                <div
+                    class="mensaje-formulario"
+                    *ngIf="mensajeFormulario">
+
+                    <i
+                        class="bi"
+                        [class.bi-check-circle-fill]="
+                            mensajeFormulario.includes('correctamente')
+                        "
+                        [class.bi-exclamation-circle]="
+                            !mensajeFormulario.includes('correctamente')
+                        ">
+                    </i>
+
+                    {{ mensajeFormulario }}
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     BOTONES
+                =========================================== -->
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        (click)="cerrarFormulario()"
+                        [disabled]="guardando">
+
+                        Cancelar
+
+                    </button>
+
+
+                    <!-- ======================================
+                         GUARDAR / ACTUALIZAR
+                    ======================================= -->
+
+                    <button
+                        type="button"
+                        class="btn-guardar"
+                        [disabled]="guardando"
+                        (click)="guardarPerfume()">
+
+
+                        <!-- GUARDAR -->
+
+                        <span
+                            *ngIf="!guardando">
+
+                            <i
+                                class="bi"
+                                [class.bi-check-lg]="!modoEdicion"
+                                [class.bi-pencil-fill]="modoEdicion">
+                            </i>
+
+                            {{
+                                modoEdicion
+                                    ? 'Guardar cambios'
+                                    : 'Guardar perfume'
+                            }}
+
+                        </span>
+
+
+                        <!-- GUARDANDO -->
+
+                        <span
+                            *ngIf="guardando">
+
+                            <span class="spinner-mini"></span>
+
+                            {{
+                                modoEdicion
+                                    ? 'Actualizando...'
+                                    : 'Guardando...'
+                            }}
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MODAL CONFIRMAR ELIMINACIÓN
+    =================================================== -->
+
+    <div
+        class="modal-overlay modal-eliminar-overlay"
+        *ngIf="mostrarConfirmacionEliminar"
+        (click)="cancelarEliminar()">
+
+        <div
+            class="modal-confirmar-eliminar"
+            (click)="$event.stopPropagation()">
+
+            <div class="icono-eliminar">
+                <i class="bi bi-trash3-fill"></i>
+            </div>
+
+            <div class="confirmacion-contenido">
+
+                <span class="confirmacion-eyebrow">
+                    CM FRAGRANCES
+                </span>
+
+                <h2>
+                    Eliminar perfume
+                </h2>
+
+                <p class="confirmacion-pregunta">
+                    ¿Estás seguro de eliminar
+                    <strong>
+                        "{{ perfumeAEliminar?.nombre }}"
+                    </strong>?
+                </p>
+
+                <p class="confirmacion-advertencia">
+                    Esta acción eliminará el perfume
+                    del catálogo y no se puede deshacer.
+                </p>
+
+            </div>
+
+            <div class="confirmacion-botones">
+
+                <button
+                    type="button"
+                    class="btn-confirmar-cancelar"
+                    [disabled]="eliminando"
+                    (click)="cancelarEliminar()">
+                    Cancelar
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-confirmar-eliminar"
+                    [disabled]="eliminando"
+                    (click)="confirmarEliminar()">
+
+                    <span *ngIf="!eliminando">
+                        <i class="bi bi-trash3-fill"></i>
+                        Eliminar perfume
+                    </span>
+
+                    <span *ngIf="eliminando">
+                        <span class="spinner-mini-eliminar"></span>
+                        Eliminando...
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         NOTIFICACIÓN DE ELIMINACIÓN
+    =================================================== -->
+
+    <div
+        class="notificacion-eliminacion"
+        *ngIf="mostrarNotificacion">
+
+        <div class="notificacion-icono">
+            <i class="bi bi-check-lg"></i>
+        </div>
+
+        <div>
+            <strong>Listo</strong>
+            <span>{{ mensajeNotificacion }}</span>
+        </div>
+
+        <button
+            type="button"
+            (click)="mostrarNotificacion = false"
+            aria-label="Cerrar notificación">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+    </div>
+
+
+</section>

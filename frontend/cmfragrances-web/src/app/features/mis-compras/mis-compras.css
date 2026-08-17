@@ -1,0 +1,1035 @@
+/* ==================================================
+   MIS COMPRAS
+================================================== */
+
+.mis-compras {
+
+    width: 100%;
+
+    min-height: calc(100vh - 125px);
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #faf9f6 100%
+        );
+
+    padding: 60px 8% 80px;
+
+}
+
+
+/* ==================================================
+   ENCABEZADO
+================================================== */
+
+.compras-header {
+
+    max-width: 1200px;
+
+    margin: 0 auto 45px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+}
+
+
+.titulo-mini {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #D4AF37;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+}
+
+
+.compras-header h1 {
+
+    margin: 0;
+
+    color: #222222;
+
+    font-size: 42px;
+
+    font-weight: 800;
+
+    line-height: 1.1;
+
+}
+
+
+.compras-header p {
+
+    margin: 12px 0 0;
+
+    color: #777777;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==================================================
+   BOTÓN SEGUIR COMPRANDO
+================================================== */
+
+.btn-seguir-comprando {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    min-width: 185px;
+
+    height: 48px;
+
+    padding: 0 20px;
+
+    border: 1px solid #D4AF37;
+
+    border-radius: 25px;
+
+    background: #ffffff;
+
+    color: #222222;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+
+}
+
+
+.btn-seguir-comprando i {
+
+    color: #D4AF37;
+
+    font-size: 16px;
+
+}
+
+
+.btn-seguir-comprando:hover {
+
+    background: #D4AF37;
+
+    color: #111111;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(212, 175, 55, .20);
+
+}
+
+
+.btn-seguir-comprando:hover i {
+
+    color: #111111;
+
+}
+
+
+/* ==================================================
+   LISTA DE PEDIDOS
+================================================== */
+
+.pedidos-lista {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+
+/* ==================================================
+   TARJETA PEDIDO
+================================================== */
+
+.pedido-card {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 18px;
+
+    padding: 24px 28px;
+
+    box-shadow:
+        0 7px 25px rgba(0, 0, 0, .05);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+
+}
+
+
+.pedido-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #e5d7a8;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, .09);
+
+}
+
+
+/* ==================================================
+   PARTE SUPERIOR
+================================================== */
+
+.pedido-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.pedido-label {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #999999;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+}
+
+
+.pedido-info h2 {
+
+    margin: 0;
+
+    color: #222222;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+}
+
+
+/* ==================================================
+   ESTADO
+================================================== */
+
+.pedido-estado {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 105px;
+
+    min-height: 32px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+}
+
+
+/* ===========================
+   PENDIENTE
+=========================== */
+
+.estado-pendiente {
+
+    background: #fff5d6;
+
+    color: #9a7300;
+
+}
+
+
+/* ===========================
+   PAGADO
+=========================== */
+
+.estado-pagado {
+
+    background: #e9f4ff;
+
+    color: #2472a8;
+
+}
+
+
+/* ===========================
+   PREPARANDO
+=========================== */
+
+.estado-preparando {
+
+    background: #fff0d9;
+
+    color: #b66a00;
+
+}
+
+
+/* ===========================
+   ENVIADO
+=========================== */
+
+.estado-enviado {
+
+    background: #eee7ff;
+
+    color: #6842a8;
+
+}
+
+
+/* ===========================
+   ENTREGADO
+=========================== */
+
+.estado-entregado {
+
+    background: #e7f7ed;
+
+    color: #21834b;
+
+}
+
+
+/* ===========================
+   CANCELADO
+=========================== */
+
+.estado-cancelado {
+
+    background: #ffe8e8;
+
+    color: #c62828;
+
+}
+
+
+/* ==================================================
+   DETALLES DEL PEDIDO
+================================================== */
+
+.pedido-detalles {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+    gap: 25px;
+
+    padding: 22px 0;
+
+}
+
+
+.detalle {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+
+.detalle > i {
+
+    width: 40px;
+
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #faf6e8;
+
+    color: #D4AF37;
+
+    font-size: 17px;
+
+}
+
+
+.detalle div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.detalle span {
+
+    color: #999999;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.detalle strong {
+
+    color: #222222;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+
+.detalle.total strong {
+
+    color: #D4AF37;
+
+    font-size: 18px;
+
+}
+
+
+/* ==================================================
+   PARTE INFERIOR
+================================================== */
+
+.pedido-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eeeeee;
+
+}
+
+
+.seguimiento {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #888888;
+
+    font-size: 13px;
+
+}
+
+
+.seguimiento i {
+
+    color: #D4AF37;
+
+    font-size: 16px;
+
+}
+
+
+/* ==================================================
+   BOTÓN VER PEDIDO
+================================================== */
+
+.btn-ver-pedido {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    height: 40px;
+
+    padding: 0 17px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background: #222222;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+
+}
+
+
+.btn-ver-pedido i {
+
+    color: #D4AF37;
+
+    transition: .25s ease;
+
+}
+
+
+.btn-ver-pedido:hover {
+
+    background: #D4AF37;
+
+    color: #111111;
+
+    transform: translateX(2px);
+
+}
+
+
+.btn-ver-pedido:hover i {
+
+    color: #111111;
+
+}
+
+
+/* ==================================================
+   CARGANDO
+================================================== */
+
+.estado-carga {
+
+    min-height: 300px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+}
+
+
+.estado-carga p {
+
+    margin: 0;
+
+    color: #777777;
+
+    font-size: 14px;
+
+}
+
+
+/* ==================================================
+   SPINNER
+================================================== */
+
+.spinner {
+
+    width: 38px;
+
+    height: 38px;
+
+    border: 3px solid #eeeeee;
+
+    border-top-color: #D4AF37;
+
+    border-radius: 50%;
+
+    animation: girar .8s linear infinite;
+
+}
+
+
+@keyframes girar {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+
+/* ==================================================
+   SIN COMPRAS
+================================================== */
+
+.sin-compras {
+
+    max-width: 500px;
+
+    margin: 70px auto;
+
+    text-align: center;
+
+}
+
+
+.sin-compras-icono {
+
+    width: 75px;
+
+    height: 75px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #faf6e8;
+
+    color: #D4AF37;
+
+    font-size: 30px;
+
+}
+
+
+.sin-compras h2 {
+
+    margin: 0;
+
+    color: #222222;
+
+    font-size: 24px;
+
+}
+
+
+.sin-compras p {
+
+    margin: 10px 0 25px;
+
+    color: #888888;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==================================================
+   BOTÓN COMPRAR
+================================================== */
+
+.btn-comprar {
+
+    height: 44px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    background: #D4AF37;
+
+    color: #111111;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+
+}
+
+
+.btn-comprar:hover {
+
+    background: #222222;
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ==================================================
+   MENSAJE DE ERROR
+================================================== */
+
+.mensaje-error {
+
+    max-width: 500px;
+
+    margin: 70px auto;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #f1d0d0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .05);
+
+}
+
+
+.mensaje-error > i {
+
+    color: #c62828;
+
+    font-size: 35px;
+
+}
+
+
+.mensaje-error p {
+
+    margin: 15px 0;
+
+    color: #555555;
+
+    font-size: 14px;
+
+}
+
+
+.mensaje-error button {
+
+    height: 40px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background: #222222;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+/* ==================================================
+   VOLVER AL INICIO
+================================================== */
+
+.volver-inicio {
+
+    max-width: 1200px;
+
+    margin: 30px auto 0;
+
+}
+
+
+.volver-inicio button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777777;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+
+}
+
+
+.volver-inicio button:hover {
+
+    color: #D4AF37;
+
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 900px) {
+
+    .mis-compras {
+
+        padding: 45px 5% 60px;
+
+    }
+
+
+    .compras-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .compras-header h1 {
+
+        font-size: 36px;
+
+    }
+
+
+    .pedido-detalles {
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+    }
+
+}
+
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width: 600px) {
+
+    .mis-compras {
+
+        padding: 35px 18px 50px;
+
+    }
+
+
+    .compras-header {
+
+        margin-bottom: 30px;
+
+        gap: 20px;
+
+    }
+
+
+    .compras-header h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .compras-header p {
+
+        font-size: 14px;
+
+    }
+
+
+    .btn-seguir-comprando {
+
+        width: 100%;
+
+    }
+
+
+    .pedido-card {
+
+        padding: 20px;
+
+        border-radius: 15px;
+
+    }
+
+
+    .pedido-top {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+    }
+
+
+    .pedido-estado {
+
+        min-width: 100px;
+
+    }
+
+
+    .pedido-detalles {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+    }
+
+
+    .pedido-bottom {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+
+    .seguimiento {
+
+        font-size: 12px;
+
+    }
+
+
+    .btn-ver-pedido {
+
+        width: 100%;
+
+    }
+
+
+    .volver-inicio {
+
+        margin-top: 25px;
+
+    }
+
+}

@@ -224,8 +224,16 @@
                 Pagado
             </option>
 
+            <option value="Preparando">
+                Preparando
+            </option>
+
             <option value="Enviado">
                 Enviado
+            </option>
+
+            <option value="Entregado">
+                Entregado
             </option>
 
             <option value="Cancelado">
@@ -288,6 +296,7 @@
 
     }
 
+
     @else if(pedidosFiltrados.length > 0) {
 
         <div class="table-container">
@@ -341,7 +350,9 @@
                         <tr>
 
 
-                            <!-- PEDIDO -->
+                            <!-- ==================================
+                                 PEDIDO
+                            =================================== -->
 
                             <td>
 
@@ -353,7 +364,9 @@
 
 
 
-                            <!-- CLIENTE -->
+                            <!-- ==================================
+                                 CLIENTE
+                            =================================== -->
 
                             <td>
 
@@ -383,7 +396,9 @@
 
 
 
-                            <!-- FECHA -->
+                            <!-- ==================================
+                                 FECHA
+                            =================================== -->
 
                             <td>
 
@@ -409,7 +424,9 @@
 
 
 
-                            <!-- PRODUCTOS -->
+                            <!-- ==================================
+                                 PRODUCTOS
+                            =================================== -->
 
                             <td>
 
@@ -425,7 +442,9 @@
 
 
 
-                            <!-- TOTAL REAL -->
+                            <!-- ==================================
+                                 TOTAL REAL
+                            =================================== -->
 
                             <td>
 
@@ -442,16 +461,22 @@
 
 
 
-                            <!-- ESTADO -->
+                            <!-- ==========================================
+                                 ESTADO
+                            =========================================== -->
 
                             <td>
 
                                 <span
                                     class="status"
-                                    [class.status-pagado]="pedido.estado === 'Pagado'"
-                                    [class.status-pendiente]="pedido.estado === 'Pendiente'"
-                                    [class.status-enviado]="pedido.estado === 'Enviado'"
-                                    [class.status-cancelado]="pedido.estado === 'Cancelado'">
+                                    [ngClass]="
+                                        'status-' +
+                                        (pedido.estado || '')
+                                            .toString()
+                                            .trim()
+                                            .toLowerCase()
+                                    "
+                                >
 
                                     {{ pedido.estado }}
 
@@ -461,7 +486,9 @@
 
 
 
-                            <!-- ACCIONES -->
+                            <!-- ==================================
+                                 ACCIONES
+                            =================================== -->
 
                             <td>
 
@@ -702,10 +729,12 @@
                         </span>
 
                         <strong>
+
                             {{
                                 pedidoSeleccionado.fechaPedido
                                 | date:'dd/MM/yyyy HH:mm'
                             }}
+
                         </strong>
 
                     </div>
@@ -714,7 +743,9 @@
 
 
 
-                <!-- ESTADO DEL PEDIDO -->
+                <!-- ==================================
+                     ESTADO DEL PEDIDO
+                =================================== -->
 
                 <div class="order-info order-status-editor">
 
@@ -729,6 +760,7 @@
                         <span>
                             Estado del pedido
                         </span>
+
 
                         <!-- SELECTOR DE ESTADO -->
 
@@ -746,6 +778,10 @@
                                 Pagado
                             </option>
 
+                            <option value="Preparando">
+                                Preparando
+                            </option>
+
                             <option value="Enviado">
                                 Enviado
                             </option>
@@ -759,6 +795,7 @@
                             </option>
 
                         </select>
+
 
                         <!-- BOTÓN GUARDAR -->
 
@@ -786,16 +823,19 @@
 
                         </button>
 
+
                         <!-- MENSAJE -->
 
                         @if(mensajeEstado) {
 
                             <span
                                 class="status-message"
+
                                 [class.status-message-success]="
                                     mensajeEstado ===
                                     'Estado actualizado correctamente.'
                                 "
+
                                 [class.status-message-error]="
                                     mensajeEstado !==
                                     'Estado actualizado correctamente.'
@@ -813,7 +853,9 @@
 
 
 
-                <!-- PRODUCTOS -->
+                <!-- ==================================
+                     PRODUCTOS
+                =================================== -->
 
                 <div class="order-info">
 
@@ -865,7 +907,6 @@
                 </div>
 
 
-
                 @if(
                     detallesSeleccionados.length > 0
                 ) {
@@ -896,16 +937,20 @@
                                 <div class="product-info">
 
                                     <strong>
+
                                         {{
                                             detalle.perfume ||
                                             detalle.Perfume ||
                                             'Perfume'
                                         }}
+
                                     </strong>
 
                                     <span>
+
                                         Cantidad:
                                         {{ detalle.cantidad }}
+
                                     </span>
 
                                 </div>
@@ -917,15 +962,19 @@
                                 <div class="product-price">
 
                                     <span>
+
                                         ${{ detalle.precio | number:'1.2-2' }}
                                         c/u
+
                                     </span>
 
                                     <strong>
+
                                         ${{
                                             calcularSubtotalDetalle(detalle)
                                             | number:'1.2-2'
                                         }}
+
                                     </strong>
 
                                 </div>
@@ -946,8 +995,10 @@
                         <i class="bi bi-box"></i>
 
                         <span>
+
                             No hay productos registrados
                             para este pedido.
+
                         </span>
 
                     </div>

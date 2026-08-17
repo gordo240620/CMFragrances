@@ -1,143 +1,278 @@
-.card-perfume{
+/* ==========================================
+   TARJETA PERFUME
+========================================== */
 
-    background:#fff;
+.card-perfume {
 
-    border-radius:22px;
+    background: #fff;
 
-    overflow:hidden;
+    border-radius: 22px;
 
-    transition:.35s;
+    overflow: hidden;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition: .35s;
 
-    cursor:pointer;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .08);
 
-}
-
-.card-perfume:hover{
-
-    transform:translateY(-12px);
-
-    box-shadow:0 20px 45px rgba(0,0,0,.18);
+    cursor: pointer;
 
 }
 
-.image-container{
 
-    height:300px;
+/* ==========================================
+   EFECTO HOVER
+========================================== */
 
-    overflow:hidden;
+.card-perfume:hover {
 
-    background:#f8f8f8;
+    transform: translateY(-12px);
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, .18);
 
 }
 
-.image-container img{
 
-    width:100%;
+/* ==========================================
+   CONTENEDOR DE IMAGEN
+========================================== */
 
-    height:100%;
+.image-container {
 
-    object-fit:contain;
+    height: 250px;
 
-    transition:.35s;
+    overflow: hidden;
 
-}
+    background: #f8f8f8;
 
-.card-perfume:hover img{
+    display: flex;
 
-    transform:scale(1.08);
+    justify-content: center;
 
-}
+    align-items: center;
 
-.card-body{
+    padding: 20px;
 
-    padding:25px;
-
-}
-
-.brand{
-
-    color:#999;
-
-    font-size:14px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
-    margin-bottom:10px;
+    box-sizing: border-box;
 
 }
 
-.card-body h3{
 
-    font-size:24px;
+/* ==========================================
+   IMAGEN DEL PERFUME
+========================================== */
 
-    font-weight:700;
+.image-container img {
 
-    color:#111;
+    display: block;
 
-    margin-bottom:15px;
+    width: auto;
 
-}
+    height: auto;
 
-.rating{
+    max-width: 85%;
 
-    color:#D4AF37;
+    max-height: 220px;
 
-    font-weight:bold;
+    object-fit: contain;
 
-    margin-bottom:15px;
-
-}
-
-.price{
-
-    font-size:28px;
-
-    font-weight:800;
-
-    color:#111;
-
-    margin-bottom:25px;
+    transition: .35s;
 
 }
 
-button{
 
-    width:100%;
+/* ==========================================
+   HOVER IMAGEN
+========================================== */
 
-    padding:15px;
+.card-perfume:hover .image-container img {
 
-    border:none;
-
-    border-radius:12px;
-
-    background:#D4AF37;
-
-    color:#111;
-
-    font-weight:bold;
-
-    font-size:16px;
-
-    cursor:pointer;
-
-    transition:.3s;
+    transform: scale(1.06);
 
 }
 
-button:hover{
 
-    background:#111;
+/* ==========================================
+   CUERPO DE TARJETA
+========================================== */
 
-    color:#fff;
+.card-body {
+
+    padding: 22px;
+
+}
+
+
+/* ==========================================
+   MARCA
+========================================== */
+
+.brand {
+
+    color: #999;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* ==========================================
+   NOMBRE
+========================================== */
+
+.card-body h3 {
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    color: #111;
+
+    margin-bottom: 12px;
+
+    line-height: 1.2;
+
+}
+
+
+/* ==========================================
+   CALIFICACIÓN
+========================================== */
+
+.rating {
+
+    color: #D4AF37;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* ==========================================
+   PRECIO
+========================================== */
+
+.price {
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: #111;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* ==========================================
+   BOTÓN
+========================================== */
+
+button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #D4AF37;
+
+    color: #111;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+/* ==========================================
+   HOVER BOTÓN
+========================================== */
+
+button:hover {
+
+    background: #111;
+
+    color: #fff;
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1050px) {
+
+    .image-container {
+
+        height: 240px;
+
+    }
+
+    .image-container img {
+
+        max-height: 210px;
+
+    }
+
+}
+
+
+/* ==========================================
+   CELULAR
+========================================== */
+
+@media (max-width: 600px) {
+
+    .image-container {
+
+        height: 260px;
+
+    }
+
+    .image-container img {
+
+        max-height: 230px;
+
+        max-width: 80%;
+
+    }
+
+    .card-body {
+
+        padding: 20px;
+
+    }
+
+    .card-body h3 {
+
+        font-size: 20px;
+
+    }
+
+    .price {
+
+        font-size: 23px;
+
+    }
 
 }

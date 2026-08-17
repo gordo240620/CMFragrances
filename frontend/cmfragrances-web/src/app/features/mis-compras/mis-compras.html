@@ -1,0 +1,333 @@
+<!-- ==========================================
+     MIS COMPRAS
+========================================== -->
+
+<section class="mis-compras">
+
+
+    <!-- ======================================
+         ENCABEZADO
+    ======================================= -->
+
+    <div class="compras-header">
+
+        <div>
+
+            <span class="titulo-mini">
+                CM FRAGRANCES
+            </span>
+
+            <h1>
+                Mis compras
+            </h1>
+
+            <p>
+                Consulta el historial de tus pedidos
+                y revisa el estado de cada compra.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn-seguir-comprando"
+            (click)="seguirComprando()">
+
+            <i class="bi bi-bag"></i>
+
+            Seguir comprando
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================
+         CARGANDO
+    ======================================= -->
+
+    <div
+        class="estado-carga"
+        *ngIf="cargando">
+
+        <div class="spinner"></div>
+
+        <p>
+            Cargando tus compras...
+        </p>
+
+    </div>
+
+
+
+    <!-- ======================================
+         ERROR
+    ======================================= -->
+
+    <div
+        class="mensaje-error"
+        *ngIf="!cargando && mensajeError">
+
+        <i class="bi bi-exclamation-circle"></i>
+
+        <p>
+            {{ mensajeError }}
+        </p>
+
+        <button
+            type="button"
+            (click)="cargarPedidos()">
+
+            Intentar nuevamente
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================
+         SIN COMPRAS
+    ======================================= -->
+
+    <div
+        class="sin-compras"
+        *ngIf="
+            !cargando &&
+            !mensajeError &&
+            pedidos.length === 0
+        ">
+
+        <div class="sin-compras-icono">
+
+            <i class="bi bi-bag-x"></i>
+
+        </div>
+
+        <h2>
+            Aún no tienes compras
+        </h2>
+
+        <p>
+            Cuando realices tu primera compra,
+            aparecerá aquí.
+        </p>
+
+        <button
+            type="button"
+            class="btn-comprar"
+            (click)="seguirComprando()">
+
+            Explorar perfumes
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ======================================
+         LISTA DE PEDIDOS
+    ======================================= -->
+
+    <div
+        class="pedidos-lista"
+        *ngIf="
+            !cargando &&
+            !mensajeError &&
+            pedidos.length > 0
+        ">
+
+
+        <!-- ==================================
+             TARJETA COMPRA
+        =================================== -->
+
+        <article
+            class="pedido-card"
+            *ngFor="let pedido of pedidos">
+
+
+            <!-- ==============================
+                 PARTE SUPERIOR
+            =============================== -->
+
+            <div class="pedido-top">
+
+
+                <div class="pedido-info">
+
+                    <span class="pedido-label">
+                        COMPRA
+                    </span>
+
+                    <h2>
+                        Tu compra
+                    </h2>
+
+                </div>
+
+
+                <div
+                    class="pedido-estado"
+                    [ngClass]="claseEstado(pedido)">
+
+                    {{ obtenerEstado(pedido) }}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==============================
+                 INFORMACIÓN
+            =============================== -->
+
+            <div class="pedido-detalles">
+
+
+                <div class="detalle">
+
+                    <i class="bi bi-calendar3"></i>
+
+                    <div>
+
+                        <span>
+                            Fecha
+                        </span>
+
+                        <strong>
+                            {{ formatearFecha(pedido) }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="detalle">
+
+                    <i class="bi bi-box-seam"></i>
+
+                    <div>
+
+                        <span>
+                            Productos
+                        </span>
+
+                        <strong>
+
+                            {{
+                                obtenerCantidadProductos(pedido)
+                            }}
+
+                            {{
+                                obtenerCantidadProductos(pedido) === 1
+                                    ? 'producto'
+                                    : 'productos'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="detalle total">
+
+                    <i class="bi bi-currency-dollar"></i>
+
+                    <div>
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong>
+
+                            {{
+                                obtenerTotal(pedido)
+                                    | currency:'MXN':'symbol':'1.2-2'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ==============================
+                 PARTE INFERIOR
+            =============================== -->
+
+            <div class="pedido-bottom">
+
+
+                <span class="seguimiento">
+
+                    <i class="bi bi-truck"></i>
+
+                    Consulta el detalle de tu pedido
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="btn-ver-pedido"
+                    (click)="verPedido(pedido)">
+
+                    Ver pedido
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </button>
+
+
+            </div>
+
+
+        </article>
+
+
+    </div>
+
+
+
+    <!-- ======================================
+         VOLVER
+    ======================================= -->
+
+    <div
+        class="volver-inicio"
+        *ngIf="
+            !cargando &&
+            !mensajeError &&
+            pedidos.length > 0
+        ">
+
+        <button
+            type="button"
+            (click)="volverInicio()">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Volver al inicio
+
+        </button>
+
+    </div>
+
+
+</section>

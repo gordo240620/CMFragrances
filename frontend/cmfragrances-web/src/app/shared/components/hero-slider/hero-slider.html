@@ -2,36 +2,26 @@
 
 
     <!-- ==========================================
-         SLIDE 1
+         CARGANDO
     =========================================== -->
 
     <div
-        class="slide"
-        [class.active]="currentSlide === 0">
+        *ngIf="cargando"
+        class="slide active">
 
         <div class="slide-content">
 
-            <span>CM FRAGRANCES</span>
+            <span>
+                CM FRAGRANCES
+            </span>
 
             <h1>
-                Jean Lowe Immortal
+                Cargando perfumes...
             </h1>
 
             <p>
-                Una fragancia elegante, intensa y sofisticada.
+                Descubre nuestra selección de fragancias.
             </p>
-
-            <button>
-                Ver perfume
-            </button>
-
-        </div>
-
-        <div class="slide-image">
-
-            <img
-                src="/jloweinmortel.png"
-                alt="Jean Lowe Immortal">
 
         </div>
 
@@ -39,36 +29,29 @@
 
 
     <!-- ==========================================
-         SLIDE 2
+         ERROR
     =========================================== -->
 
     <div
-        class="slide"
-        [class.active]="currentSlide === 1">
+        *ngIf="
+            !cargando &&
+            mensajeError
+        "
+        class="slide active">
 
         <div class="slide-content">
 
-            <span>LATTAFA</span>
+            <span>
+                CM FRAGRANCES
+            </span>
 
             <h1>
-                Asad
+                CM Fragrances
             </h1>
 
             <p>
-                Una fragancia intensa y masculina para destacar.
+                {{ mensajeError }}
             </p>
-
-            <button>
-                Ver perfume
-            </button>
-
-        </div>
-
-        <div class="slide-image">
-
-            <img
-                src="/assad.png"
-                alt="Lattafa Asad">
 
         </div>
 
@@ -76,77 +59,118 @@
 
 
     <!-- ==========================================
-         SLIDE 3
+         SLIDES
     =========================================== -->
 
-    <div
-        class="slide"
-        [class.active]="currentSlide === 2">
+    <ng-container
+        *ngIf="
+            !cargando &&
+            perfumes.length > 0
+        ">
 
-        <div class="slide-content">
 
-            <span>AFNAN</span>
+        <div
+            class="slide"
+            *ngFor="
+                let perfume of perfumes;
+                let i = index
+            "
+            [class.active]="
+                currentSlide === i
+            ">
 
-            <h1>
-                9PM
-            </h1>
 
-            <p>
-                Dulce, seductora y perfecta para la noche.
-            </p>
+            <!-- ==================================
+                 CONTENIDO
+            =================================== -->
 
-            <button>
-                Ver perfume
-            </button>
+            <div class="slide-content">
+
+
+                <!-- MARCA -->
+
+                <span>
+
+                    {{
+                        perfume.marca
+                        || 'CM FRAGRANCES'
+                    }}
+
+                </span>
+
+
+                <!-- NOMBRE -->
+
+                <h1>
+
+                    {{ perfume.nombre }}
+
+                </h1>
+
+
+                <!-- DESCRIPCIÓN -->
+
+                <p>
+
+                    {{
+                        perfume.descripcion
+                        || 'Una fragancia elegante, intensa y sofisticada.'
+                    }}
+
+                </p>
+
+
+                <!-- PRECIO -->
+
+                <div class="slide-price">
+
+                    {{
+                        perfume.precio
+                        | currency:
+                        'MXN':
+                        'symbol-narrow':
+                        '1.0-0'
+                    }}
+
+                </div>
+
+
+                <!-- BOTÓN -->
+
+                <button
+                    type="button"
+                    (click)="verPerfume(perfume.id)">
+
+                    Ver perfume
+
+                </button>
+
+
+            </div>
+
+
+            <!-- ==================================
+                 IMAGEN
+            =================================== -->
+
+            <div class="slide-image">
+
+                <img
+                    [src]="
+                        perfume.imagen
+                        || '/cm-logo.png'
+                    "
+                    [alt]="perfume.nombre"
+                    loading="eager"
+                    decoding="async">
+
+            </div>
+
 
         </div>
 
-        <div class="slide-image">
 
-            <img
-                src="/9pm.png"
-                alt="Afnan 9PM">
-
-        </div>
-
-    </div>
-
-
-    <!-- ==========================================
-         SLIDE 4
-    =========================================== -->
-
-    <div
-        class="slide"
-        [class.active]="currentSlide === 3">
-
-        <div class="slide-content">
-
-            <span>ARMAF</span>
-
-            <h1>
-                Club de Nuit
-            </h1>
-
-            <p>
-                Elegancia y presencia en una fragancia inolvidable.
-            </p>
-
-            <button>
-                Ver perfume
-            </button>
-
-        </div>
-
-        <div class="slide-image">
-
-            <img
-                src="/Clubdenuit.png"
-                alt="Armaf Club de Nuit">
-
-        </div>
-
-    </div>
+    </ng-container>
 
 
     <!-- ==========================================
@@ -154,6 +178,10 @@
     =========================================== -->
 
     <button
+        *ngIf="
+            perfumes.length > 1
+        "
+        type="button"
         class="slider-arrow prev"
         (click)="previousSlide()">
 
@@ -167,6 +195,10 @@
     =========================================== -->
 
     <button
+        *ngIf="
+            perfumes.length > 1
+        "
+        type="button"
         class="slider-arrow next"
         (click)="nextSlide()">
 
@@ -179,31 +211,26 @@
          INDICADORES
     =========================================== -->
 
-    <div class="slider-dots">
+    <div
+        *ngIf="
+            perfumes.length > 1
+        "
+        class="slider-dots">
+
 
         <span
+            *ngFor="
+                let perfume of perfumes;
+                let i = index
+            "
             class="dot"
-            [class.active]="currentSlide === 0"
-            (click)="goToSlide(0)">
+            [class.active]="
+                currentSlide === i
+            "
+            (click)="goToSlide(i)">
+
         </span>
 
-        <span
-            class="dot"
-            [class.active]="currentSlide === 1"
-            (click)="goToSlide(1)">
-        </span>
-
-        <span
-            class="dot"
-            [class.active]="currentSlide === 2"
-            (click)="goToSlide(2)">
-        </span>
-
-        <span
-            class="dot"
-            [class.active]="currentSlide === 3"
-            (click)="goToSlide(3)">
-        </span>
 
     </div>
 

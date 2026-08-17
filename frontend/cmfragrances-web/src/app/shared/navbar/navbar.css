@@ -224,7 +224,7 @@
 
 
 /* ===========================
-   ICONOS
+   ICONOS PRINCIPALES
 =========================== */
 
 .actions {
@@ -240,7 +240,13 @@
 }
 
 
-.actions button {
+/*
+   IMPORTANTE:
+   Solo afecta a Buscar y Carrito.
+   NO afecta a los botones del menú de usuario.
+*/
+
+.actions > button {
 
     border: none;
 
@@ -257,7 +263,7 @@
 }
 
 
-.actions button:hover {
+.actions > button:hover {
 
     color: #D4AF37;
 
@@ -307,6 +313,298 @@
 
     box-shadow:
         0 4px 10px rgba(0, 0, 0, .20);
+
+}
+
+
+/* ==================================================
+   MENÚ DE USUARIO
+================================================== */
+
+.user-menu-container {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+/* ==================================================
+   BOTÓN DE USUARIO
+================================================== */
+
+.user-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 45px;
+
+    height: 45px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #222222;
+
+    font-size: 30px !important;
+
+    cursor: pointer;
+
+    transition: .30s ease;
+
+}
+
+
+.user-button:hover {
+
+    color: #D4AF37;
+
+    transform: translateY(-3px);
+
+}
+
+
+/* ==================================================
+   DROPDOWN USUARIO
+================================================== */
+
+.user-dropdown {
+
+    position: absolute;
+
+    top: calc(100% + 12px);
+
+    right: -8px;
+
+    width: 220px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 14px;
+
+    padding: 6px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, .14);
+
+    z-index: 2000;
+
+    animation: userMenuAppear .18s ease;
+
+}
+
+
+/* ==================================================
+   ANIMACIÓN
+================================================== */
+
+@keyframes userMenuAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-6px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* ==================================================
+   BOTONES DEL MENÚ
+================================================== */
+
+.user-option {
+
+    width: 100%;
+
+    height: 42px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 5px 9px;
+
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    border-radius: 9px;
+
+    color: #222222;
+
+    font-family: inherit;
+
+    font-size: 14px !important;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+
+}
+
+
+/* ==================================================
+   ICONOS DE LAS OPCIONES
+================================================== */
+
+.user-option i {
+
+    width: 29px;
+
+    height: 29px;
+
+    min-width: 29px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #faf6e8;
+
+    color: #D4AF37;
+
+    font-size: 14px !important;
+
+}
+
+
+/* ==================================================
+   TEXTO
+================================================== */
+
+.user-option span {
+
+    display: block;
+
+    flex: 1;
+
+    white-space: nowrap;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+}
+
+
+/* ==================================================
+   HOVER MIS COMPRAS
+================================================== */
+
+.user-option:hover {
+
+    background: #faf8f0;
+
+    color: #111111;
+
+}
+
+
+.user-option:hover i {
+
+    background: #D4AF37;
+
+    color: #111111;
+
+}
+
+
+/* ==================================================
+   CERRAR SESIÓN
+================================================== */
+
+.user-option.logout {
+
+    color: #333333;
+
+}
+
+
+.user-option.logout i {
+
+    background: #fff1f1;
+
+    color: #c62828;
+
+}
+
+
+.user-option.logout:hover {
+
+    background: #fff5f5;
+
+    color: #b42323;
+
+}
+
+
+.user-option.logout:hover i {
+
+    background: #c62828;
+
+    color: #ffffff;
+
+}
+
+
+/* ==================================================
+   SEPARADOR
+================================================== */
+
+.user-divider {
+
+    width: calc(100% - 12px);
+
+    height: 1px;
+
+    background: #eeeeee;
+
+    margin: 3px auto;
 
 }
 
@@ -399,6 +697,15 @@
 
     }
 
+
+    .user-dropdown {
+
+        right: 50%;
+
+        transform: translateX(50%);
+
+    }
+
 }
 
 
@@ -468,9 +775,56 @@
     }
 
 
-    .actions button {
+    /*
+       IMPORTANTE:
+       Solo Buscar y Carrito.
+    */
+
+    .actions > button {
 
         font-size: 25px;
+
+    }
+
+
+    .user-button {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 25px !important;
+
+    }
+
+
+    .user-dropdown {
+
+        width: 220px;
+
+        right: 50%;
+
+        transform: translateX(50%);
+
+    }
+
+
+    .user-option {
+
+        height: 42px;
+
+        font-size: 14px !important;
+
+    }
+
+
+    .user-option i {
+
+        width: 29px;
+
+        height: 29px;
+
+        font-size: 14px !important;
 
     }
 

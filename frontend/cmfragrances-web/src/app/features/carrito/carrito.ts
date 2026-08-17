@@ -1,6 +1,9 @@
 import { Component, inject } from '@angular/core';
+
 import { DecimalPipe } from '@angular/common';
+
 import { Router } from '@angular/router';
+
 import { forkJoin } from 'rxjs';
 
 
@@ -9,15 +12,25 @@ import {
     ProductoCarrito
 } from '../../core/services/carrito';
 
+
 import { PedidoService } from '../../core/services/pedido';
 
 
+
 @Component({
+
     selector: 'app-carrito',
+
     standalone: true,
-    imports: [DecimalPipe],
+
+    imports: [
+        DecimalPipe
+    ],
+
     templateUrl: './carrito.html',
+
     styleUrl: './carrito.css'
+
 })
 export class Carrito {
 
@@ -29,11 +42,14 @@ export class Carrito {
     private carritoService =
         inject(CarritoService);
 
+
     private pedidoService =
         inject(PedidoService);
 
+
     private router =
         inject(Router);
+
 
 
     // ==========================================
@@ -41,6 +57,7 @@ export class Carrito {
     // ==========================================
 
     procesandoPedido = false;
+
 
 
     // ==========================================
@@ -54,6 +71,7 @@ export class Carrito {
     }
 
 
+
     // ==========================================
     // CANTIDAD TOTAL
     // ==========================================
@@ -63,6 +81,7 @@ export class Carrito {
         return this.carritoService.obtenerCantidad();
 
     }
+
 
 
     // ==========================================
@@ -76,6 +95,7 @@ export class Carrito {
     }
 
 
+
     // ==========================================
     // AUMENTAR CANTIDAD
     // ==========================================
@@ -85,6 +105,7 @@ export class Carrito {
         this.carritoService.aumentarCantidad(id);
 
     }
+
 
 
     // ==========================================
@@ -98,6 +119,7 @@ export class Carrito {
     }
 
 
+
     // ==========================================
     // ELIMINAR PRODUCTO
     // ==========================================
@@ -109,6 +131,7 @@ export class Carrito {
     }
 
 
+
     // ==========================================
     // VACIAR CARRITO
     // ==========================================
@@ -118,6 +141,36 @@ export class Carrito {
         this.carritoService.vaciarCarrito();
 
     }
+
+
+
+    // ==========================================
+    // IR AL CHECKOUT
+    // ==========================================
+
+    irAlCheckout(): void {
+
+        // ======================================
+        // VERIFICAR CARRITO
+        // ======================================
+
+        if (this.productos.length === 0) {
+
+            return;
+
+        }
+
+
+        // ======================================
+        // NAVEGAR AL CHECKOUT
+        // ======================================
+
+        this.router.navigate([
+            '/checkout'
+        ]);
+
+    }
+
 
 
     // ==========================================
@@ -164,6 +217,7 @@ export class Carrito {
             return Number(usuarioId);
 
         }
+
         catch (error) {
 
             console.error(
@@ -171,11 +225,13 @@ export class Carrito {
                 error
             );
 
+
             return 0;
 
         }
 
     }
+
 
 
     // ==========================================
@@ -225,9 +281,11 @@ export class Carrito {
                 'No se pudo identificar al usuario. Inicia sesión nuevamente.'
             );
 
+
             this.router.navigate([
                 '/login'
             ]);
+
 
             return;
 
@@ -245,28 +303,34 @@ export class Carrito {
             '================================'
         );
 
+
         console.log(
             'CREANDO PEDIDO'
         );
+
 
         console.log(
             'Usuario:',
             usuarioId
         );
 
+
         console.log(
             'Total:',
             this.subtotal
         );
+
 
         console.log(
             'Productos:',
             this.productos
         );
 
+
         console.log(
             '================================'
         );
+
 
 
         // ======================================
@@ -316,12 +380,15 @@ export class Carrito {
                             'La API no devolvió el ID del pedido.'
                         );
 
+
                         this.procesandoPedido =
                             false;
+
 
                         alert(
                             'El pedido fue creado pero no se obtuvo su ID.'
                         );
+
 
                         return;
 

@@ -1,5 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+
+import {
+  Router,
+  RouterLink
+} from '@angular/router';
 
 import {
   Carrito as CarritoService
@@ -7,15 +11,22 @@ import {
 
 
 @Component({
+
   selector: 'app-navbar',
+
   standalone: true,
+
   imports: [
     RouterLink
   ],
+
   templateUrl: './navbar.html',
+
   styleUrl: './navbar.css'
+
 })
 export class Navbar {
+
 
   // ==========================================
   // ROUTER
@@ -28,7 +39,15 @@ export class Navbar {
   // CARRITO
   // ==========================================
 
-  private carritoService = inject(CarritoService);
+  private carritoService =
+    inject(CarritoService);
+
+
+  // ==========================================
+  // MENÚ DE USUARIO
+  // ==========================================
+
+  userMenuOpen = false;
 
 
   // ==========================================
@@ -48,7 +67,94 @@ export class Navbar {
 
   irAlCarrito(): void {
 
-    this.router.navigate(['/carrito']);
+    this.userMenuOpen = false;
+
+    this.router.navigate([
+      '/carrito'
+    ]);
+
+  }
+
+
+  // ==========================================
+  // ABRIR / CERRAR MENÚ USUARIO
+  // ==========================================
+
+  toggleUserMenu(): void {
+
+    this.userMenuOpen =
+      !this.userMenuOpen;
+
+  }
+
+
+  // ==========================================
+  // MIS COMPRAS
+  // ==========================================
+
+  irAMisCompras(): void {
+
+    this.userMenuOpen = false;
+
+    this.router.navigate([
+      '/mis-compras'
+    ]);
+
+  }
+
+
+  // ==========================================
+  // CERRAR SESIÓN
+  // ==========================================
+
+  cerrarSesion(): void {
+
+    this.userMenuOpen = false;
+
+
+    // ------------------------------------------
+    // ELIMINAR DATOS DE SESIÓN
+    // ------------------------------------------
+
+    localStorage.removeItem('token');
+
+    localStorage.removeItem('authToken');
+
+    localStorage.removeItem('usuario');
+
+    localStorage.removeItem('user');
+
+
+    sessionStorage.removeItem('token');
+
+    sessionStorage.removeItem('authToken');
+
+    sessionStorage.removeItem('usuario');
+
+    sessionStorage.removeItem('user');
+
+
+    // ------------------------------------------
+    // IMPORTANTE
+    // ------------------------------------------
+    // NO VACIAMOS EL CARRITO.
+    //
+    // El carrito permanece intacto.
+    //
+    // NO colocar:
+    //
+    // this.carritoService.vaciarCarrito();
+    //
+    // ------------------------------------------
+
+
+    // ------------------------------------------
+    // REGRESAR AL LOGIN
+    // ------------------------------------------
+
+    this.router.navigate([
+      '/login'
+    ]);
 
   }
 

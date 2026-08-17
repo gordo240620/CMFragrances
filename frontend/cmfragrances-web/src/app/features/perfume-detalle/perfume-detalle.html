@@ -104,7 +104,7 @@
                     <div class="detalle-imagen">
 
                         <img
-                            [src]="'/' + perfume.imagen"
+                            [src]="perfume.imagen || '/cm-logo.png'"
                             [alt]="perfume.nombre"
                             loading="eager"
                             decoding="async">
@@ -119,6 +119,7 @@
                 =================================== -->
 
                 <div class="col-lg-6">
+
 
                     <!-- CATEGORÍA -->
 
@@ -269,3 +270,115 @@
     </div>
 
 </section>
+
+
+
+<!-- ==========================================
+     MODAL PRODUCTO AGREGADO
+========================================== -->
+
+@if (mostrarModalCarrito) {
+
+    <div
+        class="modal-overlay"
+        (click)="cerrarModalCarrito()">
+
+
+        <!-- ======================================
+             TARJETA DEL MODAL
+        ======================================= -->
+
+        <div
+            class="modal-carrito"
+            (click)="$event.stopPropagation()">
+
+
+            <!-- ==================================
+                 ICONO
+            =================================== -->
+
+            <div class="modal-icono">
+
+                <i class="bi bi-check-lg"></i>
+
+            </div>
+
+
+            <!-- ==================================
+                 CONTENIDO
+            =================================== -->
+
+            <div class="modal-contenido">
+
+                <span class="modal-eyebrow">
+
+                    CM FRAGRANCES
+
+                </span>
+
+
+                <h2>
+
+                    Producto agregado
+
+                </h2>
+
+
+                <p class="modal-producto">
+
+                    {{ perfume?.nombre }}
+
+                </p>
+
+
+                <p class="modal-descripcion">
+
+                    El perfume se agregó correctamente
+                    a tu carrito.
+
+                </p>
+
+            </div>
+
+
+            <!-- ==================================
+                 BOTONES
+            =================================== -->
+
+            <div class="modal-acciones">
+
+
+                <!-- SEGUIR COMPRANDO -->
+
+                <button
+                    type="button"
+                    class="btn-seguir"
+                    (click)="cerrarModalCarrito()">
+
+                    Seguir comprando
+
+                </button>
+
+
+                <!-- VER CARRITO -->
+
+                <button
+                    type="button"
+                    class="btn-ver-carrito"
+                    (click)="irAlCarrito()">
+
+                    <i class="bi bi-bag"></i>
+
+                    Ver carrito
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+}

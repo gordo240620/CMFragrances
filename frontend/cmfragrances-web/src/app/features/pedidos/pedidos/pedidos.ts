@@ -11,7 +11,9 @@ import { PedidoService } from '../../../core/services/pedido';
 
 
 @Component({
+
     selector: 'app-pedidos',
+
     standalone: true,
 
     imports: [
@@ -20,14 +22,24 @@ import { PedidoService } from '../../../core/services/pedido';
     ],
 
     templateUrl: './pedidos.html',
+
     styleUrl: './pedidos.css'
+
 })
 export class Pedidos {
 
 
-    private pedidoService = inject(PedidoService);
+    // ==========================================
+    // SERVICIOS
+    // ==========================================
 
-    private cdr = inject(ChangeDetectorRef);
+    private pedidoService =
+        inject(PedidoService);
+
+
+    private cdr =
+        inject(ChangeDetectorRef);
+
 
 
     // ==========================================
@@ -39,11 +51,13 @@ export class Pedidos {
     pedidosFiltrados: any[] = [];
 
 
+
     // ==========================================
     // DETALLES DE PEDIDOS
     // ==========================================
 
     detallesPedido: any[] = [];
+
 
 
     // ==========================================
@@ -57,6 +71,7 @@ export class Pedidos {
     detallesSeleccionados: any[] = [];
 
 
+
     // ==========================================
     // CAMBIO DE ESTADO
     // ==========================================
@@ -68,6 +83,7 @@ export class Pedidos {
     mensajeEstado = '';
 
 
+
     // ==========================================
     // ESTADOS
     // ==========================================
@@ -77,6 +93,7 @@ export class Pedidos {
     mensajeError = '';
 
 
+
     // ==========================================
     // FILTROS
     // ==========================================
@@ -84,6 +101,7 @@ export class Pedidos {
     busqueda = '';
 
     estadoSeleccionado = 'Todos';
+
 
 
     // ==========================================
@@ -99,6 +117,7 @@ export class Pedidos {
         this.cargarPedidos();
 
     }
+
 
 
     // ==========================================
@@ -130,7 +149,9 @@ export class Pedidos {
 
 
                     this.pedidos =
-                        respuesta ?? [];
+                        Array.isArray(respuesta)
+                            ? respuesta
+                            : [];
 
 
                     console.log(
@@ -154,6 +175,10 @@ export class Pedidos {
                     this.cdr.detectChanges();
 
 
+                    // ==================================
+                    // CARGAR DETALLES
+                    // ==================================
+
                     this.cargarDetallesPedido();
 
                 },
@@ -166,6 +191,10 @@ export class Pedidos {
                         error
                     );
 
+
+                    this.pedidos = [];
+
+                    this.pedidosFiltrados = [];
 
                     this.cargando = false;
 
@@ -181,6 +210,7 @@ export class Pedidos {
             });
 
     }
+
 
 
     // ==========================================
@@ -206,27 +236,30 @@ export class Pedidos {
                     );
 
 
+                    const detalles =
+                        Array.isArray(respuesta)
+                            ? respuesta
+                            : [];
+
+
+                    // ==================================
+                    // NORMALIZAR DETALLES
+                    // ==================================
+
                     this.detallesPedido =
-                        respuesta ?? [];
+                        detalles.map(
+                            detalle =>
+                                this.normalizarDetalle(
+                                    detalle
+                                )
+                        );
 
 
                     console.log(
-                        'DETALLES GUARDADOS:',
+                        'DETALLES NORMALIZADOS:',
                         this.detallesPedido
                     );
 
-
-                    /*
-                     * Los detalles contienen:
-                     *
-                     * pedidoId
-                     * perfume
-                     * cantidad
-                     * precio
-                     *
-                     * Aquí obtenemos el precio
-                     * REAL de cada producto.
-                     */
 
                     this.cdr.detectChanges();
 
@@ -253,6 +286,87 @@ export class Pedidos {
     }
 
 
+
+    // ==========================================
+    // NORMALIZAR DETALLE
+    // ==========================================
+
+    private normalizarDetalle(
+        detalle: any
+    ): any {
+
+        if (!detalle) {
+
+            return {};
+
+        }
+
+
+        return {
+
+            ...detalle,
+
+
+            // ==================================
+            // ID DEL PEDIDO
+            // ==================================
+
+            pedidoId:
+                detalle.pedidoId ??
+                detalle.PedidoId ??
+                detalle.idPedido ??
+                detalle.IdPedido ??
+                detalle.pedido?.id ??
+                detalle.Pedido?.id ??
+                detalle.Pedido?.Id ??
+                0,
+
+
+            // ==================================
+            // CANTIDAD
+            // ==================================
+
+            cantidad:
+                Number(
+                    detalle.cantidad ??
+                    detalle.Cantidad ??
+                    0
+                ),
+
+
+            // ==================================
+            // PRECIO
+            // ==================================
+
+            precio:
+                Number(
+                    detalle.precio ??
+                    detalle.Precio ??
+                    detalle.precioUnitario ??
+                    detalle.PrecioUnitario ??
+                    0
+                ),
+
+
+            // ==================================
+            // PERFUME
+            // ==================================
+
+            perfume:
+                detalle.perfume ??
+                detalle.Perfume ??
+                detalle.nombrePerfume ??
+                detalle.NombrePerfume ??
+                detalle.perfumeNombre ??
+                detalle.PerfumeNombre ??
+                'Perfume'
+
+        };
+
+    }
+
+
+
     // ==========================================
     // OBTENER PRODUCTOS DE UN PEDIDO
     // ==========================================
@@ -263,13 +377,20 @@ export class Pedidos {
 
         return this.detallesPedido.filter(
 
-            detalle =>
-                Number(detalle.pedidoId) ===
-                Number(pedidoId)
+            detalle => {
+
+                return Number(
+                    detalle.pedidoId
+                ) === Number(
+                    pedidoId
+                );
+
+            }
 
         );
 
     }
+
 
 
     // ==========================================
@@ -281,21 +402,31 @@ export class Pedidos {
     ): number {
 
         const detalles =
-            this.obtenerDetallesDelPedido(pedidoId);
+            this.obtenerDetallesDelPedido(
+                pedidoId
+            );
 
 
         return detalles.reduce(
 
-            (total, detalle) =>
+            (
+                total,
+                detalle
+            ) => {
 
-                total +
-                Number(detalle.cantidad ?? 0),
+                return total +
+                    Number(
+                        detalle.cantidad ?? 0
+                    );
+
+            },
 
             0
 
         );
 
     }
+
 
 
     // ==========================================
@@ -307,7 +438,9 @@ export class Pedidos {
     ): string {
 
         const cantidad =
-            this.contarProductos(pedidoId);
+            this.contarProductos(
+                pedidoId
+            );
 
 
         if (cantidad === 0) {
@@ -329,6 +462,7 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // FILTRAR PEDIDOS
     // ==========================================
@@ -342,37 +476,48 @@ export class Pedidos {
 
 
         this.pedidosFiltrados =
-            this.pedidos.filter(pedido => {
+            this.pedidos.filter(
 
-                const nombreUsuario =
-                    this.obtenerNombreUsuario(pedido);
+                pedido => {
 
-
-                const coincideBusqueda =
-
-                    !texto ||
-
-                    String(pedido.id)
-                        .toLowerCase()
-                        .includes(texto) ||
-
-                    nombreUsuario
-                        .toLowerCase()
-                        .includes(texto);
+                    const nombreUsuario =
+                        this.obtenerNombreUsuario(
+                            pedido
+                        );
 
 
-                const coincideEstado =
+                    const coincideBusqueda =
 
-                    this.estadoSeleccionado === 'Todos' ||
+                        !texto ||
 
-                    pedido.estado ===
-                    this.estadoSeleccionado;
+                        String(
+                            pedido.id
+                        )
+                            .toLowerCase()
+                            .includes(texto) ||
+
+                        nombreUsuario
+                            .toLowerCase()
+                            .includes(texto);
 
 
-                return coincideBusqueda &&
-                       coincideEstado;
+                    const coincideEstado =
 
-            });
+                        this.estadoSeleccionado ===
+                            'Todos' ||
+
+                        pedido.estado ===
+                            this.estadoSeleccionado;
+
+
+                    return (
+                        coincideBusqueda &&
+                        coincideEstado
+                    );
+
+                }
+
+            );
 
 
         console.log(
@@ -381,6 +526,7 @@ export class Pedidos {
         );
 
     }
+
 
 
     // ==========================================
@@ -394,6 +540,7 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // TOTAL DE PEDIDOS
     // ==========================================
@@ -403,6 +550,7 @@ export class Pedidos {
         return this.pedidos.length;
 
     }
+
 
 
     // ==========================================
@@ -422,6 +570,7 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // PEDIDOS ENVIADOS
     // ==========================================
@@ -439,22 +588,19 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // TOTAL DE VENTAS REAL
     // ==========================================
 
     get totalVentas(): number {
 
-        /*
-         * No usamos pedido.total.
-         *
-         * Sumamos directamente los detalles
-         * usando precio × cantidad.
-         */
-
         return this.detallesPedido.reduce(
 
-            (total, detalle) => {
+            (
+                total,
+                detalle
+            ) => {
 
                 return total +
                     this.calcularSubtotalDetalle(
@@ -470,6 +616,7 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // LIMPIAR FILTROS
     // ==========================================
@@ -483,6 +630,7 @@ export class Pedidos {
         this.aplicarFiltros();
 
     }
+
 
 
     // ==========================================
@@ -508,7 +656,10 @@ export class Pedidos {
         // SI VIENE COMO TEXTO
         // ==================================
 
-        if (typeof usuario === 'string') {
+        if (
+            typeof usuario ===
+            'string'
+        ) {
 
             return usuario;
 
@@ -521,7 +672,8 @@ export class Pedidos {
 
         if (
             usuario &&
-            typeof usuario === 'object'
+            typeof usuario ===
+            'object'
         ) {
 
             const nombre =
@@ -622,6 +774,7 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // OBTENER NOMBRE DEL CLIENTE SELECCIONADO
     // ==========================================
@@ -635,11 +788,14 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // VER PEDIDO
     // ==========================================
 
-    verPedido(id: number): void {
+    verPedido(
+        id: number
+    ): void {
 
         console.log(
             'Abriendo pedido:',
@@ -658,7 +814,9 @@ export class Pedidos {
 
 
         this.detallesSeleccionados =
-            this.obtenerDetallesDelPedido(id);
+            this.obtenerDetallesDelPedido(
+                id
+            );
 
 
         console.log(
@@ -680,10 +838,13 @@ export class Pedidos {
 
 
                     this.pedidoSeleccionado =
-                        pedido ?? pedidoLocal;
+                        pedido ??
+                        pedidoLocal;
 
 
-                    if (!this.pedidoSeleccionado) {
+                    if (
+                        !this.pedidoSeleccionado
+                    ) {
 
                         this.pedidoSeleccionado =
                             pedidoLocal;
@@ -732,12 +893,10 @@ export class Pedidos {
 
 
                         this.detallesSeleccionados =
-                            this.obtenerDetallesDelPedido(id);
+                            this.obtenerDetallesDelPedido(
+                                id
+                            );
 
-
-                        // ==================================
-                        // PREPARAR ESTADO
-                        // ==================================
 
                         this.estadoEditando =
                             this.pedidoSeleccionado?.estado ??
@@ -771,6 +930,7 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // CAMBIAR ESTADO
     // ==========================================
@@ -779,11 +939,13 @@ export class Pedidos {
         estado: string
     ): void {
 
-        this.estadoEditando = estado;
+        this.estadoEditando =
+            estado;
 
         this.mensajeEstado = '';
 
     }
+
 
 
     // ==========================================
@@ -796,7 +958,9 @@ export class Pedidos {
         // VALIDAR PEDIDO
         // ==========================================
 
-        if (!this.pedidoSeleccionado) {
+        if (
+            !this.pedidoSeleccionado
+        ) {
 
             return;
 
@@ -940,7 +1104,9 @@ export class Pedidos {
                         );
 
 
-                    if (indice !== -1) {
+                    if (
+                        indice !== -1
+                    ) {
 
                         this.pedidos[indice] = {
 
@@ -969,7 +1135,8 @@ export class Pedidos {
                         'Estado actualizado correctamente.';
 
 
-                    this.guardandoEstado = false;
+                    this.guardandoEstado =
+                        false;
 
 
                     this.cdr.detectChanges();
@@ -992,7 +1159,8 @@ export class Pedidos {
                     );
 
 
-                    this.guardandoEstado = false;
+                    this.guardandoEstado =
+                        false;
 
 
                     this.mensajeEstado =
@@ -1006,6 +1174,7 @@ export class Pedidos {
             });
 
     }
+
 
 
     // ==========================================
@@ -1029,6 +1198,7 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // CALCULAR SUBTOTAL DE UN DETALLE
     // ==========================================
@@ -1039,19 +1209,26 @@ export class Pedidos {
 
         const precio =
             Number(
-                detalle?.precio ?? 0
+                detalle?.precio ??
+                detalle?.Precio ??
+                detalle?.precioUnitario ??
+                detalle?.PrecioUnitario ??
+                0
             );
 
 
         const cantidad =
             Number(
-                detalle?.cantidad ?? 0
+                detalle?.cantidad ??
+                detalle?.Cantidad ??
+                0
             );
 
 
         return precio * cantidad;
 
     }
+
 
 
     // ==========================================
@@ -1070,7 +1247,10 @@ export class Pedidos {
 
         return detalles.reduce(
 
-            (total, detalle) => {
+            (
+                total,
+                detalle
+            ) => {
 
                 return total +
                     this.calcularSubtotalDetalle(
@@ -1084,6 +1264,7 @@ export class Pedidos {
         );
 
     }
+
 
 
     // ==========================================
@@ -1104,7 +1285,10 @@ export class Pedidos {
 
         return this.detallesSeleccionados.reduce(
 
-            (total, detalle) => {
+            (
+                total,
+                detalle
+            ) => {
 
                 return total +
                     this.calcularSubtotalDetalle(
@@ -1120,6 +1304,7 @@ export class Pedidos {
     }
 
 
+
     // ==========================================
     // CANTIDAD TOTAL DE PRODUCTOS
     // ==========================================
@@ -1128,12 +1313,19 @@ export class Pedidos {
 
         return this.detallesSeleccionados.reduce(
 
-            (total, detalle) =>
+            (
+                total,
+                detalle
+            ) => {
 
-                total +
-                Number(
-                    detalle.cantidad ?? 0
-                ),
+                return total +
+                    Number(
+                        detalle.cantidad ??
+                        detalle.Cantidad ??
+                        0
+                    );
+
+            },
 
             0
 
